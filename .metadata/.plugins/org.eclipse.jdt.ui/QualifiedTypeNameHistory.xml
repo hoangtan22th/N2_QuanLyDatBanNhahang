@@ -2,9 +2,11 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="connectDB.connectDB"/>
-    <fullyQualifiedTypeName name="entity.KhachHang"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-    <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="entity.TheThanhVien"/>
     <fullyQualifiedTypeName name="dao.KhachHangDAO"/>
+    <fullyQualifiedTypeName name="entity.NhanVien"/>
+    <fullyQualifiedTypeName name="entity.KhachHang"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="entity.Thue"/>
 </qualifiedTypeNameHistroy>
