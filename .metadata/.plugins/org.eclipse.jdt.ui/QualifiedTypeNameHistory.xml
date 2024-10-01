@@ -7,6 +7,12 @@
     <fullyQualifiedTypeName name="dao.KhachHangDAO"/>
     <fullyQualifiedTypeName name="entity.NhanVien"/>
     <fullyQualifiedTypeName name="entity.KhachHang"/>
-    <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="entity.Thue"/>
+    <fullyQualifiedTypeName name="entity.KhuVucBan"/>
+    <fullyQualifiedTypeName name="entity.HoaDon"/>
+    <fullyQualifiedTypeName name="entity.MonAnUong"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="entity.KhuyenMai"/>
+    <fullyQualifiedTypeName name="entity.Ban"/>
 </qualifiedTypeNameHistroy>

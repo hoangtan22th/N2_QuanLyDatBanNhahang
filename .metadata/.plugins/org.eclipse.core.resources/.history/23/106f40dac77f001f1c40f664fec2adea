@@ -1,0 +1,13 @@
+package entity;
+
+import java.time.LocalDateTime;
+
+public class Ban {
+	private String maBan;
+	private String tenBan;
+	private LocalDateTime thoiGianDatBan;
+	private int soChoNgoi;
+	private boolean trangThai;
+	private String loaiBan;
+	private KhuVucBan khuVucBan;
+}

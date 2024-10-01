@@ -1,0 +1,8 @@
+package entity;
+
+public class KhuVucBan {
+	private String maKhu;
+	private String tenKhu;
+	private int soBan;
+	
+}
