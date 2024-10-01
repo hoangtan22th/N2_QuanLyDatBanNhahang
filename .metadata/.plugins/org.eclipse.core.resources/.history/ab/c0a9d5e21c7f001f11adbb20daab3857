@@ -1,0 +1,41 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import connectDB.connectDB;
+import entity.KhachHang;
+
+public class KhachHangDAO {
+	public void xuatKhachHangDauTien(KhachHang kh) {
+		KhachHang khDauTien = null;
+		
+		try {
+			
+			Connection con = connectDB.getConnection();
+			Statement st = con.createStatement();
+			String sql = "SELECT * FROM KhachHang ORDER BY maKH ASC LIMIT 1";
+			ResultSet rs = st.executeQuery(sql);
+			if (rs.next()) {				
+				String maKH = rs.getString("maKH");   
+                String tenKH = rs.getString("tenKH");    
+                System.out.println("Khách hàng đầu tiên:");
+                
+                System.out.println("maKH: " + maKH);
+                System.out.println("tenKH: " + tenKH);
+                
+             
+            }
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return khDauTien ;
+	}
+}
