@@ -1,0 +1,80 @@
+package gui;
+
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+public class Menu extends JFrame {
+    public Menu() {
+        setTitle("Menu");
+        setSize(500, 500);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+       
+        JMenuBar jMenuBar = new JMenuBar();
+ 
+        JMenu jMenuNhaHang = new JMenu("Nhà hàng");
+        JMenuItem itemNhaHang1 = new JMenuItem("xxx");
+        JMenuItem itemNhaHang2 = new JMenuItem("yyy");
+        jMenuNhaHang.add(itemNhaHang1);
+        jMenuNhaHang.add(itemNhaHang2);
+        jMenuBar.add(jMenuNhaHang);
+        
+        JMenu jMenuDatCho = new JMenu("Đặt chỗ");
+        JMenuItem itemDatCho1 = new JMenuItem("xxx");
+        JMenuItem itemDatCho2 = new JMenuItem("yyy");
+        jMenuDatCho.add(itemDatCho1);
+        jMenuDatCho.add(itemDatCho2);
+        jMenuBar.add(jMenuDatCho);
+        
+        JMenu jMenuNhanVien = new JMenu("Nhân viên");
+        JMenuItem itemNhanVien1 = new JMenuItem("xxx");
+        JMenuItem itemNhanVien2 = new JMenuItem("yyy");
+        jMenuNhanVien.add(itemNhanVien1);
+        jMenuNhanVien.add(itemNhanVien2);
+        jMenuBar.add(jMenuNhanVien);
+         
+        JMenu jMenuKhachHang = new JMenu("Khách hàng");
+        JMenuItem itemKhachHang1 = new JMenuItem("xxx");
+        JMenuItem itemKhachHang2 = new JMenuItem("yyy");
+        jMenuKhachHang.add(itemKhachHang1);
+        jMenuKhachHang.add(itemKhachHang2);
+        jMenuBar.add(jMenuKhachHang);
+
+        JMenu jMenuThongKe = new JMenu("Thống kê");
+        JMenuItem itemThongKe1 = new JMenuItem("xxx");
+        JMenuItem itemThongKe2 = new JMenuItem("yyy");
+        jMenuThongKe.add(itemThongKe1);
+        jMenuThongKe.add(itemThongKe2);
+        jMenuBar.add(jMenuThongKe);
+              
+        JMenu jMenuBan = new JMenu("Bàn");
+        JMenuItem itemBan1 = new JMenuItem("xxx");
+        JMenuItem itemBan2 = new JMenuItem("yyy");
+        jMenuBan.add(itemBan1);
+        jMenuBan.add(itemBan2);
+        jMenuBar.add(jMenuBan);
+        
+        JMenu jMenuMonAn = new JMenu("Món ăn");
+        JMenuItem itemMonAn1 = new JMenuItem("xxx");
+        JMenuItem itemMonAn2 = new JMenuItem("yyy");
+        jMenuMonAn.add(itemMonAn1);
+        jMenuMonAn.add(itemMonAn2);
+        jMenuBar.add(jMenuMonAn);
+              
+        JMenu jMenuTheVip = new JMenu("Thẻ VIP");
+        JMenuItem itemTheVip1 = new JMenuItem("xxx");
+        JMenuItem itemTheVip2 = new JMenuItem("yyy");
+        jMenuTheVip.add(itemTheVip1);
+        jMenuTheVip.add(itemTheVip2);
+        jMenuBar.add(jMenuTheVip);
+        
+        setJMenuBar(jMenuBar);
+        setLayout(new BorderLayout());
+        setVisible(true);
+    }
+
+   
+}

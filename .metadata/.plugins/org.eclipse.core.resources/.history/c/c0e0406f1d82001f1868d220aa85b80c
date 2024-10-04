@@ -1,0 +1,9 @@
+package gui;
+
+import javax.swing.JFrame;
+
+public class Menu extends JFrame{
+	public Menu() {
+		setTitle("Menu");
+	}
+}

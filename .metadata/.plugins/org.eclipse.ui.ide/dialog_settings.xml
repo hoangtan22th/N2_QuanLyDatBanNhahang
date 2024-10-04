@@ -6,6 +6,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\Nhom21_QuanLyBanVeRapChieuPhim"/>
 			<item value="D:\ChuaBaiHocNam3\PHAT_TRIEN_UNG_DUNG\TestChucNangJava\N10_QuanLyDatBanNhaHang1"/>
 			<item value="D:\ChuaBaiHocNam3\PHAT_TRIEN_UNG_DUNG\TestChucNangJava"/>
 		</list>

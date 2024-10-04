@@ -1,0 +1,147 @@
+package gui;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
+public class Menu extends JFrame implements ActionListener {
+
+    JMenuItem itemNhaHang1, itemNhaHang2;
+    JMenuItem itemDatCho1, itemDatCho2;
+    JMenuItem itemNhanVien1, itemNhanVien2;
+    JMenuItem itemKhachHang1, itemKhachHang2;
+    JMenuItem itemThongKe1, itemThongKe2;
+    JMenuItem itemBan1, itemBan2;
+    JMenuItem itemMonAn1, itemMonAn2;
+    JMenuItem itemTheVip1, itemTheVip2;
+
+    public Menu() {
+        setTitle("Menu");
+        setSize(500, 500);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        
+        JMenuBar jMenuBar = new JMenuBar();
+        
+        JMenu jMenuNhaHang = new JMenu("Nhà hàng");
+        itemNhaHang1 = new JMenuItem("xxx");
+        itemNhaHang2 = new JMenuItem("yyy");
+        jMenuNhaHang.add(itemNhaHang1);
+        jMenuNhaHang.add(itemNhaHang2);
+        jMenuBar.add(jMenuNhaHang);
+        
+        JMenu jMenuDatCho = new JMenu("Đặt chỗ");
+        itemDatCho1 = new JMenuItem("xxx");
+        itemDatCho2 = new JMenuItem("yyy");
+        jMenuDatCho.add(itemDatCho1);
+        jMenuDatCho.add(itemDatCho2);
+        jMenuBar.add(jMenuDatCho);
+        
+        JMenu jMenuNhanVien = new JMenu("Nhân viên");
+        itemNhanVien1 = new JMenuItem("xxx");
+        itemNhanVien2 = new JMenuItem("yyy");
+        jMenuNhanVien.add(itemNhanVien1);
+        jMenuNhanVien.add(itemNhanVien2);
+        jMenuBar.add(jMenuNhanVien);
+           
+        JMenu jMenuKhachHang = new JMenu("Khách hàng");
+        itemKhachHang1 = new JMenuItem("xxx");
+        itemKhachHang2 = new JMenuItem("yyy");
+        jMenuKhachHang.add(itemKhachHang1);
+        jMenuKhachHang.add(itemKhachHang2);
+        jMenuBar.add(jMenuKhachHang);
+        
+        JMenu jMenuThongKe = new JMenu("Thống kê");
+        itemThongKe1 = new JMenuItem("xxx");
+        itemThongKe2 = new JMenuItem("yyy");
+        jMenuThongKe.add(itemThongKe1);
+        jMenuThongKe.add(itemThongKe2);
+        jMenuBar.add(jMenuThongKe);
+        
+        JMenu jMenuBan = new JMenu("Bàn");
+        itemBan1 = new JMenuItem("xxx");
+        itemBan2 = new JMenuItem("yyy");
+        jMenuBan.add(itemBan1);
+        jMenuBan.add(itemBan2);
+        jMenuBar.add(jMenuBan);
+        
+        JMenu jMenuMonAn = new JMenu("Món ăn");
+        itemMonAn1 = new JMenuItem("xxx");
+        itemMonAn2 = new JMenuItem("yyy");
+        jMenuMonAn.add(itemMonAn1);
+        jMenuMonAn.add(itemMonAn2);
+        jMenuBar.add(jMenuMonAn);
+        
+        JMenu jMenuTheVip = new JMenu("Thẻ VIP");
+        itemTheVip1 = new JMenuItem("xxx");
+        itemTheVip2 = new JMenuItem("yyy");
+        jMenuTheVip.add(itemTheVip1);
+        jMenuTheVip.add(itemTheVip2);
+        jMenuBar.add(jMenuTheVip);
+        
+        itemNhaHang1.addActionListener(this);
+        itemNhaHang2.addActionListener(this);
+        itemDatCho1.addActionListener(this);
+        itemDatCho2.addActionListener(this);
+        itemNhanVien1.addActionListener(this);
+        itemNhanVien2.addActionListener(this);
+        itemKhachHang1.addActionListener(this);
+        itemKhachHang2.addActionListener(this);
+        itemThongKe1.addActionListener(this);
+        itemThongKe2.addActionListener(this);
+        itemBan1.addActionListener(this);
+        itemBan2.addActionListener(this);
+        itemMonAn1.addActionListener(this);
+        itemMonAn2.addActionListener(this);
+        itemTheVip1.addActionListener(this);
+        itemTheVip2.addActionListener(this);
+        
+        setJMenuBar(jMenuBar);
+        setLayout(new BorderLayout());
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == itemNhaHang1) {
+            JOptionPane.showMessageDialog(this, "Nhà hàng - xxx");
+        } else if (e.getSource() == itemNhaHang2) {
+            JOptionPane.showMessageDialog(this, "Nhà hàng - yyy");
+        } else if (e.getSource() == itemDatCho1) {
+            JOptionPane.showMessageDialog(this, "Đặt chỗ - xxx");
+        } else if (e.getSource() == itemDatCho2) {
+            JOptionPane.showMessageDialog(this, "Đặt chỗ - yyy");
+        } else if (e.getSource() == itemNhanVien1) {
+            JOptionPane.showMessageDialog(this, "Nhân viên - xxx");
+        } else if (e.getSource() == itemNhanVien2) {
+            JOptionPane.showMessageDialog(this, "Nhân viên - yyy");
+        } else if (e.getSource() == itemKhachHang1) {
+            JOptionPane.showMessageDialog(this, "Khách hàng - xxx");
+        } else if (e.getSource() == itemKhachHang2) {
+            JOptionPane.showMessageDialog(this, "Khách hàng - yyy");
+        } else if (e.getSource() == itemThongKe1) {
+            JOptionPane.showMessageDialog(this, "Thống kê - xxx");
+        } else if (e.getSource() == itemThongKe2) {
+            JOptionPane.showMessageDialog(this, "Thống kê - yyy");
+        } else if (e.getSource() == itemBan1) {
+            JOptionPane.showMessageDialog(this, "Bàn - xxx");
+        } else if (e.getSource() == itemBan2) {
+            JOptionPane.showMessageDialog(this, "Bàn - yyy");
+        } else if (e.getSource() == itemMonAn1) {
+            JOptionPane.showMessageDialog(this, "Món ăn - xxx");
+        } else if (e.getSource() == itemMonAn2) {
+            JOptionPane.showMessageDialog(this, "Món ăn - yyy");
+        } else if (e.getSource() == itemTheVip1) {
+            JOptionPane.showMessageDialog(this, "Thẻ VIP - xxx");
+        } else if (e.getSource() == itemTheVip2) {
+            JOptionPane.showMessageDialog(this, "Thẻ VIP - yyy");
+        }
+    }
+
+  
+}

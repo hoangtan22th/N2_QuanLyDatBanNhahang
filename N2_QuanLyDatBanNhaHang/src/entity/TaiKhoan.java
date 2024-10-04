@@ -44,5 +44,8 @@ public class TaiKhoan {
 		return "TaiKhoan [taiKhoan=" + taiKhoan + ", matKhau=" + matKhau + ", role=" + role + ", ngayTaoTK=" + ngayTaoTK
 				+ "]";
 	}
-	
+	public boolean checkTK() {
+		
+		return true;
+	}
 }
