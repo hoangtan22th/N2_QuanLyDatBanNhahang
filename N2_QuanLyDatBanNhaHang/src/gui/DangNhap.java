@@ -22,7 +22,7 @@ public class DangNhap extends JFrame {
 	private JLabel lblRong;
 
     public DangNhap() {
-        // Thiết lập khung chính
+       
         setTitle("Đăng nhập");
         setSize(700, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,7 +45,7 @@ public class DangNhap extends JFrame {
         b4 = Box.createHorizontalBox();
 
         lblTitle = new JLabel("ĐĂNG NHẬP");
-        lblTitle.setFont(new Font("Arial", Font.BOLD, 24)); // Thiết lập phông chữ cho lblTitle
+        lblTitle.setFont(new Font("Arial", Font.BOLD, 24)); 
 
         txtDangNhap = new JTextField(20);
         txtMatKhau = new JTextField(20);
@@ -73,24 +73,24 @@ public class DangNhap extends JFrame {
         btnThoat = new JButton("Thoát");
 
         b0.add(lblTitle);
-        b0.add(Box.createHorizontalStrut(10)); // Khoảng cách giữa tiêu đề và ô nhập
+        b0.add(Box.createHorizontalStrut(10)); 
         b1.add(lblDangNhap);
         b1.add(txtDangNhap);
-        b1.add(Box.createHorizontalStrut(10)); // Khoảng cách giữa ô nhập và nút
+        b1.add(Box.createHorizontalStrut(10)); 
         b2.add(lblMatKhau);
         b2.add(txtMatKhau);
-        b2.add(Box.createHorizontalStrut(10)); // Khoảng cách giữa ô nhập và nút
-        b3.add(Box.createHorizontalStrut(85)); // Khoảng cách bên trái cho nút Đăng nhập
+        b2.add(Box.createHorizontalStrut(10)); 
+        b3.add(Box.createHorizontalStrut(85)); 
         b3.add(btnDangNhap);
-        b3.add(Box.createHorizontalStrut(8)); // Khoảng cách giữa nút đăng nhập và quên mật khẩu
+        b3.add(Box.createHorizontalStrut(8));
         b3.add(btnQuenMatKhau);
         
         b.add(b0);
-        b.add(Box.createVerticalStrut(15)); // Khoảng cách giữa các hàng
+        b.add(Box.createVerticalStrut(15)); 
         b.add(b1);
-        b.add(Box.createVerticalStrut(15)); // Khoảng cách giữa các hàng
+        b.add(Box.createVerticalStrut(15)); 
         b.add(b2);
-        b.add(Box.createVerticalStrut(15)); // Khoảng cách giữa các hàng
+        b.add(Box.createVerticalStrut(15)); 
         b.add(b3);
 
         pnNorth.add(lblLogo);
@@ -102,9 +102,9 @@ public class DangNhap extends JFrame {
         pnSouth.add(btnDoiMatKhau);
         pnSouth.add(Box.createHorizontalStrut(10)); 
         pnSouth.add(btnThoat);
-        btnTroGiup.setBackground(Color.decode("#0E30E2")); // Màu cho nút Trợ giúp
-        btnDoiMatKhau.setBackground(Color.decode("#E28D0E")); // Màu cho nút Đổi mật khẩu
-        btnThoat.setBackground(Color.decode("#E12020")); // Màu cho nút Thoát
+        btnTroGiup.setBackground(Color.decode("#0E30E2")); 
+        btnDoiMatKhau.setBackground(Color.decode("#E28D0E")); 
+        btnThoat.setBackground(Color.decode("#E12020")); 
         btnTroGiup.setForeground(Color.white);
         btnDoiMatKhau.setForeground(Color.white);
         btnThoat.setForeground(Color.white);
