@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;TestChucNangJava/N10_QuanLyDatBanNhaHang&apos; to &apos;N10_QuanLyDatBanNhaHang1&apos;" description="Rename resource &apos;N10_QuanLyDatBanNhaHang&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="N10_QuanLyDatBanNhaHang" name="N10_QuanLyDatBanNhaHang1" stamp="1727693425904" updateReferences="true"/>
-</session>

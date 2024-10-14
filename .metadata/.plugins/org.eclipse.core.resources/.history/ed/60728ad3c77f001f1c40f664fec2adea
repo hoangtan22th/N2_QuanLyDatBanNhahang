@@ -1,8 +1,0 @@
-package entity;
-
-public class ChiTietHoaDon {
-	private String soLuongMonAn;
-	private HoaDon hoaDon;
-	private MonAnUong monAnUong;
-	
-}
