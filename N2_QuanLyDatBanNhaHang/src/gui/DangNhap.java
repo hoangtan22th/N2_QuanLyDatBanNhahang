@@ -1,9 +1,13 @@
 package gui; 
 
 import javax.swing.*;
-import java.awt.*;
 
-public class DangNhap extends JFrame {
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class DangNhap extends JFrame implements ActionListener{
 
     private JPanel pnNorth;
     private JLabel lblLogo;
@@ -137,10 +141,19 @@ public class DangNhap extends JFrame {
         add(pnNorth, BorderLayout.NORTH);
         add(pnCenter, BorderLayout.CENTER);
         add(pnSouth, BorderLayout.SOUTH);
+        btnDangNhap.addActionListener(this);
     }
 
     public static void main(String[] args) {
         DangNhap frame = new DangNhap();
         frame.setVisible(true);
     }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	    if (e.getSource() == btnDangNhap) {	        
+	        setVisible(false);
+			new Menu().setVisible(true);
+	    }
+	}
 }
