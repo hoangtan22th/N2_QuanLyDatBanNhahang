@@ -19,19 +19,35 @@ public class DangNhap extends JFrame {
     private JButton btnDoiMatKhau;
     private JLabel lblDangNhap;
     private JLabel lblMatKhau;
-	private JLabel lblRong;
+    private JLabel lblRong;
+    private JPanel pnBoxDangNhap;
+
+    
+    private Image backgroundImage;
+	
 
     public DangNhap() {
-       
         setTitle("Đăng nhập");
         setSize(700, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        pnNorth = new JPanel();
-        pnCenter = new JPanel();
+      
+        backgroundImage = Toolkit.getDefaultToolkit().getImage("images/hinhNen.jpg"); 
+      
+        pnNorth  = new JPanel() ;
+        pnCenter = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+         
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
         pnSouth = new JPanel();
+        pnBoxDangNhap = new JPanel();
+        pnBoxDangNhap.setLayout(new FlowLayout());
 
         lblLogo = new JLabel("LOGO");
 
@@ -43,30 +59,32 @@ public class DangNhap extends JFrame {
         b2 = Box.createHorizontalBox();
         b3 = Box.createHorizontalBox();
         b4 = Box.createHorizontalBox();
-
+        Dimension buttonSize = new Dimension(120, 26); 
+        
         lblTitle = new JLabel("ĐĂNG NHẬP");
         lblTitle.setFont(new Font("Arial", Font.BOLD, 24)); 
 
-        txtDangNhap = new JTextField(20);
-        txtMatKhau = new JTextField(20);
-        txtDangNhap.setPreferredSize(new Dimension(300, 30)); 
-        txtMatKhau.setPreferredSize(new Dimension(300, 30)); 
+        txtDangNhap = new JTextField(25);
+        txtMatKhau = new JTextField(25);
+        txtDangNhap.setPreferredSize(new Dimension(400, 30)); 
+        txtMatKhau.setPreferredSize(new Dimension(400, 30)); 
         lblDangNhap = new JLabel("Tên đăng nhập: ");
         lblMatKhau = new JLabel("Mật khẩu: ");
         lblMatKhau.setPreferredSize(lblDangNhap.getPreferredSize()); 
         
-        lblRong = new JLabel("");
-        lblRong.setPreferredSize(lblDangNhap.getPreferredSize()); 
-        
         btnDangNhap = new JButton("Đăng nhập");
+        btnDangNhap.setPreferredSize(buttonSize);
         btnDangNhap.setBackground(Color.decode("#00972A")); 
         btnDangNhap.setForeground(Color.WHITE); 
-      
+        btnDangNhap.setMinimumSize(buttonSize); 
+        btnDangNhap.setMaximumSize(buttonSize); 
         
         btnQuenMatKhau = new JButton("Quên mật khẩu");
+        btnQuenMatKhau.setPreferredSize(buttonSize);
         btnQuenMatKhau.setBackground(Color.decode("#E28D0E")); 
         btnQuenMatKhau.setForeground(Color.WHITE); 
-       
+        btnQuenMatKhau.setMinimumSize(buttonSize);
+        btnQuenMatKhau.setMaximumSize(buttonSize); 
         
         btnTroGiup = new JButton("Trợ giúp");
         btnDoiMatKhau = new JButton("Đổi mật khẩu");
@@ -80,7 +98,8 @@ public class DangNhap extends JFrame {
         b2.add(lblMatKhau);
         b2.add(txtMatKhau);
         b2.add(Box.createHorizontalStrut(10)); 
-        b3.add(Box.createHorizontalStrut(85)); 
+        
+        b3.add(Box.createHorizontalStrut(85));    
         b3.add(btnDangNhap);
         b3.add(Box.createHorizontalStrut(8));
         b3.add(btnQuenMatKhau);
@@ -109,11 +128,12 @@ public class DangNhap extends JFrame {
         btnDoiMatKhau.setForeground(Color.white);
         btnThoat.setForeground(Color.white);
 
+        btnTroGiup.setPreferredSize(buttonSize);
+        btnDoiMatKhau.setPreferredSize(buttonSize);
+        btnThoat.setPreferredSize(buttonSize);
+        btnDangNhap.setPreferredSize(buttonSize);
+        btnQuenMatKhau.setPreferredSize(buttonSize);
         
-        
-        pnCenter.setBackground(Color.black);
-        pnNorth.setBackground(Color.black);
-        pnSouth.setBackground(Color.black);
         add(pnNorth, BorderLayout.NORTH);
         add(pnCenter, BorderLayout.CENTER);
         add(pnSouth, BorderLayout.SOUTH);
