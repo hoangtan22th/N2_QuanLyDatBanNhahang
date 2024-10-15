@@ -8,10 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DangNhap extends JFrame implements ActionListener{
-
-    private JPanel pnNorth;
-    private JLabel lblLogo;
-    private JPanel pnSouth;
     private JPanel pnCenter;
     private JLabel lblTitle;
     private JTextField txtDangNhap;
@@ -31,16 +27,16 @@ public class DangNhap extends JFrame implements ActionListener{
 	
 
     public DangNhap() {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\Data\\tailieuvuive\\PTUD\\N2_QuanLyDatBanNhahang\\N2_QuanLyDatBanNhaHang\\img\\Logo.png"));
         setTitle("Đăng nhập");
-        setSize(700, 400);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setSize(1920, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
+        getContentPane().setLayout(new BorderLayout());
 
-      
-        backgroundImage = Toolkit.getDefaultToolkit().getImage("images/hinhNen.jpg"); 
-      
-        pnNorth  = new JPanel() ;
+        
+        backgroundImage = Toolkit.getDefaultToolkit().getImage("images/hinhNen.jpg");
         pnCenter = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -49,24 +45,19 @@ public class DangNhap extends JFrame implements ActionListener{
                 g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
             }
         };
-        pnSouth = new JPanel();
         pnBoxDangNhap = new JPanel();
         pnBoxDangNhap.setLayout(new FlowLayout());
-
-        lblLogo = new JLabel("LOGO");
 
         Box b, b0, b1, b2, b3, b4;
 
         b = Box.createVerticalBox();
+        b.setBounds(591, 293, 369, 159);
         b0 = Box.createHorizontalBox();
         b1 = Box.createHorizontalBox();
         b2 = Box.createHorizontalBox();
         b3 = Box.createHorizontalBox();
         b4 = Box.createHorizontalBox();
         Dimension buttonSize = new Dimension(120, 26); 
-        
-        lblTitle = new JLabel("ĐĂNG NHẬP");
-        lblTitle.setFont(new Font("Arial", Font.BOLD, 24)); 
 
         txtDangNhap = new JTextField(25);
         txtMatKhau = new JTextField(25);
@@ -89,13 +80,7 @@ public class DangNhap extends JFrame implements ActionListener{
         btnQuenMatKhau.setForeground(Color.WHITE); 
         btnQuenMatKhau.setMinimumSize(buttonSize);
         btnQuenMatKhau.setMaximumSize(buttonSize); 
-        
-        btnTroGiup = new JButton("Trợ giúp");
-        btnDoiMatKhau = new JButton("Đổi mật khẩu");
-        btnThoat = new JButton("Thoát");
-
-        b0.add(lblTitle);
-        b0.add(Box.createHorizontalStrut(10)); 
+        pnCenter.setLayout(null);
         b1.add(lblDangNhap);
         b1.add(txtDangNhap);
         b1.add(Box.createHorizontalStrut(10)); 
@@ -115,32 +100,41 @@ public class DangNhap extends JFrame implements ActionListener{
         b.add(b2);
         b.add(Box.createVerticalStrut(15)); 
         b.add(b3);
-
-        pnNorth.add(lblLogo);
         pnCenter.add(b);
-        
-        pnSouth.setLayout(new FlowLayout(FlowLayout.RIGHT)); 
-        pnSouth.add(btnTroGiup);
-        pnSouth.add(Box.createHorizontalStrut(10)); 
-        pnSouth.add(btnDoiMatKhau);
-        pnSouth.add(Box.createHorizontalStrut(10)); 
-        pnSouth.add(btnThoat);
-        btnTroGiup.setBackground(Color.decode("#0E30E2")); 
-        btnDoiMatKhau.setBackground(Color.decode("#E28D0E")); 
-        btnThoat.setBackground(Color.decode("#E12020")); 
-        btnTroGiup.setForeground(Color.white);
-        btnDoiMatKhau.setForeground(Color.white);
-        btnThoat.setForeground(Color.white);
-
-        btnTroGiup.setPreferredSize(buttonSize);
-        btnDoiMatKhau.setPreferredSize(buttonSize);
-        btnThoat.setPreferredSize(buttonSize);
         btnDangNhap.setPreferredSize(buttonSize);
         btnQuenMatKhau.setPreferredSize(buttonSize);
+        getContentPane().add(pnCenter, BorderLayout.CENTER);
         
-        add(pnNorth, BorderLayout.NORTH);
-        add(pnCenter, BorderLayout.CENTER);
-        add(pnSouth, BorderLayout.SOUTH);
+        btnTroGiup = new JButton("Trợ giúp");
+        btnTroGiup.setBounds(1130, 809, 120, 26);
+        pnCenter.add(btnTroGiup);
+        btnTroGiup.setBackground(Color.decode("#0E30E2")); 
+        btnTroGiup.setForeground(Color.white);
+        
+                btnTroGiup.setPreferredSize(buttonSize);
+                btnDoiMatKhau = new JButton("Đổi mật khẩu");
+                btnDoiMatKhau.setBounds(1270, 809, 120, 26);
+                pnCenter.add(btnDoiMatKhau);
+                btnDoiMatKhau.setBackground(Color.decode("#E28D0E")); 
+                btnDoiMatKhau.setForeground(Color.white);
+                btnDoiMatKhau.setPreferredSize(buttonSize);
+                btnThoat = new JButton("Thoát");
+                btnThoat.setBounds(1410, 809, 120, 26);
+                pnCenter.add(btnThoat);
+                btnThoat.setBackground(Color.decode("#E12020")); 
+                btnThoat.setForeground(Color.white);
+                btnThoat.setPreferredSize(buttonSize);
+                
+                JLabel lblNewLabel = new JLabel("");
+                lblNewLabel.setIcon(new ImageIcon("D:\\Data\\tailieuvuive\\PTUD\\N2_QuanLyDatBanNhahang\\N2_QuanLyDatBanNhaHang\\img\\Logo.png"));
+                lblNewLabel.setBounds(0, -17, 225, 181);
+                pnCenter.add(lblNewLabel);
+                
+                lblTitle = new JLabel("ĐĂNG NHẬP");
+                lblTitle.setBounds(735, 271, 145, 28);
+                pnCenter.add(lblTitle);
+                lblTitle.setForeground(new Color(0, 0, 128));
+                lblTitle.setFont(new Font("Arial", Font.BOLD, 24)); 
         btnDangNhap.addActionListener(this);
     }
 
