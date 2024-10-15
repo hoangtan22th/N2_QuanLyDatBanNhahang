@@ -1,6 +1,5 @@
 INDEX VERSION 1.134+D:\Data\tailieuvuive\PTUD\N2_QuanLyDatBanNhahang\.metadata\.plugins\org.eclipse.jdt.core
 1865797976.index
-2601985176.index
 3196612642.index
 3413725848.index
 2671179700.index
