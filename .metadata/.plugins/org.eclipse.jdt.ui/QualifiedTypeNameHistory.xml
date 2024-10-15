@@ -18,7 +18,6 @@
     <fullyQualifiedTypeName name="entity.Ban"/>
     <fullyQualifiedTypeName name="javax.swing.JFileChooser"/>
     <fullyQualifiedTypeName name="javax.swing.JFrame"/>
-    <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
     <fullyQualifiedTypeName name="javax.swing.JMenuBar"/>
     <fullyQualifiedTypeName name="javax.swing.JMenu"/>
     <fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
@@ -28,4 +27,21 @@
     <fullyQualifiedTypeName name="gui.PanelNhaHangMenu1"/>
     <fullyQualifiedTypeName name="javax.swing.JPanel"/>
     <fullyQualifiedTypeName name="gui.PanelNhaHangMenu2"/>
+    <fullyQualifiedTypeName name="gui.PanelDsThanhVien"/>
+    <fullyQualifiedTypeName name="org.jdatepicker.impl.UtilDateModel"/>
+    <fullyQualifiedTypeName name="java.util.Properties"/>
+    <fullyQualifiedTypeName name="org.jdatepicker.impl.JDatePanelImpl"/>
+    <fullyQualifiedTypeName name="org.jdatepicker.impl.JDatePickerImpl"/>
+    <fullyQualifiedTypeName name="javax.swing.JButton"/>
+    <fullyQualifiedTypeName name="javax.swing.JFormattedTextField.AbstractFormatter"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.text.ParseException"/>
+    <fullyQualifiedTypeName name="java.util.Calendar"/>
+    <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
+    <fullyQualifiedTypeName name="javax.swing.JFormattedTextField"/>
+    <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
+    <fullyQualifiedTypeName name="java.awt.Image"/>
+    <fullyQualifiedTypeName name="gui.PanelQuanLyBan"/>
+    <fullyQualifiedTypeName name="javax.swing.ButtonGroup"/>
+    <fullyQualifiedTypeName name="gui.PanelQLMonAn"/>
 </qualifiedTypeNameHistroy>

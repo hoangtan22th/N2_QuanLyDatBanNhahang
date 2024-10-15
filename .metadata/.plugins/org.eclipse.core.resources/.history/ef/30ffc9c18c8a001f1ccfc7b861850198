@@ -1,0 +1,468 @@
+package gui;
+
+import javax.swing.JPanel;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Properties;
+
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextPane;
+import javax.swing.border.EtchedBorder;
+
+public class PanelQuanLyBan extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	private JTextField txtMaBan;
+	private JTextField txtTenBan;
+	private JTextField txtSoCho;
+
+	/**
+	 * Create the panel.
+	 */
+	public PanelQuanLyBan() {
+		setLayout(null);
+		
+		Label lblTT = new Label("Thông tin");
+        lblTT.setBackground(new Color(65, 41, 224));
+        lblTT.setBounds(10, 10, 150, 60);
+        add(lblTT);
+        lblTT.setAlignment(Label.CENTER);
+        lblTT.setForeground(new Color(255, 255, 255));
+        lblTT.setFont(new Font("Arial", Font.BOLD, 20));
+
+        JLabel lblDatCho = new JLabel("    Quản lý bàn");
+        lblDatCho.setHorizontalAlignment(SwingConstants.LEFT);
+        lblDatCho.setBackground(new Color(65, 41, 224));  // Set màu nền
+        lblDatCho.setForeground(new Color(255, 255, 255));  // Set màu chữ
+        lblDatCho.setFont(new Font("Arial", Font.BOLD, 22));
+        lblDatCho.setBounds(345, 10, 1185, 60);
+        lblDatCho.setOpaque(true);  // Bật hiển thị nền
+        add(lblDatCho);
+        
+        JPanel pnlTT = new JPanel();
+        pnlTT.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
+        pnlTT.setBounds(10, 76, 326, 717);
+        add(pnlTT);
+        pnlTT.setLayout(null);
+        
+        txtMaBan = new JTextField();
+        txtMaBan.setBounds(10, 41, 306, 35);
+        pnlTT.add(txtMaBan);
+        txtMaBan.setColumns(10);
+        
+        JLabel lblMaBan = new JLabel("Mã bàn");
+        lblMaBan.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblMaBan.setBounds(10, 10, 114, 29);
+        pnlTT.add(lblMaBan);
+        
+        JLabel lblTenBan = new JLabel("Tên bàn");
+        lblTenBan.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblTenBan.setBounds(10, 87, 114, 29);
+        pnlTT.add(lblTenBan);
+        
+        txtTenBan = new JTextField();
+        txtTenBan.setColumns(10);
+        txtTenBan.setBounds(10, 115, 306, 35);
+        pnlTT.add(txtTenBan);
+        
+        JLabel lblNgayTao = new JLabel("Ngày tạo");
+        lblNgayTao.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblNgayTao.setBounds(10, 162, 114, 29);
+        pnlTT.add(lblNgayTao);
+        
+     // Date picker setup
+        UtilDateModel model = new UtilDateModel();
+        Properties properties = new Properties();
+        properties.put("text.today", "Hôm nay");
+        properties.put("text.month", "Tháng");
+        properties.put("text.year", "Năm");
+
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
+        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+
+        // Tải icon từ đường dẫn
+        ImageIcon calendarIcon = new ImageIcon("D:\\Data\\tailieuvuive\\PTUD\\N2_QuanLyDatBanNhahang\\N2_QuanLyDatBanNhaHang\\img\\calendar-icon.jpg");
+
+        // Lấy nút của datePicker và đặt icon cho nó
+        JButton calendarButton = (JButton) datePicker.getComponent(1); // Lấy nút calendar
+        calendarButton.setIcon(calendarIcon);
+
+        // Set vị trí và kích thước của datePicker
+        datePicker.setBounds(10, 188, 180, 35);
+        pnlTT.add(datePicker);
+
+        // Đặt kích thước và font chữ cho trường nhập ngày
+        datePicker.getJFormattedTextField().setPreferredSize(new Dimension(100, 35));
+        datePicker.getJFormattedTextField().setFont(new Font("Arial", Font.PLAIN, 15)); 
+        
+        JLabel lblSoCho = new JLabel("Số chỗ");
+        lblSoCho.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblSoCho.setBounds(202, 162, 114, 29);
+        pnlTT.add(lblSoCho);
+        
+        txtSoCho = new JTextField();
+        txtSoCho.setBounds(200, 188, 116, 35);
+        pnlTT.add(txtSoCho);
+        txtSoCho.setColumns(10);
+        
+     // Create the radio buttons
+        JRadioButton rdbBanThuong = new JRadioButton("Bàn thường");
+        rdbBanThuong.setFont(new Font("Arial", Font.PLAIN, 14));
+        rdbBanThuong.setBounds(113, 231, 103, 21);
+        pnlTT.add(rdbBanThuong);
+
+        JRadioButton rdbBanVIP = new JRadioButton("Bàn VIP");
+        rdbBanVIP.setFont(new Font("Arial", Font.PLAIN, 14));
+        rdbBanVIP.setBounds(218, 231, 98, 21);
+        pnlTT.add(rdbBanVIP);
+
+        // Create a ButtonGroup to group the radio buttons
+        ButtonGroup group = new ButtonGroup();
+        group.add(rdbBanThuong);
+        group.add(rdbBanVIP);
+        
+        JLabel lblGhiChu = new JLabel("Ghi chú");
+        lblGhiChu.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblGhiChu.setBounds(10, 247, 114, 29);
+        pnlTT.add(lblGhiChu);
+        
+        JPanel panel = new JPanel();
+        panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
+        panel.setBounds(10, 273, 306, 99);
+        pnlTT.add(panel);
+        panel.setLayout(null);
+        
+        JTextPane txpGhiChu = new JTextPane();
+        txpGhiChu.setBounds(1, 1, 303, 96);
+        panel.add(txpGhiChu);
+
+        JButton btnSua = new JButton("Sửa");
+        btnSua.setBackground(new Color(255, 128, 64));
+        btnSua.setForeground(new Color(255, 255, 255));
+        btnSua.setFont(new Font("Arial", Font.BOLD, 14));
+        btnSua.setBounds(10, 382, 88, 26);
+        pnlTT.add(btnSua);
+        
+        JButton btnXoa = new JButton("Xóa");
+        btnXoa.setForeground(new Color(255, 255, 255));
+        btnXoa.setBackground(new Color(255, 0, 0));
+        btnXoa.setFont(new Font("Arial", Font.BOLD, 15));
+        btnXoa.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnXoa.setBounds(115, 382, 88, 26);
+        pnlTT.add(btnXoa);
+        
+        JButton btnLuu = new JButton("Lưu");
+        btnLuu.setForeground(new Color(255, 255, 255));
+        btnLuu.setBackground(new Color(0, 128, 0));
+        btnLuu.setFont(new Font("Arial", Font.BOLD, 14));
+        btnLuu.setBounds(223, 382, 88, 26);
+        pnlTT.add(btnLuu);
+        
+        JButton btnVIP = new JButton("VIP");
+        btnVIP.setForeground(new Color(255, 255, 255));
+        btnVIP.setBackground(new Color(0, 0, 255));
+        btnVIP.setFont(new Font("Arial", Font.BOLD, 15));
+        btnVIP.setBounds(585, 80, 210, 91);
+        add(btnVIP);
+        
+        JButton btnTatCa = new JButton("Tất cả");
+        btnTatCa.setForeground(new Color(255, 255, 255));
+        btnTatCa.setBackground(new Color(0, 0, 255));
+        btnTatCa.setFont(new Font("Arial", Font.BOLD, 15));
+        btnTatCa.setBounds(829, 80, 210, 91);
+        add(btnTatCa);
+        
+        JButton btnThuong = new JButton("Thường");
+        btnThuong.setBounds(345, 80, 210, 91);
+        add(btnThuong);
+        btnThuong.setForeground(new Color(255, 255, 255));
+        btnThuong.setBackground(new Color(0, 0, 255));
+        btnThuong.setFont(new Font("Arial", Font.BOLD, 15));
+        
+        JButton btnBan1 = new JButton("HA01");
+        btnBan1.setForeground(new Color(255, 255, 255));
+        btnBan1.setBackground(new Color(0, 128, 255));
+        btnBan1.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnBan1.setBounds(345, 191, 144, 91);
+        add(btnBan1);
+        
+        JButton btnBan2 = new JButton("HA02");
+        btnBan2.setForeground(Color.WHITE);
+        btnBan2.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan2.setBackground(new Color(0, 128, 255));
+        btnBan2.setBounds(515, 191, 144, 91);
+        add(btnBan2);
+        
+        JButton btnBan3 = new JButton("HA03");
+        btnBan3.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnBan3.setForeground(Color.WHITE);
+        btnBan3.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan3.setBackground(new Color(0, 128, 255));
+        btnBan3.setBounds(680, 191, 144, 91);
+        add(btnBan3);
+        
+        JButton btnBan4 = new JButton("HA04");
+        btnBan4.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnBan4.setForeground(Color.WHITE);
+        btnBan4.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan4.setBackground(new Color(0, 128, 255));
+        btnBan4.setBounds(850, 191, 144, 91);
+        add(btnBan4);
+        
+        JButton btnBan5 = new JButton("HA05");
+        btnBan5.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnBan5.setForeground(Color.WHITE);
+        btnBan5.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan5.setBackground(new Color(0, 128, 255));
+        btnBan5.setBounds(1020, 191, 144, 91);
+        add(btnBan5);
+        
+        JButton btnBan6 = new JButton("HA06");
+        btnBan6.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnBan6.setForeground(Color.WHITE);
+        btnBan6.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan6.setBackground(new Color(0, 128, 255));
+        btnBan6.setBounds(1190, 191, 144, 91);
+        add(btnBan6);
+        
+        JButton btnBan7 = new JButton("HA07");
+        btnBan7.setForeground(Color.WHITE);
+        btnBan7.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan7.setBackground(new Color(0, 128, 255));
+        btnBan7.setBounds(1360, 191, 144, 91);
+        add(btnBan7);
+        
+        JButton btnBan8 = new JButton("HA01");
+        btnBan8.setForeground(Color.WHITE);
+        btnBan8.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan8.setBackground(new Color(0, 128, 255));
+        btnBan8.setBounds(345, 303, 144, 91);
+        add(btnBan8);
+        
+        JButton btnBan9 = new JButton("HA02");
+        btnBan9.setForeground(Color.WHITE);
+        btnBan9.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan9.setBackground(new Color(0, 128, 255));
+        btnBan9.setBounds(515, 303, 144, 91);
+        add(btnBan9);
+        
+        JButton btnBan10 = new JButton("HA03");
+        btnBan10.setForeground(Color.WHITE);
+        btnBan10.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan10.setBackground(new Color(0, 128, 255));
+        btnBan10.setBounds(680, 303, 144, 91);
+        add(btnBan10);
+        
+        JButton btnBan11 = new JButton("HA04");
+        btnBan11.setForeground(Color.WHITE);
+        btnBan11.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan11.setBackground(new Color(0, 128, 255));
+        btnBan11.setBounds(850, 303, 144, 91);
+        add(btnBan11);
+        
+        JButton btnBan12 = new JButton("HA05");
+        btnBan12.setForeground(Color.WHITE);
+        btnBan12.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan12.setBackground(new Color(0, 128, 255));
+        btnBan12.setBounds(1020, 303, 144, 91);
+        add(btnBan12);
+        
+        JButton btnBan13 = new JButton("HA06");
+        btnBan13.setForeground(Color.WHITE);
+        btnBan13.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan13.setBackground(new Color(0, 128, 255));
+        btnBan13.setBounds(1190, 303, 144, 91);
+        add(btnBan13);
+        
+        JButton btnBan14 = new JButton("HA07");
+        btnBan14.setForeground(Color.WHITE);
+        btnBan14.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan14.setBackground(new Color(0, 128, 255));
+        btnBan14.setBounds(1360, 303, 144, 91);
+        add(btnBan14);
+        
+        JButton btnBan15 = new JButton("HAV01");
+        btnBan15.setForeground(Color.WHITE);
+        btnBan15.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan15.setBackground(new Color(0, 128, 255));
+        btnBan15.setBounds(345, 422, 144, 91);
+        add(btnBan15);
+        
+        JButton btnBan16 = new JButton("HAV02");
+        btnBan16.setForeground(Color.WHITE);
+        btnBan16.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan16.setBackground(new Color(0, 128, 255));
+        btnBan16.setBounds(515, 422, 144, 91);
+        add(btnBan16);
+        
+        JButton btnBan17 = new JButton("Ban NULL");
+        btnBan17.setForeground(Color.WHITE);
+        btnBan17.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan17.setBackground(new Color(0, 128, 255));
+        btnBan17.setBounds(680, 422, 144, 91);
+        add(btnBan17);
+        
+        JButton btnBan18 = new JButton("Ban NULL");
+        btnBan18.setForeground(Color.WHITE);
+        btnBan18.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan18.setBackground(new Color(0, 128, 255));
+        btnBan18.setBounds(850, 422, 144, 91);
+        add(btnBan18);
+        
+        JButton btnBan19 = new JButton("Ban NULL");
+        btnBan19.setForeground(Color.WHITE);
+        btnBan19.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan19.setBackground(new Color(0, 128, 255));
+        btnBan19.setBounds(1020, 422, 144, 91);
+        add(btnBan19);
+        
+        JButton btnBan20 = new JButton("Ban NULL");
+        btnBan20.setForeground(Color.WHITE);
+        btnBan20.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan20.setBackground(new Color(0, 128, 255));
+        btnBan20.setBounds(1190, 422, 144, 91);
+        add(btnBan20);
+        
+        JButton btnBan21 = new JButton("Ban NULL");
+        btnBan21.setForeground(Color.WHITE);
+        btnBan21.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan21.setBackground(new Color(0, 128, 255));
+        btnBan21.setBounds(1360, 422, 144, 91);
+        add(btnBan21);
+        
+        JButton btnBan22 = new JButton("Ban NULL");
+        btnBan22.setForeground(Color.WHITE);
+        btnBan22.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan22.setBackground(new Color(0, 128, 255));
+        btnBan22.setBounds(345, 535, 144, 91);
+        add(btnBan22);
+        
+        JButton btnBan23 = new JButton("Ban NULL");
+        btnBan23.setForeground(Color.WHITE);
+        btnBan23.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan23.setBackground(new Color(0, 128, 255));
+        btnBan23.setBounds(515, 535, 144, 91);
+        add(btnBan23);
+        
+        JButton btnBan24 = new JButton("Ban NULL");
+        btnBan24.setForeground(Color.WHITE);
+        btnBan24.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan24.setBackground(new Color(0, 128, 255));
+        btnBan24.setBounds(680, 535, 144, 91);
+        add(btnBan24);
+        
+        JButton btnBan25 = new JButton("Ban NULL");
+        btnBan25.setForeground(Color.WHITE);
+        btnBan25.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan25.setBackground(new Color(0, 128, 255));
+        btnBan25.setBounds(850, 535, 144, 91);
+        add(btnBan25);
+        
+        JButton btnBan26 = new JButton("Ban NULL");
+        btnBan26.setForeground(Color.WHITE);
+        btnBan26.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan26.setBackground(new Color(0, 128, 255));
+        btnBan26.setBounds(1020, 535, 144, 91);
+        add(btnBan26);
+        
+        JButton btnBan27 = new JButton("Ban NULL");
+        btnBan27.setForeground(Color.WHITE);
+        btnBan27.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan27.setBackground(new Color(0, 128, 255));
+        btnBan27.setBounds(1190, 535, 144, 91);
+        add(btnBan27);
+        
+        JButton btnBan28 = new JButton("Ban NULL");
+        btnBan28.setForeground(Color.WHITE);
+        btnBan28.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan28.setBackground(new Color(0, 128, 255));
+        btnBan28.setBounds(1360, 535, 144, 91);
+        add(btnBan28);
+        
+        JButton btnBan29 = new JButton("Ban NULL");
+        btnBan29.setForeground(Color.WHITE);
+        btnBan29.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan29.setBackground(new Color(0, 128, 255));
+        btnBan29.setBounds(345, 655, 144, 91);
+        add(btnBan29);
+        
+        JButton btnBan30 = new JButton("Ban NULL");
+        btnBan30.setForeground(Color.WHITE);
+        btnBan30.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan30.setBackground(new Color(0, 128, 255));
+        btnBan30.setBounds(515, 655, 144, 91);
+        add(btnBan30);
+        
+        JButton btnBan31 = new JButton("Ban NULL");
+        btnBan31.setForeground(Color.WHITE);
+        btnBan31.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan31.setBackground(new Color(0, 128, 255));
+        btnBan31.setBounds(680, 655, 144, 91);
+        add(btnBan31);
+        
+        JButton btnBan32 = new JButton("Ban NULL");
+        btnBan32.setForeground(Color.WHITE);
+        btnBan32.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan32.setBackground(new Color(0, 128, 255));
+        btnBan32.setBounds(850, 655, 144, 91);
+        add(btnBan32);
+        
+        JButton btnBan33 = new JButton("Ban NULL");
+        btnBan33.setForeground(Color.WHITE);
+        btnBan33.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan33.setBackground(new Color(0, 128, 255));
+        btnBan33.setBounds(1020, 655, 144, 91);
+        add(btnBan33);
+        
+        JButton btnBan34 = new JButton("Ban NULL");
+        btnBan34.setForeground(Color.WHITE);
+        btnBan34.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan34.setBackground(new Color(0, 128, 255));
+        btnBan34.setBounds(1190, 655, 144, 91);
+        add(btnBan34);
+        
+        JButton btnBan35 = new JButton("Ban NULL");
+        btnBan35.setForeground(Color.WHITE);
+        btnBan35.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnBan35.setBackground(new Color(0, 128, 255));
+        btnBan35.setBounds(1360, 655, 144, 91);
+        add(btnBan35);
+        
+	}
+}

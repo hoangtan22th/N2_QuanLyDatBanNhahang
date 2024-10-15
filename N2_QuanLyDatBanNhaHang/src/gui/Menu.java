@@ -4,12 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Menu extends JFrame implements ActionListener {
@@ -27,7 +26,7 @@ public class Menu extends JFrame implements ActionListener {
 
     public Menu() {
         setTitle("Menu");
-        setSize(500, 500);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -45,7 +44,7 @@ public class Menu extends JFrame implements ActionListener {
         itemDatCho2 = new JMenuItem("yyy");
         jMenuDatCho.add(itemDatCho1);
         jMenuDatCho.add(itemDatCho2);
-        jMenuBar.add(jMenuDatCho);
+//        jMenuBar.add(jMenuDatCho);
         
         JMenu jMenuNhanVien = new JMenu("Nhân viên");
         itemNhanVien1 = new JMenuItem("xxx");
@@ -69,30 +68,30 @@ public class Menu extends JFrame implements ActionListener {
         jMenuBar.add(jMenuThongKe);
         
         JMenu jMenuBan = new JMenu("Bàn");
-        itemBan1 = new JMenuItem("xxx");
-        itemBan2 = new JMenuItem("yyy");
+        itemBan1 = new JMenuItem("Quản lý bàn");
+//        itemBan2 = new JMenuItem("yyy");
         jMenuBan.add(itemBan1);
-        jMenuBan.add(itemBan2);
+//        jMenuBan.add(itemBan2);
         jMenuBar.add(jMenuBan);
         
         JMenu jMenuMonAn = new JMenu("Món ăn");
-        itemMonAn1 = new JMenuItem("xxx");
-        itemMonAn2 = new JMenuItem("yyy");
+        itemMonAn1 = new JMenuItem("Quản lý món ăn");
+//        itemMonAn2 = new JMenuItem("yyy");
         jMenuMonAn.add(itemMonAn1);
-        jMenuMonAn.add(itemMonAn2);
+//        jMenuMonAn.add(itemMonAn2);
         jMenuBar.add(jMenuMonAn);
         
         JMenu jMenuTheVip = new JMenu("Thẻ VIP");
         itemTheVip1 = new JMenuItem("xxx");
-        itemTheVip2 = new JMenuItem("yyy");
+        itemTheVip2 = new JMenuItem("Danh sách thẻ thành viên");
         jMenuTheVip.add(itemTheVip1);
         jMenuTheVip.add(itemTheVip2);
         jMenuBar.add(jMenuTheVip);
         
         itemNhaHang1.addActionListener(this);
         itemNhaHang2.addActionListener(this);
-        itemDatCho1.addActionListener(this);
-        itemDatCho2.addActionListener(this);
+//        itemDatCho1.addActionListener(this);
+//        itemDatCho2.addActionListener(this);
         itemNhanVien1.addActionListener(this);
         itemNhanVien2.addActionListener(this);
         itemKhachHang1.addActionListener(this);
@@ -100,9 +99,9 @@ public class Menu extends JFrame implements ActionListener {
         itemThongKe1.addActionListener(this);
         itemThongKe2.addActionListener(this);
         itemBan1.addActionListener(this);
-        itemBan2.addActionListener(this);
+//        itemBan2.addActionListener(this);
         itemMonAn1.addActionListener(this);
-        itemMonAn2.addActionListener(this);
+//        itemMonAn2.addActionListener(this);
         itemTheVip1.addActionListener(this);
         itemTheVip2.addActionListener(this);
         
@@ -116,7 +115,12 @@ public class Menu extends JFrame implements ActionListener {
         contentPanel.add(new PanelNhaHangMenu1(), "MenuNhaHang1"); // trong chuỗi là từ khoá để gọi trùng khớp hàm action ở dưới
         contentPanel.add(new PanelNhaHangMenu2(),"MenuNhaHang2");
         
-        
+        //Thẻ thành viên
+        contentPanel.add(new PanelDsThanhVien(), "DSThanhVien");
+        //Quản lý bàn
+        contentPanel.add(new PanelQuanLyBan(), "QLBan");
+        //Quản lý món ăn
+        contentPanel.add(new PanelQLMonAn(), "QLMonAn");
         ////////
 
         
@@ -132,8 +136,14 @@ public class Menu extends JFrame implements ActionListener {
         }
         else if(e.getSource()== itemNhaHang2){
         	cardLayout.show(contentPanel, "MenuNhaHang2");
-        	
         }
+        else if (e.getSource()== itemTheVip2) {
+			cardLayout.show(contentPanel, "DSThanhVien");
+		}else if (e.getSource()== itemBan1) {
+			cardLayout.show(contentPanel, "QLBan");
+		}else if (e.getSource()== itemMonAn1) {
+			cardLayout.show(contentPanel, "QLMonAn");
+		}
         
     }
 

@@ -5,11 +5,9 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 
 import connectDB.connectDB;
 import entity.KhachHang;
-import entity.TheThanhVien;
 
 public class KhachHangDAO {
 	public void xuatKhachHangDauTien() {
