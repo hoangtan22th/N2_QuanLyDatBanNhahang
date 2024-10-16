@@ -1,0 +1,211 @@
+package gui;
+
+import javax.swing.JPanel;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Properties;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextPane;
+import javax.swing.border.EtchedBorder;
+
+public class PanelQuanLyBan extends JPanel {
+
+    private static final long serialVersionUID = 1L;
+    private JTextField txtMaBan;
+    private JTextField txtTenBan;
+    private JTextField txtSoCho;
+    private String[] tableCodes = { "HA01", "HA02", "HA03", "HA04", "HA05", "HA06", "HA07", "HAV01", "HAV02", "Ban NULL" };
+    
+    /**
+     * Create the panel.
+     */
+    public PanelQuanLyBan() {
+        setLayout(null);
+
+        Label lblTT = new Label("Thông tin");
+        lblTT.setBackground(new Color(65, 41, 224));
+        lblTT.setBounds(10, 10, 150, 60);
+        add(lblTT);
+        lblTT.setAlignment(Label.CENTER);
+        lblTT.setForeground(Color.WHITE);
+        lblTT.setFont(new Font("Arial", Font.BOLD, 20));
+
+        JLabel lblDatCho = new JLabel("    Quản lý bàn");
+        lblDatCho.setHorizontalAlignment(SwingConstants.LEFT);
+        lblDatCho.setBackground(new Color(65, 41, 224));
+        lblDatCho.setForeground(Color.WHITE);
+        lblDatCho.setFont(new Font("Arial", Font.BOLD, 22));
+        lblDatCho.setBounds(345, 10, 1185, 60);
+        lblDatCho.setOpaque(true);
+        add(lblDatCho);
+
+        JPanel pnlTT = new JPanel();
+        pnlTT.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.WHITE, Color.GRAY), "", TitledBorder.LEADING, TitledBorder.TOP, null, Color.GRAY));
+        pnlTT.setBounds(10, 76, 326, 717);
+        add(pnlTT);
+        pnlTT.setLayout(null);
+
+        setupFormComponents(pnlTT);
+
+        createTableButtons();
+    }
+
+    private void setupFormComponents(JPanel pnlTT) {
+        txtMaBan = new JTextField();
+        txtMaBan.setBounds(10, 41, 306, 35);
+        pnlTT.add(txtMaBan);
+        txtMaBan.setColumns(10);
+
+        JLabel lblMaBan = new JLabel("Mã bàn");
+        lblMaBan.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblMaBan.setBounds(10, 10, 114, 29);
+        pnlTT.add(lblMaBan);
+
+        JLabel lblTenBan = new JLabel("Tên bàn");
+        lblTenBan.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblTenBan.setBounds(10, 87, 114, 29);
+        pnlTT.add(lblTenBan);
+
+        txtTenBan = new JTextField();
+        txtTenBan.setBounds(10, 115, 306, 35);
+        pnlTT.add(txtTenBan);
+        txtTenBan.setColumns(10);
+
+        JLabel lblNgayTao = new JLabel("Ngày tạo");
+        lblNgayTao.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblNgayTao.setBounds(10, 162, 114, 29);
+        pnlTT.add(lblNgayTao);
+
+        setupDatePicker(pnlTT);
+
+        JLabel lblSoCho = new JLabel("Số chỗ");
+        lblSoCho.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblSoCho.setBounds(202, 162, 114, 29);
+        pnlTT.add(lblSoCho);
+
+        txtSoCho = new JTextField();
+        txtSoCho.setBounds(200, 188, 116, 35);
+        pnlTT.add(txtSoCho);
+        txtSoCho.setColumns(10);
+
+        setupRadioButtons(pnlTT);
+        setupTextPaneAndButtons(pnlTT);
+    }
+
+    private void setupDatePicker(JPanel pnlTT) {
+        UtilDateModel model = new UtilDateModel();
+        Properties properties = new Properties();
+        properties.put("text.today", "Hôm nay");
+        properties.put("text.month", "Tháng");
+        properties.put("text.year", "Năm");
+
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
+        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+
+        // Customizing the date picker appearance
+        ImageIcon calendarIcon = new ImageIcon("path/to/calendar-icon.jpg");
+        JButton calendarButton = (JButton) datePicker.getComponent(1);
+        calendarButton.setIcon(calendarIcon);
+
+        datePicker.setBounds(10, 188, 180, 35);
+        pnlTT.add(datePicker);
+
+        datePicker.getJFormattedTextField().setPreferredSize(new Dimension(100, 35));
+        datePicker.getJFormattedTextField().setFont(new Font("Arial", Font.PLAIN, 15));
+    }
+
+    private void setupRadioButtons(JPanel pnlTT) {
+        JRadioButton rdbBanThuong = new JRadioButton("Bàn thường");
+        rdbBanThuong.setFont(new Font("Arial", Font.PLAIN, 14));
+        rdbBanThuong.setBounds(113, 231, 103, 21);
+        pnlTT.add(rdbBanThuong);
+
+        JRadioButton rdbBanVIP = new JRadioButton("Bàn VIP");
+        rdbBanVIP.setFont(new Font("Arial", Font.PLAIN, 14));
+        rdbBanVIP.setBounds(218, 231, 98, 21);
+        pnlTT.add(rdbBanVIP);
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(rdbBanThuong);
+        group.add(rdbBanVIP);
+    }
+
+    private void setupTextPaneAndButtons(JPanel pnlTT) {
+        JLabel lblGhiChu = new JLabel("Ghi chú");
+        lblGhiChu.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblGhiChu.setBounds(10, 247, 114, 29);
+        pnlTT.add(lblGhiChu);
+
+        JPanel panel = new JPanel();
+        panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, Color.GRAY));
+        panel.setBounds(10, 273, 306, 99);
+        pnlTT.add(panel);
+        panel.setLayout(null);
+
+        JTextPane txpGhiChu = new JTextPane();
+        txpGhiChu.setBounds(1, 1, 303, 96);
+        panel.add(txpGhiChu);
+
+        JButton btnSua = new JButton("Sửa");
+        btnSua.setBackground(new Color(255, 128, 64));
+        btnSua.setForeground(Color.WHITE);
+        btnSua.setFont(new Font("Arial", Font.BOLD, 14));
+        btnSua.setBounds(10, 382, 88, 26);
+        pnlTT.add(btnSua);
+
+        JButton btnXoa = new JButton("Xóa");
+        btnXoa.setBackground(new Color(255, 0, 0));
+        btnXoa.setForeground(Color.WHITE);
+        btnXoa.setFont(new Font("Arial", Font.BOLD, 15));
+        btnXoa.setBounds(115, 382, 88, 26);
+        pnlTT.add(btnXoa);
+
+        JButton btnLuu = new JButton("Lưu");
+        btnLuu.setBackground(new Color(0, 128, 0));
+        btnLuu.setForeground(Color.WHITE);
+        btnLuu.setFont(new Font("Arial", Font.BOLD, 14));
+        btnLuu.setBounds(223, 382, 88, 26);
+        pnlTT.add(btnLuu);
+    }
+
+    private void createTableButtons() {
+        int x = 345, y = 80;
+        for (int i = 0; i < tableCodes.length; i++) {
+            createTableButton(tableCodes[i], x, y);
+            x += 170;  // Increment for the next button's position
+            if ((i + 1) % 7 == 0) {
+                x = 345;  // Reset X coordinate
+                y += 112; // Move to the next row
+            }
+        }
+    }
+
+    private void createTableButton(String tableCode, int x, int y) {
+        JButton btnTable = new JButton(tableCode);
+        btnTable.setForeground(Color.WHITE);
+        btnTable.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnTable.setBackground(new Color(0, 128, 255));
+        btnTable.setBounds(x, y, 144, 91);
+        btnTable.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Handle table button click
+            }
+        });
+        add(btnTable);
+    }
+}

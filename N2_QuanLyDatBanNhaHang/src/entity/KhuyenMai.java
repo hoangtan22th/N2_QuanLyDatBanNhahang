@@ -1,7 +1,6 @@
 package entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class KhuyenMai {
 	private String maKhuyenMai;
