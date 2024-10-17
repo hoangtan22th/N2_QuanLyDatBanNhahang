@@ -16,10 +16,12 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.GridLayout;
 
-public class PanelNhaHangMenu0 extends JPanel {
+public class PanelNhaHangMenu0 extends JPanel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private JTable table;
+	private JPanel panel_6;
+	private JButton btnChuyenBan;
 
     public PanelNhaHangMenu0() {
         setBackground(Color.WHITE);
@@ -205,16 +207,16 @@ public class PanelNhaHangMenu0 extends JPanel {
         
                 JButton btnButton12 = new JButton("Bàn Naruto");
                 panel_5.add(btnButton12);
-        JPanel panel_6 = new JPanel();
+        panel_6 = new JPanel();
         panel_6.setBackground(new Color(255, 255, 255));
         panel_6.setBounds(940, 712, 768, 64);
         add(panel_6);
         panel_6.setLayout(null);
-        JButton btnNewButton_14 = new JButton("Chuyển bàn");
-        btnNewButton_14.setForeground(Color.WHITE);
-        btnNewButton_14.setBackground(new Color(0, 117, 225));
-        btnNewButton_14.setBounds(156, 6, 143, 53);
-        panel_6.add(btnNewButton_14);
+        btnChuyenBan = new JButton("Chuyển bàn");
+        btnChuyenBan.setForeground(Color.WHITE);
+        btnChuyenBan.setBackground(new Color(0, 117, 225));
+        btnChuyenBan.setBounds(156, 6, 143, 53);
+        panel_6.add(btnChuyenBan);
         
         JButton btnNewButton_15 = new JButton("Ghép bàn");
         btnNewButton_15.setForeground(Color.WHITE);
@@ -240,5 +242,16 @@ public class PanelNhaHangMenu0 extends JPanel {
         btnNewButton_13.setBackground(new Color(14, 48, 226));
         btnNewButton_13.setBounds(0, 6, 146, 53);
         panel_6.add(btnNewButton_13);
+        
+        btnChuyenBan.addActionListener(this);
     }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource() == btnChuyenBan) {
+	        ChuyenBan chuyenBanFrame = new ChuyenBan();
+	        chuyenBanFrame.setVisible(true);  
+	    }
+	}
 }

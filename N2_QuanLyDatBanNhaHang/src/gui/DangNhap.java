@@ -32,6 +32,7 @@ public class DangNhap extends JFrame implements ActionListener{
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setSize(1600, 900);      
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout());
 
