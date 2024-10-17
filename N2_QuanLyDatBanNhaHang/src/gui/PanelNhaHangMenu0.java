@@ -22,7 +22,7 @@ public class PanelNhaHangMenu0 extends JPanel implements ActionListener {
     private JTable table;
 	private JPanel panel_6;
 	private JButton btnChuyenBan;
-
+	private JButton btnGhepBan;
     public PanelNhaHangMenu0() {
         setBackground(Color.WHITE);
         setLayout(null);
@@ -218,11 +218,11 @@ public class PanelNhaHangMenu0 extends JPanel implements ActionListener {
         btnChuyenBan.setBounds(156, 6, 143, 53);
         panel_6.add(btnChuyenBan);
         
-        JButton btnNewButton_15 = new JButton("Ghép bàn");
-        btnNewButton_15.setForeground(Color.WHITE);
-        btnNewButton_15.setBackground(new Color(226, 141, 14));
-        btnNewButton_15.setBounds(309, 6, 143, 53);
-        panel_6.add(btnNewButton_15);
+        btnGhepBan = new JButton("Ghép bàn");
+        btnGhepBan.setForeground(Color.WHITE);
+        btnGhepBan.setBackground(new Color(226, 141, 14));
+        btnGhepBan.setBounds(309, 6, 143, 53);
+        panel_6.add(btnGhepBan);
         
         JButton btnNewButton_16 = new JButton("Tách bàn");
         btnNewButton_16.setForeground(Color.WHITE);
@@ -244,14 +244,18 @@ public class PanelNhaHangMenu0 extends JPanel implements ActionListener {
         panel_6.add(btnNewButton_13);
         
         btnChuyenBan.addActionListener(this);
+        btnGhepBan.addActionListener(this);
     }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == btnChuyenBan) {
-	        ChuyenBan chuyenBanFrame = new ChuyenBan();
-	        chuyenBanFrame.setVisible(true);  
+			new ChuyenBan().setVisible(true);  
 	    }
+		else if(e.getSource() == btnGhepBan) {
+			
+			new GhepBan().setVisible(true);  
+		}
 	}
 }
