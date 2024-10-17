@@ -48,7 +48,7 @@ public class PanelKhachHang extends JPanel {
         
         JPanel panelTTKH = new JPanel();
         panelTTKH.setBorder(new LineBorder(new Color(192, 192, 192)));
-        panelTTKH.setBounds(10, 56, 367, 956);
+        panelTTKH.setBounds(10, 56, 367, 939);
         add(panelTTKH);
         panelTTKH.setLayout(null);
         
@@ -134,7 +134,7 @@ public class PanelKhachHang extends JPanel {
         add(btnNewButton);
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(387, 107, 1524, 905);
+        scrollPane.setBounds(387, 107, 1524, 888);
         add(scrollPane);
         
         tblNhanVien = new JTable();

@@ -54,7 +54,7 @@ public class PanelNhanVien extends JPanel {
         
         JPanel panel = new JPanel();
         panel.setBorder(new LineBorder(new Color(192, 192, 192)));
-        panel.setBounds(10, 56, 368, 955);
+        panel.setBounds(10, 56, 368, 939);
         add(panel);
         panel.setLayout(null);
         
@@ -205,7 +205,7 @@ public class PanelNhanVien extends JPanel {
         add(btnNewButton);
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(388, 107, 1524, 904);
+        scrollPane.setBounds(388, 107, 1524, 888);
         add(scrollPane);
         
         tblNhanVien = new JTable();

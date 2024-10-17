@@ -67,7 +67,7 @@ public class PanelDsThanhVien extends JPanel {
         JPanel pnlTT = new JPanel();
         pnlTT.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
         pnlTT.setForeground(new Color(192, 192, 192));
-        pnlTT.setBounds(10, 56, 367, 954);
+        pnlTT.setBounds(10, 56, 367, 939);
         add(pnlTT);
         pnlTT.setLayout(null);
         
@@ -230,7 +230,7 @@ public class PanelDsThanhVien extends JPanel {
         add(lblNewLabel);
         
         JScrollPane scpTable = new JScrollPane();
-        scpTable.setBounds(387, 147, 1524, 863);
+        scpTable.setBounds(387, 147, 1524, 848);
         add(scpTable);
         
         table = new JTable();

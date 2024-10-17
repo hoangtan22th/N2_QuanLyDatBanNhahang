@@ -67,7 +67,7 @@ public class PanelQuanLyBan extends JPanel {
     private void createInputPanel() {
         JPanel pnlTT = new JPanel();
         pnlTT.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.WHITE, new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
-        pnlTT.setBounds(10, 56, 371, 957);
+        pnlTT.setBounds(10, 56, 371, 926);
         add(pnlTT);
         pnlTT.setLayout(null);
 
@@ -153,7 +153,7 @@ public class PanelQuanLyBan extends JPanel {
         txtSo.setColumns(10);
         
         JPanel pnlBan = new JPanel();
-        pnlBan.setBounds(390, 60, 1524, 953);
+        pnlBan.setBounds(390, 60, 1524, 922);
         add(pnlBan);
         pnlBan.setLayout(new GridLayout(0, 5, 6, 15));
         

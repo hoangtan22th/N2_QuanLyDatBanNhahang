@@ -58,7 +58,7 @@ public class PanelQLMonAn extends JPanel {
         
         JPanel pnlTT = new JPanel();
         pnlTT.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
-        pnlTT.setBounds(10, 56, 367, 958);
+        pnlTT.setBounds(10, 56, 367, 935);
         add(pnlTT);
         pnlTT.setLayout(null);
         
@@ -232,7 +232,7 @@ public class PanelQLMonAn extends JPanel {
         add(btnTimKiem);
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(387, 188, 1524, 826);
+        scrollPane.setBounds(387, 188, 1524, 800);
         add(scrollPane);
         
         table = new JTable();
