@@ -140,7 +140,7 @@ public class Menu extends JFrame implements ActionListener {
         cardLayout = new CardLayout();
         contentPanel = new JPanel(cardLayout);
         //-----//  LƯU Ý GỌI PANEL MENU TRONG ĐÂY
-        contentPanel.add(new PanelNhaHangMenu1(), "MenuNhaHang1"); // trong chuỗi là từ khoá để gọi trùng khớp hàm action ở dưới
+        contentPanel.add(new PanelNhaHangMenu0(), "MenuNhaHang1"); // trong chuỗi là từ khoá để gọi trùng khớp hàm action ở dưới
         contentPanel.add(new PanelNhaHangMenu2(),"MenuNhaHang2");
         
         //Quản lý nhân viên
