@@ -84,23 +84,8 @@ public class PanelNhaHangMenu0 extends JPanel {
         // Tạo model bảng
         DefaultTableModel model = new DefaultTableModel(
             new Object[][] {
-                {"abc", null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
+                {"abc", null, null}
+                
             },
             new String[] {
                 "Số Lượng", "Hàng Bán", "Tiền Hàng"
@@ -180,45 +165,45 @@ public class PanelNhaHangMenu0 extends JPanel {
         add(panel_5);
                         panel_5.setLayout(new GridLayout(0, 4, 0, 0));
                 
-                        JButton btnButton1 = new JButton("New button");
+                        JButton btnButton1 = new JButton("Bàn Naruto");
                         btnButton1.setForeground(new Color(30, 144, 255));
                         panel_5.add(btnButton1);
         
-                JButton btnButton2 = new JButton("New button");
+                JButton btnButton2 = new JButton("Bàn Naruto");
                 panel_5.add(btnButton2);
         
-                JButton btnButton3 = new JButton("New button");
+                JButton btnButton3 = new JButton("Bàn Naruto");
                 panel_5.add(btnButton3);
                 
-                        JButton btnButton4 = new JButton("New button");
+                        JButton btnButton4 = new JButton("Bàn Naruto");
                         panel_5.add(btnButton4);
                 
-                        JButton btnButton5 = new JButton("New button");
+                        JButton btnButton5 = new JButton("Bàn Naruto");
                         panel_5.add(btnButton5);
                 
-                        JButton btnButton6 = new JButton("New button");
+                        JButton btnButton6 = new JButton("Bàn Naruto");
                         panel_5.add(btnButton6);
         
-                JButton btnButton7 = new JButton("New button");
+                JButton btnButton7 = new JButton("Bàn Naruto");
                 panel_5.add(btnButton7);
                         
-                                JButton btnButton8 = new JButton("New button");
+                                JButton btnButton8 = new JButton("Bàn Naruto");
                                 btnButton8.addActionListener(new ActionListener() {
                                 	public void actionPerformed(ActionEvent e) {
                                 	}
                                 });
                                 panel_5.add(btnButton8);
                 
-                        JButton btnButton9 = new JButton("New button");
+                        JButton btnButton9 = new JButton("Bàn Naruto");
                         panel_5.add(btnButton9);
                 
-                        JButton btnButton10 = new JButton("New button");
+                        JButton btnButton10 = new JButton("Bàn Naruto");
                         panel_5.add(btnButton10);
                 
-                        JButton btnButton11 = new JButton("New button");
+                        JButton btnButton11 = new JButton("Bàn Naruto");
                         panel_5.add(btnButton11);
         
-                JButton btnButton12 = new JButton("New button");
+                JButton btnButton12 = new JButton("Bàn Naruto");
                 panel_5.add(btnButton12);
         JPanel panel_6 = new JPanel();
         panel_6.setBackground(new Color(255, 255, 255));
