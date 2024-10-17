@@ -27,16 +27,18 @@ public class DangNhap extends JFrame implements ActionListener{
 	
 
     public DangNhap() {
-    	setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\Data\\tailieuvuive\\PTUD\\N2_QuanLyDatBanNhahang\\N2_QuanLyDatBanNhaHang\\img\\Logo.png"));
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(""));
         setTitle("Đăng nhập");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setSize(1920, 1080);
+//        setSize(1920, 1080);      
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setSize(screenSize.width, screenSize.height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout());
 
         
-        backgroundImage = Toolkit.getDefaultToolkit().getImage("images/hinhNen.jpg");
+        backgroundImage = Toolkit.getDefaultToolkit().getImage("img/hinhNen.jpg");
         pnCenter = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -126,7 +128,7 @@ public class DangNhap extends JFrame implements ActionListener{
                 btnThoat.setPreferredSize(buttonSize);
                 
                 JLabel lblNewLabel = new JLabel("");
-                lblNewLabel.setIcon(new ImageIcon("D:\\Data\\tailieuvuive\\PTUD\\N2_QuanLyDatBanNhahang\\N2_QuanLyDatBanNhaHang\\img\\Logo.png"));
+                lblNewLabel.setIcon(new ImageIcon("Dimg\\Logo.png"));
                 lblNewLabel.setBounds(0, -17, 225, 181);
                 pnCenter.add(lblNewLabel);
                 
