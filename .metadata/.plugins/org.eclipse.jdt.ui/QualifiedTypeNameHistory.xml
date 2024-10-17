@@ -27,7 +27,6 @@
     <fullyQualifiedTypeName name="gui.PanelNhaHangMenu1"/>
     <fullyQualifiedTypeName name="javax.swing.JPanel"/>
     <fullyQualifiedTypeName name="gui.PanelNhaHangMenu2"/>
-    <fullyQualifiedTypeName name="gui.PanelDsThanhVien"/>
     <fullyQualifiedTypeName name="org.jdatepicker.impl.UtilDateModel"/>
     <fullyQualifiedTypeName name="java.util.Properties"/>
     <fullyQualifiedTypeName name="org.jdatepicker.impl.JDatePanelImpl"/>
@@ -44,4 +43,7 @@
     <fullyQualifiedTypeName name="gui.PanelQuanLyBan"/>
     <fullyQualifiedTypeName name="javax.swing.ButtonGroup"/>
     <fullyQualifiedTypeName name="gui.PanelQLMonAn"/>
+    <fullyQualifiedTypeName name="gui.PanelDsThanhVien"/>
+    <fullyQualifiedTypeName name="gui.PanelNhanVien"/>
+    <fullyQualifiedTypeName name="gui.PanelKhachHang"/>
 </qualifiedTypeNameHistroy>

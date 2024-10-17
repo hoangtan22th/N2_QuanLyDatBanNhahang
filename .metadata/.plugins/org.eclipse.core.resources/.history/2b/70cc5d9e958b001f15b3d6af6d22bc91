@@ -1,0 +1,230 @@
+package gui;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Label;
+import java.util.Properties;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
+
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
+import javax.swing.border.EtchedBorder;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class PanelQLMonAn extends JPanel {
+
+    private static final long serialVersionUID = 1L;
+    private JTextField txtMa, txtTen, txtGia, txtSoLuong, textField;
+    private JTable table;
+
+    // Định nghĩa màu và font để tái sử dụng
+    private final Color primaryColor = new Color(65, 41, 224);
+    private final Color textColor = new Color(255, 255, 255);
+    private final Font boldFont = new Font("Arial", Font.BOLD, 17);
+    private final Font plainFont = new Font("Arial", Font.PLAIN, 15);
+
+    public PanelQLMonAn() {
+        setLayout(null);
+        
+        // Tạo và thêm các thành phần vào giao diện
+        createLabelTT();
+        createDsMonAn();
+        createPanelTT();
+        createMenuButtons();
+        createSearchBar();
+        createTable();
+    }
+
+    // Phương thức tạo nhãn "Thông tin"
+    private void createLabelTT() {
+        Label lblTT = new Label("Thông tin");
+        lblTT.setBackground(primaryColor);
+        lblTT.setBounds(10, 10, 150, 40);
+        lblTT.setAlignment(Label.CENTER);
+        lblTT.setForeground(textColor);
+        lblTT.setFont(boldFont);
+        add(lblTT);
+    }
+
+    // Phương thức tạo nhãn "Danh sách món ăn"
+    private void createDsMonAn() {
+        JLabel lblDsMonAn = new JLabel("    Danh sách món ăn");
+        lblDsMonAn.setHorizontalAlignment(SwingConstants.LEFT);
+        lblDsMonAn.setBackground(primaryColor);
+        lblDsMonAn.setForeground(textColor);
+        lblDsMonAn.setFont(new Font("Arial", Font.BOLD, 18));
+        lblDsMonAn.setBounds(345, 10, 1185, 40);
+        lblDsMonAn.setOpaque(true); // Hiển thị nền
+        add(lblDsMonAn);
+    }
+
+    // Phương thức tạo panel thông tin món ăn
+    private void createPanelTT() {
+        JPanel pnlTT = new JPanel();
+        pnlTT.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.WHITE, new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
+        pnlTT.setBounds(10, 56, 325, 701);
+        pnlTT.setLayout(null);
+        add(pnlTT);
+
+        addTextFields(pnlTT);  // Thêm các trường nhập liệu
+        addDatePicker(pnlTT);   // Thêm date picker
+        addGhiChuPanel(pnlTT);  // Thêm panel ghi chú
+        addCRUDButtons(pnlTT);  // Thêm nút Thêm/Sửa/Xóa/Lưu
+    }
+
+    // Phương thức thêm các trường nhập liệu
+    private void addTextFields(JPanel pnlTT) {
+        JLabel lblMa = new JLabel("Mã món");
+        lblMa.setFont(plainFont);
+        lblMa.setBounds(20, 10, 89, 24);
+        pnlTT.add(lblMa);
+
+        txtMa = new JTextField();
+        txtMa.setBounds(10, 35, 305, 35);
+        pnlTT.add(txtMa);
+
+        JLabel lblTen = new JLabel("Tên món");
+        lblTen.setFont(plainFont);
+        lblTen.setBounds(20, 80, 89, 24);
+        pnlTT.add(lblTen);
+
+        txtTen = new JTextField();
+        txtTen.setBounds(10, 105, 305, 35);
+        pnlTT.add(txtTen);
+
+        JLabel lblGia = new JLabel("Giá tiền");
+        lblGia.setFont(plainFont);
+        lblGia.setBounds(20, 149, 89, 24);
+        pnlTT.add(lblGia);
+
+        txtGia = new JTextField();
+        txtGia.setBounds(10, 175, 305, 35);
+        pnlTT.add(txtGia);
+
+        JLabel lblSoLuong = new JLabel("Số lượng");
+        lblSoLuong.setFont(plainFont);
+        lblSoLuong.setBounds(205, 220, 76, 18);
+        pnlTT.add(lblSoLuong);
+
+        txtSoLuong = new JTextField();
+        txtSoLuong.setBounds(201, 245, 114, 35);
+        pnlTT.add(txtSoLuong);
+    }
+
+    // Phương thức thêm DatePicker
+    private void addDatePicker(JPanel pnlTT) {
+        JLabel lblNgayTao = new JLabel("Ngày tạo");
+        lblNgayTao.setFont(plainFont);
+        lblNgayTao.setBounds(20, 220, 59, 18);
+        pnlTT.add(lblNgayTao);
+
+        UtilDateModel model = new UtilDateModel();
+        Properties properties = new Properties();
+        properties.put("text.today", "Hôm nay");
+        properties.put("text.month", "Tháng");
+        properties.put("text.year", "Năm");
+
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
+        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        datePicker.setBounds(10, 245, 180, 35);
+        pnlTT.add(datePicker);
+
+        // Đặt kích thước và font chữ cho trường nhập ngày
+        datePicker.getJFormattedTextField().setPreferredSize(new Dimension(100, 35));
+        datePicker.getJFormattedTextField().setFont(plainFont);
+
+        // Đặt icon cho nút calendar
+        JButton calendarButton = (JButton) datePicker.getComponent(1);
+        calendarButton.setIcon(new ImageIcon("D:\\Data\\tailieuvuive\\PTUD\\N2_QuanLyDatBanNhahang\\N2_QuanLyDatBanNhaHang\\img\\calendar-icon.jpg"));
+    }
+
+    // Phương thức tạo panel ghi chú
+    private void addGhiChuPanel(JPanel pnlTT) {
+        JLabel lblGhiChu = new JLabel("Ghi chú");
+        lblGhiChu.setFont(plainFont);
+        lblGhiChu.setBounds(20, 285, 114, 29);
+        pnlTT.add(lblGhiChu);
+
+        JPanel panel = new JPanel();
+        panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
+        panel.setBounds(10, 315, 306, 99);
+        panel.setLayout(null);
+        pnlTT.add(panel);
+
+        JTextPane txpGhiChu = new JTextPane();
+        txpGhiChu.setBounds(0, 0, 303, 96);
+        panel.add(txpGhiChu);
+    }
+
+    // Phương thức thêm các nút CRUD (Thêm/Sửa/Xóa/Lưu)
+    private void addCRUDButtons(JPanel pnlTT) {
+        pnlTT.add(createButton("Thêm", new Color(0, 191, 0), 10, 424, 70, 30));
+        pnlTT.add(createButton("Sửa", new Color(255, 128, 64), 88, 424, 70, 30));
+        pnlTT.add(createButton("Xóa", Color.RED, 166, 424, 70, 30));
+        pnlTT.add(createButton("Lưu", Color.BLUE, 244, 424, 70, 30));
+    }
+
+    // Phương thức tạo các nút phân loại món ăn
+    private void createMenuButtons() {
+        add(createButton("Cơm cuộn", new Color(0, 128, 255), 345, 65, 124, 49));
+        add(createButton("Mì", new Color(0, 128, 255), 479, 65, 124, 49));
+        add(createButton("Sasimi", new Color(0, 128, 255), 613, 65, 124, 49));
+        add(createButton("Sushi", new Color(0, 128, 255), 747, 65, 124, 49));
+        add(createButton("Lẩu", new Color(0, 128, 255), 881, 65, 124, 49));
+        add(createButton("Bánh ngọt", new Color(0, 128, 255), 1015, 65, 124, 49));
+        add(createButton("Đồ uống", new Color(0, 128, 255), 1149, 65, 124, 49));
+        add(createButton("Tất cả", new Color(0, 128, 255), 1283, 65, 124, 49));
+    }
+
+    // Phương thức tạo các nút tìm kiếm và thêm
+    private void createSearchBar() {
+        JLabel lblTimKiem = new JLabel("Nhập tên món ăn:");
+        lblTimKiem.setFont(boldFont);
+        lblTimKiem.setBounds(336, 125, 178, 35);
+        add(lblTimKiem);
+
+        textField = new JTextField();
+        textField.setBounds(511, 125, 305, 35);
+        add(textField);
+
+        add(createButton("Tìm kiếm", Color.BLUE, 826, 125, 147, 35));
+        add(createButton("Thêm", new Color(0, 191, 0), 985, 125, 147, 35));
+    }
+
+    // Phương thức tạo bảng hiển thị
+    private void createTable() {
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(345, 170, 1185, 586);
+        add(scrollPane);
+
+        table = new JTable();
+        table.setModel(new DefaultTableModel(
+            new Object[][] {},
+            new String[] { "Mã món ăn", "Tên món ăn", "Loại", "Đơn giá", "Số lượng", "Ghi chú" }
+        ));
+        scrollPane.setViewportView(table);
+    }
+
+    // Phương thức tạo nút với thuộc tính tùy chỉnh
+    private JButton createButton(String text, Color color, int x, int y, int width, int height) {
+        JButton button = new JButton(text);
+        button.setForeground(textColor);
+        button.setBackground(color);
+        button.setFont(plainFont);
+        button.setBounds(x, y, width, height);
+        return button;
+    }
+}

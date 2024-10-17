@@ -52,11 +52,11 @@ public class PanelDsThanhVien extends JPanel {
         
         Label lblTT = new Label("Thông tin");
         lblTT.setBackground(new Color(65, 41, 224));
-        lblTT.setBounds(10, 10, 150, 60);
+        lblTT.setBounds(10, 10, 150, 40);
         add(lblTT);
         lblTT.setAlignment(Label.CENTER);
         lblTT.setForeground(new Color(255, 255, 255));
-        lblTT.setFont(new Font("Arial", Font.BOLD, 20));
+        lblTT.setFont(new Font("Arial", Font.BOLD, 17));
         
         JLabel lblDiem = new JLabel("0 đ");
         lblDiem.setForeground(new Color(244, 0, 6));
@@ -67,13 +67,13 @@ public class PanelDsThanhVien extends JPanel {
         JPanel pnlTT = new JPanel();
         pnlTT.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
         pnlTT.setForeground(new Color(192, 192, 192));
-        pnlTT.setBounds(10, 74, 321, 707);
+        pnlTT.setBounds(10, 56, 367, 954);
         add(pnlTT);
         pnlTT.setLayout(null);
         
         txtMaThe = new JTextField();
         txtMaThe.setFont(new Font("Arial", Font.PLAIN, 14));
-        txtMaThe.setBounds(10, 30, 301, 35);
+        txtMaThe.setBounds(10, 30, 347, 35);
         pnlTT.add(txtMaThe);
         txtMaThe.setColumns(10);
         
@@ -92,7 +92,7 @@ public class PanelDsThanhVien extends JPanel {
         txtTenTV = new JTextField();
         txtTenTV.setFont(new Font("Arial", Font.PLAIN, 14));
         txtTenTV.setColumns(10);
-        txtTenTV.setBounds(10, 92, 301, 35);
+        txtTenTV.setBounds(10, 92, 347, 35);
         pnlTT.add(txtTenTV);
         
         JLabel lblSDT = new JLabel("Số điện thoại");
@@ -104,7 +104,7 @@ public class PanelDsThanhVien extends JPanel {
         txtSDT = new JTextField();
         txtSDT.setFont(new Font("Arial", Font.PLAIN, 14));
         txtSDT.setColumns(10);
-        txtSDT.setBounds(10, 156, 301, 35);
+        txtSDT.setBounds(10, 156, 347, 35);
         pnlTT.add(txtSDT);
         
         JLabel lblNgayTao = new JLabel("Ngày tạo");
@@ -124,7 +124,7 @@ public class PanelDsThanhVien extends JPanel {
         JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 
         // Tải icon từ đường dẫn
-        ImageIcon calendarIcon = new ImageIcon("D:\\Data\\tailieuvuive\\PTUD\\N2_QuanLyDatBanNhahang\\N2_QuanLyDatBanNhaHang\\img\\calendar-icon.jpg");
+        ImageIcon calendarIcon = new ImageIcon("D:\\Data\\tailieuvuive\\PTUD\\N2_QuanLyDatBanNhahang\\N2_QuanLyDatBanNhaHang\\img\\lich.png");
 
         // Lấy nút của datePicker và đặt icon cho nó
         JButton calendarButton = (JButton) datePicker.getComponent(1); // Lấy nút calendar
@@ -141,13 +141,13 @@ public class PanelDsThanhVien extends JPanel {
         JLabel lblLoaiThe = new JLabel("Loại thẻ");
         lblLoaiThe.setForeground(Color.BLACK);
         lblLoaiThe.setFont(new Font("Arial", Font.PLAIN, 15));
-        lblLoaiThe.setBounds(207, 201, 59, 18);
+        lblLoaiThe.setBounds(239, 201, 59, 18);
         pnlTT.add(lblLoaiThe);
         
         JComboBox cbxLoaiThe = new JComboBox();
         cbxLoaiThe.setModel(new DefaultComboBoxModel(new String[] {"Đồng", "Bạc", "Vàng", "Kim cương"}));
         cbxLoaiThe.setFont(new Font("Arial", Font.PLAIN, 15));
-        cbxLoaiThe.setBounds(200, 229, 111, 35);
+        cbxLoaiThe.setBounds(239, 229, 118, 35);
         pnlTT.add(cbxLoaiThe);
         
         JLabel lblDiaChi = new JLabel("Địa chỉ");
@@ -159,45 +159,56 @@ public class PanelDsThanhVien extends JPanel {
         txtDiaChi = new JTextField();
         txtDiaChi.setFont(new Font("Arial", Font.PLAIN, 14));
         txtDiaChi.setColumns(10);
-        txtDiaChi.setBounds(10, 290, 301, 35);
+        txtDiaChi.setBounds(10, 290, 347, 35);
         pnlTT.add(txtDiaChi);
         
         JButton btnSua = new JButton("Sửa");
+        btnSua.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         btnSua.setBackground(new Color(255, 128, 64));
         btnSua.setForeground(new Color(255, 255, 255));
-        btnSua.setFont(new Font("Arial", Font.BOLD, 14));
-        btnSua.setBounds(10, 347, 88, 26);
+        btnSua.setFont(new Font("Arial", Font.BOLD, 12));
+        btnSua.setBounds(100, 347, 72, 26);
         pnlTT.add(btnSua);
         
         JButton btnXoa = new JButton("Xóa");
         btnXoa.setForeground(new Color(255, 255, 255));
         btnXoa.setBackground(new Color(255, 0, 0));
-        btnXoa.setFont(new Font("Arial", Font.BOLD, 15));
+        btnXoa.setFont(new Font("Arial", Font.BOLD, 12));
         btnXoa.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
-        btnXoa.setBounds(115, 347, 88, 26);
+        btnXoa.setBounds(195, 347, 72, 26);
         pnlTT.add(btnXoa);
         
         JButton btnLuu = new JButton("Lưu");
         btnLuu.setForeground(new Color(255, 255, 255));
         btnLuu.setBackground(new Color(0, 128, 0));
-        btnLuu.setFont(new Font("Arial", Font.BOLD, 14));
-        btnLuu.setBounds(223, 347, 88, 26);
+        btnLuu.setFont(new Font("Arial", Font.BOLD, 12));
+        btnLuu.setBounds(285, 347, 72, 26);
         pnlTT.add(btnLuu);
+        
+        JButton btnThem = new JButton("Thêm");
+        btnThem.setForeground(Color.WHITE);
+        btnThem.setFont(new Font("Arial", Font.BOLD, 12));
+        btnThem.setBackground(new Color(0, 0, 255));
+        btnThem.setBounds(8, 347, 72, 26);
+        pnlTT.add(btnThem);
         
         JLabel lblDsTV = new JLabel("    Danh sách thành viên");
         lblDsTV.setHorizontalAlignment(SwingConstants.LEFT);
         lblDsTV.setBackground(new Color(65, 41, 224));  // Set màu nền
         lblDsTV.setForeground(new Color(255, 255, 255));  // Set màu chữ
-        lblDsTV.setFont(new Font("Arial", Font.BOLD, 22));
-        lblDsTV.setBounds(345, 10, 1185, 60);
+        lblDsTV.setFont(new Font("Arial", Font.BOLD, 18));
+        lblDsTV.setBounds(387, 10, 1524, 40);
         lblDsTV.setOpaque(true);  // Bật hiển thị nền
         add(lblDsTV);
         
         txtTimKiem = new JTextField();
-        txtTimKiem.setBounds(345, 88, 1016, 37);
+        txtTimKiem.setBounds(387, 60, 974, 37);
         add(txtTimKiem);
         txtTimKiem.setColumns(10);
         
@@ -205,21 +216,21 @@ public class PanelDsThanhVien extends JPanel {
         btnTimKiem.setForeground(new Color(255, 255, 255));
         btnTimKiem.setFont(new Font("Arial", Font.BOLD, 18));
         btnTimKiem.setBackground(new Color(0, 128, 255));
-        btnTimKiem.setBounds(1389, 88, 141, 37);
+        btnTimKiem.setBounds(1770, 56, 141, 37);
         add(btnTimKiem);
         
         JComboBox cbxSapXep = new JComboBox();
         cbxSapXep.setToolTipText("Sắp xếp theo");
         cbxSapXep.setModel(new DefaultComboBoxModel(new String[] {"Loại thẻ", "Số điểm cao nhất", "Mã thẻ"}));
-        cbxSapXep.setBounds(1144, 135, 386, 30);
+        cbxSapXep.setBounds(1525, 107, 386, 30);
         add(cbxSapXep);
         
         JLabel lblNewLabel = new JLabel("Sắp xếp theo:");
-        lblNewLabel.setBounds(1047, 135, 97, 30);
+        lblNewLabel.setBounds(1418, 107, 97, 30);
         add(lblNewLabel);
         
         JScrollPane scpTable = new JScrollPane();
-        scpTable.setBounds(345, 175, 1185, 606);
+        scpTable.setBounds(387, 147, 1524, 863);
         add(scpTable);
         
         table = new JTable();

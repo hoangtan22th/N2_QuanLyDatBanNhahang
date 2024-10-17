@@ -34,7 +34,7 @@ public class Menu extends JFrame implements ActionListener {
         JMenuBar jMenuBar = new JMenuBar();
         
         JMenu jMenuNhaHang = new JMenu("Nhà hàng");
-        itemNhaHang1 = new JMenuItem("xxx");
+        itemNhaHang1 = new JMenuItem("Đặt bàn");
         itemNhaHang2 = new JMenuItem("yyy");
         jMenuNhaHang.add(itemNhaHang1);
         jMenuNhaHang.add(itemNhaHang2);
@@ -48,17 +48,17 @@ public class Menu extends JFrame implements ActionListener {
 //        jMenuBar.add(jMenuDatCho);
         
         JMenu jMenuNhanVien = new JMenu("Nhân viên");
-        itemNhanVien1 = new JMenuItem("xxx");
-        itemNhanVien2 = new JMenuItem("yyy");
+        itemNhanVien1 = new JMenuItem("Quản lý nhân viên");
+//        itemNhanVien2 = new JMenuItem("yyy");
         jMenuNhanVien.add(itemNhanVien1);
-        jMenuNhanVien.add(itemNhanVien2);
+//        jMenuNhanVien.add(itemNhanVien2);
         jMenuBar.add(jMenuNhanVien);
            
         JMenu jMenuKhachHang = new JMenu("Khách hàng");
-        itemKhachHang1 = new JMenuItem("xxx");
-        itemKhachHang2 = new JMenuItem("yyy");
+        itemKhachHang1 = new JMenuItem("Quản lý khách hàng");
+//        itemKhachHang2 = new JMenuItem("yyy");
         jMenuKhachHang.add(itemKhachHang1);
-        jMenuKhachHang.add(itemKhachHang2);
+//        jMenuKhachHang.add(itemKhachHang2);
         jMenuBar.add(jMenuKhachHang);
         
         JMenu jMenuThongKe = new JMenu("Thống kê");
@@ -83,9 +83,9 @@ public class Menu extends JFrame implements ActionListener {
         jMenuBar.add(jMenuMonAn);
         
         JMenu jMenuTheVip = new JMenu("Thẻ VIP");
-        itemTheVip1 = new JMenuItem("xxx");
+//        itemTheVip1 = new JMenuItem("xxx");
         itemTheVip2 = new JMenuItem("Danh sách thẻ thành viên");
-        jMenuTheVip.add(itemTheVip1);
+//        jMenuTheVip.add(itemTheVip1);
         jMenuTheVip.add(itemTheVip2);
         jMenuBar.add(jMenuTheVip);
         
@@ -94,16 +94,16 @@ public class Menu extends JFrame implements ActionListener {
 //        itemDatCho1.addActionListener(this);
 //        itemDatCho2.addActionListener(this);
         itemNhanVien1.addActionListener(this);
-        itemNhanVien2.addActionListener(this);
+//        itemNhanVien2.addActionListener(this);
         itemKhachHang1.addActionListener(this);
-        itemKhachHang2.addActionListener(this);
+//        itemKhachHang2.addActionListener(this);
         itemThongKe1.addActionListener(this);
         itemThongKe2.addActionListener(this);
         itemBan1.addActionListener(this);
 //        itemBan2.addActionListener(this);
         itemMonAn1.addActionListener(this);
 //        itemMonAn2.addActionListener(this);
-        itemTheVip1.addActionListener(this);
+//        itemTheVip1.addActionListener(this);
         itemTheVip2.addActionListener(this);
         
         setJMenuBar(jMenuBar);
@@ -116,6 +116,11 @@ public class Menu extends JFrame implements ActionListener {
         contentPanel.add(new PanelNhaHangMenu1(), "MenuNhaHang1"); // trong chuỗi là từ khoá để gọi trùng khớp hàm action ở dưới
         contentPanel.add(new PanelNhaHangMenu2(),"MenuNhaHang2");
         
+        //Quản lý nhân viên
+        contentPanel.add(new PanelNhanVien(),"QLNhanVien");
+        
+        //Quản lý khách hàng
+        contentPanel.add(new PanelKhachHang(),"QLKhachHang");
         //Thẻ thành viên
         contentPanel.add(new PanelDsThanhVien(), "DSThanhVien");
         //Quản lý bàn
@@ -137,6 +142,12 @@ public class Menu extends JFrame implements ActionListener {
         }
         else if(e.getSource()== itemNhaHang2){
         	cardLayout.show(contentPanel, "MenuNhaHang2");
+        }
+        else if(e.getSource() == itemNhanVien1) {
+        	cardLayout.show(contentPanel, "QLNhanVien");
+        }
+        else if(e.getSource()==itemKhachHang1) {
+        	cardLayout.show(contentPanel, "QLKhachHang");
         }
         else if (e.getSource()== itemTheVip2) {
 			cardLayout.show(contentPanel, "DSThanhVien");
