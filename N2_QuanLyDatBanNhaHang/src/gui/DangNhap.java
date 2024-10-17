@@ -30,9 +30,7 @@ public class DangNhap extends JFrame implements ActionListener{
     	setIconImage(Toolkit.getDefaultToolkit().getImage(""));
         setTitle("Đăng nhập");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        setSize(1920, 1080);      
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(screenSize.width, screenSize.height);
+        setSize(1600, 900);      
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout());

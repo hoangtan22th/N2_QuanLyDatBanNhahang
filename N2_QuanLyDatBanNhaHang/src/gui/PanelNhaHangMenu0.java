@@ -163,7 +163,7 @@ public class PanelNhaHangMenu0 extends JPanel {
         panel_5.setBackground(new Color(255, 255, 255));
         panel_5.setBounds(940, 165, 768, 505);
         add(panel_5);
-                        panel_5.setLayout(new GridLayout(0, 4, 0, 0));
+                        panel_5.setLayout(new GridLayout(0, 4, 15, 15));
                 
                         JButton btnButton1 = new JButton("Bàn Naruto");
                         btnButton1.setForeground(new Color(30, 144, 255));
