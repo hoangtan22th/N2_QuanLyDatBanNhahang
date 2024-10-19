@@ -29,6 +29,8 @@ public class Menu extends JFrame implements ActionListener {
     private CardLayout cardLayout;
     private JPanel contentPanel;
 	private JMenuItem itemNhaHang3;
+	private JMenuItem itemTaiKhoan1;
+	private JMenuItem itemTaiKhoan2;
 
     public Menu() {
         setTitle("Menu");
@@ -117,7 +119,14 @@ public class Menu extends JFrame implements ActionListener {
         jMenuTheVip.add(itemTheVip2);
         jMenuBar.add(jMenuTheVip);
 
-   
+        JMenu jMenuTaiKhoan = new JMenu("Tài Khoản");
+        jMenuTaiKhoan.setIcon(new ImageIcon(new ImageIcon("img/iconTheVip.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
+        jMenuTaiKhoan.setForeground(Color.WHITE);
+        itemTaiKhoan1 = new JMenuItem("xxx");
+        itemTaiKhoan2 = new JMenuItem("Quản lý tài khoản");
+        jMenuTaiKhoan.add(itemTaiKhoan2);
+        jMenuBar.add(jMenuTaiKhoan);
+        
         itemNhaHang1.addActionListener(this);
         itemNhaHang2.addActionListener(this);
         itemNhanVien1.addActionListener(this);
@@ -140,7 +149,7 @@ public class Menu extends JFrame implements ActionListener {
         cardLayout = new CardLayout();
         contentPanel = new JPanel(cardLayout);
         //-----//  LƯU Ý GỌI PANEL MENU TRONG ĐÂY
-        contentPanel.add(new PanelNhaHangMenu0(), "MenuNhaHang1"); // trong chuỗi là từ khoá để gọi trùng khớp hàm action ở dưới
+        contentPanel.add(new PanelNhaHangMenu1(), "MenuNhaHang1"); // trong chuỗi là từ khoá để gọi trùng khớp hàm action ở dưới
         contentPanel.add(new PanelNhaHangMenu2(),"MenuNhaHang2");
         
         //Quản lý nhân viên
@@ -150,12 +159,15 @@ public class Menu extends JFrame implements ActionListener {
         contentPanel.add(new PanelKhachHang(),"QLKhachHang");
         //Thẻ thành viên
        
-        contentPanel.add(new PanelNhaHangMenu0(), "MenuNhaHang1");
+        contentPanel.add(new PanelNhaHangMenu1(), "MenuNhaHang1");
         contentPanel.add(new PanelNhaHangMenu2(), "MenuNhaHang2");
         contentPanel.add(new PanelDsThanhVien(), "DSThanhVien");
         contentPanel.add(new PanelQuanLyBan(), "QLBan");
         contentPanel.add(new PanelQLMonAn(), "QLMonAn");
+        contentPanel.add(new PanelTaiKhoanMenu(), "QLTaiKhoan");
 
+        // Tài Khoản
+        
         add(contentPanel, BorderLayout.CENTER);
         setVisible(true);
     }
@@ -188,10 +200,13 @@ public class Menu extends JFrame implements ActionListener {
 			cardLayout.show(contentPanel, "QLBan");
 		}else if (e.getSource()== itemMonAn1) {
 			cardLayout.show(contentPanel, "QLMonAn");
+		}else if (e.getSource()== itemTaiKhoan2) {
+			cardLayout.show(contentPanel, "QLTaiKhoan");
 		}
     }
-
     public static void main(String[] args) {
-        new Menu();
+       
+        new Menu().setVisible(true);
     }
+  
 }

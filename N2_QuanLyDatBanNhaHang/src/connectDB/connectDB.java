@@ -15,7 +15,7 @@ public class connectDB {
             String password = "sapassword";
             
             c = DriverManager.getConnection(url, user, password);
-            System.out.println("Kết nối thành công.");
+//            System.out.println("Kết nối thành công.");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -27,7 +27,7 @@ public class connectDB {
         if (c != null) {
             try {
                 c.close();
-                System.out.println("Đóng kết nối thành công.");
+//                System.out.println("Đóng kết nối thành công.");
             } catch (SQLException e) {
             	e.printStackTrace();
             }

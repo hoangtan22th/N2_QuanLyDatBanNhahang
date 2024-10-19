@@ -17,18 +17,7 @@ public class ChuyenBan extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    ChuyenBan frame = new ChuyenBan();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+    
 
     public ChuyenBan() {
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

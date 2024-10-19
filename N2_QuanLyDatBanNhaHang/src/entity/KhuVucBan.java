@@ -31,6 +31,7 @@ public class KhuVucBan {
 	@Override
 	public String toString() {
 		return "KhuVucBan [maKhu=" + maKhu + ", tenKhu=" + tenKhu + ", soBan=" + soBan + "]";
+//		return tenKhu;
 	}
 	
 }
