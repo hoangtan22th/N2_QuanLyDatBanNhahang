@@ -67,6 +67,8 @@ public class Menu extends JFrame implements ActionListener {
 //        itemNhanVien2 = new JMenuItem("yyy");
         jMenuNhanVien.setIcon(new ImageIcon(new ImageIcon("img/iconNhanVien.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         jMenuNhanVien.setForeground(Color.WHITE);
+        itemNhanVien1 = new JMenuItem("xxx");
+        itemNhanVien2 = new JMenuItem("yyy");
         jMenuNhanVien.add(itemNhanVien1);
 //        jMenuNhanVien.add(itemNhanVien2);
         jMenuBar.add(jMenuNhanVien);
@@ -76,6 +78,8 @@ public class Menu extends JFrame implements ActionListener {
 //        itemKhachHang2 = new JMenuItem("yyy");
         jMenuKhachHang.setIcon(new ImageIcon(new ImageIcon("img/iconNhanVien.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         jMenuKhachHang.setForeground(Color.WHITE);
+        itemKhachHang1 = new JMenuItem("xxx");
+        itemKhachHang2 = new JMenuItem("yyy");
         jMenuKhachHang.add(itemKhachHang1);
 //        jMenuKhachHang.add(itemKhachHang2);
         jMenuBar.add(jMenuKhachHang);

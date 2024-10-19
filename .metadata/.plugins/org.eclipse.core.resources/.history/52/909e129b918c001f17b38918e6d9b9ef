@@ -30,7 +30,7 @@ public class DangNhap extends JFrame implements ActionListener{
     	setIconImage(Toolkit.getDefaultToolkit().getImage(""));
         setTitle("Đăng nhập");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setSize(1922, 1094);      
+        setSize(1600, 900);      
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout());
@@ -126,7 +126,7 @@ public class DangNhap extends JFrame implements ActionListener{
                 btnThoat.setPreferredSize(buttonSize);
                 
                 JLabel lblNewLabel = new JLabel("");
-                lblNewLabel.setIcon(new ImageIcon("img/Logo.png"));
+                lblNewLabel.setIcon(new ImageIcon("\\N2_QuanLyDatBanNhaHang\\img\\Logo.png"));
                 lblNewLabel.setBounds(0, -17, 225, 181);
                 pnCenter.add(lblNewLabel);
                 
