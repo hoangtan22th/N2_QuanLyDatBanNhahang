@@ -10,7 +10,7 @@ public class connectDB {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=model;encrypt=false;";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyNhaHang;encrypt=false;";
             String user = "sa";
             String password = "sapassword";
             
