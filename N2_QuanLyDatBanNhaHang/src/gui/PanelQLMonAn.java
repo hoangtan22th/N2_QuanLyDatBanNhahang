@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Label;
+import java.util.List;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
@@ -17,6 +18,8 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import dao.MonAnUongDAO;
+import entity.MonAnUong;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -37,7 +40,28 @@ public class PanelQLMonAn extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	 public void loadDataToTable() {
+	        MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
+	        List<MonAnUong> listMonAn = monAnUongDAO.loadAllMonAnUong();
+	        
+	        DefaultTableModel model = (DefaultTableModel) table.getModel();
+	        model.setRowCount(0); 
+
+	        int stt = 1;
+	        for (MonAnUong monAn : listMonAn) {
+	            model.addRow(new Object[] {
+	                stt++,
+	                monAn.getMaMonAnUong(),
+	                monAn.getTenMonAnUong(), 
+	                monAn.getSoLuong(), 
+	                monAn.getGiaTien(), 
+	                monAn.getLoai()
+	               
+	            });
+	        }
+	    }
 	public PanelQLMonAn() {
+	
 		setLayout(null);
 		Label lblTT = new Label("Thông tin");
         lblTT.setBackground(new Color(65, 41, 224));
@@ -247,10 +271,12 @@ public class PanelQLMonAn extends JPanel {
         table.getColumnModel().getColumn(0).setPreferredWidth(29);
         table.getColumnModel().getColumn(2).setPreferredWidth(105);
         scrollPane.setViewportView(table);
-        
+        table.setRowHeight(30); 
+
         JLabel lblNewLabel = new JLabel("Nhập mã món ăn cần tìm:");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
         lblNewLabel.setBounds(668, 134, 203, 34);
         add(lblNewLabel);
+    	loadDataToTable();
 	}
 }

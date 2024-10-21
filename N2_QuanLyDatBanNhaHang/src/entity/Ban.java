@@ -8,10 +8,10 @@ public class Ban {
 	private LocalDateTime thoiGianDatBan;
 	private int soChoNgoi;
 	private boolean trangThai;
-	private String loaiBan;
+	private boolean loaiBan;
 	private KhuVucBan khuVucBan;
 	public Ban(String maBan, String tenBan, LocalDateTime thoiGianDatBan, int soChoNgoi, boolean trangThai,
-			String loaiBan, KhuVucBan khuVucBan) {
+			boolean loaiBan, KhuVucBan khuVucBan) {
 		super();
 		this.maBan = maBan;
 		this.tenBan = tenBan;
@@ -51,10 +51,10 @@ public class Ban {
 	public void setTrangThai(boolean trangThai) {
 		this.trangThai = trangThai;
 	}
-	public String getLoaiBan() {
+	public boolean getLoaiBan() {
 		return loaiBan;
 	}
-	public void setLoaiBan(String loaiBan) {
+	public void setLoaiBan(boolean loaiBan) {
 		this.loaiBan = loaiBan;
 	}
 	public KhuVucBan getKhuVucBan() {

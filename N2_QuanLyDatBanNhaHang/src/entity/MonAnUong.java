@@ -1,24 +1,24 @@
 package entity;
 
 public class MonAnUong {
-	private String monAnUong;
+	private String maMonAnUong;
 	private String tenMonAnUong;
 	private double giaTien;
 	private String loai;
 	private int soLuong;
-	public MonAnUong(String monAnUong, String tenMonAnUong, double giaTien, String loai, int soLuong) {
+	public MonAnUong(String maMonAnUong, String tenMonAnUong, double giaTien, String loai, int soLuong) {
 		super();
-		this.monAnUong = monAnUong;
+		this.maMonAnUong = maMonAnUong;
 		this.tenMonAnUong = tenMonAnUong;
 		this.giaTien = giaTien;
 		this.loai = loai;
 		this.soLuong = soLuong;
 	}
-	public String getMonAnUong() {
-		return monAnUong;
+	public String getMaMonAnUong() {
+		return maMonAnUong;
 	}
 	public void setMonAnUong(String monAnUong) {
-		this.monAnUong = monAnUong;
+		this.maMonAnUong = monAnUong;
 	}
 	public String getTenMonAnUong() {
 		return tenMonAnUong;
@@ -46,7 +46,7 @@ public class MonAnUong {
 	}
 	@Override
 	public String toString() {
-		return "MonAnUong [monAnUong=" + monAnUong + ", tenMonAnUong=" + tenMonAnUong + ", giaTien=" + giaTien
+		return "MonAnUong [monAnUong=" + maMonAnUong + ", tenMonAnUong=" + tenMonAnUong + ", giaTien=" + giaTien
 				+ ", loai=" + loai + ", soLuong=" + soLuong + "]";
 	}
 	
