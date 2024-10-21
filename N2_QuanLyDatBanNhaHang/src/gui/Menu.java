@@ -182,6 +182,7 @@ public class Menu extends JFrame implements ActionListener {
             cardLayout.show(contentPanel, "DSThanhVien");
         } else if (e.getSource() == itemBan1) {
             cardLayout.show(contentPanel, "QLBan");
+            
         } else if (e.getSource() == itemMonAn1) {
             cardLayout.show(contentPanel, "QLMonAn");
         }
@@ -207,6 +208,7 @@ public class Menu extends JFrame implements ActionListener {
     public static void main(String[] args) {
        
         new Menu().setVisible(true);
+        PanelQuanLyBan.loadBanButtons();
     }
   
 }
