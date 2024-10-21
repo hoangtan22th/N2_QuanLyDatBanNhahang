@@ -17,38 +17,22 @@ import entity.TheThanhVien;
 
 public class TaiKhoanDAO {
     
-//    public boolean kiemTraTaiKhoan(String taiKhoan, String matKhau) {     
-//        try {
-//            Connection con = connectDB.getConnection();
-//            Statement st = con.createStatement();
-//            String sql = "SELECT taiKhoan, matKhau FROM TaiKhoan WHERE taiKhoan = '" + taiKhoan + "' AND matKhau = '" + matKhau + "'";
-//            ResultSet rs = st.executeQuery(sql);
-//            if (rs.next()) {
-//            	return true;
-//            }
-//            
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        
-//        return false;
-//    }
-	public int kiemTraTaiKhoan(String taiKhoan, String matKhau) {
-	    int role = -1; // Giá trị -1 là không tìm thấy
-	    try {
-	        Connection con = connectDB.getConnection();
-	        Statement st = con.createStatement();
-	        String sql = "SELECT role FROM TaiKhoan WHERE taiKhoan = '" + taiKhoan + "' AND matKhau = '" + matKhau + "'";
-	        ResultSet rs = st.executeQuery(sql);
-	        if (rs.next()) {
-	            role = rs.getInt("role"); // Trả về vai trò của người dùng
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    return role;
-	}
-
+    public boolean kiemTraTaiKhoan(String taiKhoan, String matKhau) {     
+        try {
+            Connection con = connectDB.getConnection();
+            Statement st = con.createStatement();
+            String sql = "SELECT taiKhoan, matKhau FROM TaiKhoan WHERE taiKhoan = '" + taiKhoan + "' AND matKhau = '" + matKhau + "'";
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+            	return true;
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return false;
+    }
     public List<TaiKhoan> getAllTK(){
 		List<TaiKhoan> list = new ArrayList<TaiKhoan>();
 		String sql = "select * from TaiKhoan";

@@ -13,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
@@ -33,7 +32,6 @@ public class Menu extends JFrame implements ActionListener {
 	private JMenuItem itemTaiKhoan1;
 	private JMenuItem itemTaiKhoan2;
 	private JMenuItem itemTimKiem;
-	private JMenu jMenuNhaHang,jMenuDatCho,jMenuNhanVien,jMenuKhachHang,jMenuThongKe,jMenuBan,jMenuTheVip,jMenuMonAn,jMenuTaiKhoan;
 
     public Menu() {
         setTitle("Menu");
@@ -45,7 +43,7 @@ public class Menu extends JFrame implements ActionListener {
         JMenuBar jMenuBar = new JMenuBar();
         jMenuBar.setBackground(Color.decode("#0075E1")); 
 
-        jMenuNhaHang = new JMenu("Nhà hàng");
+        JMenu jMenuNhaHang = new JMenu("Nhà hàng");
         itemNhaHang1 = new JMenuItem("Đặt bàn");
         itemNhaHang2 = new JMenuItem("yyy");
         jMenuNhaHang.setIcon(new ImageIcon(new ImageIcon("img/iconNhaHang.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
@@ -58,7 +56,7 @@ public class Menu extends JFrame implements ActionListener {
         jMenuNhaHang.add(itemNhaHang3);
         jMenuBar.add(jMenuNhaHang);
 
-        jMenuDatCho = new JMenu("Đặt chỗ");
+        JMenu jMenuDatCho = new JMenu("Đặt chỗ");
         jMenuDatCho.setIcon(new ImageIcon(new ImageIcon("img/iconNhaHang.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         jMenuDatCho.setForeground(Color.WHITE);
         itemDatCho1 = new JMenuItem("xxx");
@@ -67,7 +65,7 @@ public class Menu extends JFrame implements ActionListener {
         jMenuDatCho.add(itemDatCho2);
 
   
-        jMenuNhanVien = new JMenu("Nhân viên");
+        JMenu jMenuNhanVien = new JMenu("Nhân viên");
         itemNhanVien1 = new JMenuItem("Quản lý nhân viên");
 //        itemNhanVien2 = new JMenuItem("yyy");
         jMenuNhanVien.setIcon(new ImageIcon(new ImageIcon("img/iconNhanVien.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
@@ -76,7 +74,7 @@ public class Menu extends JFrame implements ActionListener {
 //        jMenuNhanVien.add(itemNhanVien2);
         jMenuBar.add(jMenuNhanVien);
 
-        jMenuKhachHang = new JMenu("Khách hàng");
+        JMenu jMenuKhachHang = new JMenu("Khách hàng");
         itemKhachHang1 = new JMenuItem("Quản lý khách hàng");
 //        itemKhachHang2 = new JMenuItem("yyy");
         jMenuKhachHang.setIcon(new ImageIcon(new ImageIcon("img/iconNhanVien.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
@@ -85,7 +83,7 @@ public class Menu extends JFrame implements ActionListener {
 //        jMenuKhachHang.add(itemKhachHang2);
         jMenuBar.add(jMenuKhachHang);
 
-        jMenuThongKe = new JMenu("Thống kê");
+        JMenu jMenuThongKe = new JMenu("Thống kê");
         jMenuThongKe.setIcon(new ImageIcon(new ImageIcon("img/iconThongKe.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         jMenuThongKe.setForeground(Color.WHITE);
         itemThongKe1 = new JMenuItem("xxx");
@@ -94,21 +92,21 @@ public class Menu extends JFrame implements ActionListener {
         jMenuThongKe.add(itemThongKe2);
         jMenuBar.add(jMenuThongKe);
 
-        jMenuBan = new JMenu("Bàn");
+        JMenu jMenuBan = new JMenu("Bàn");
         jMenuBan.setIcon(new ImageIcon(new ImageIcon("img/iconBan.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         jMenuBan.setForeground(Color.WHITE);
         itemBan1 = new JMenuItem("Quản lý bàn");
         jMenuBan.add(itemBan1);
         jMenuBar.add(jMenuBan);
 
-        jMenuMonAn = new JMenu("Món ăn");
+        JMenu jMenuMonAn = new JMenu("Món ăn");
         jMenuMonAn.setIcon(new ImageIcon(new ImageIcon("img/iconMonAN.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         jMenuMonAn.setForeground(Color.WHITE);
         itemMonAn1 = new JMenuItem("Quản lý món ăn");
         jMenuMonAn.add(itemMonAn1);
         jMenuBar.add(jMenuMonAn);
 
-        jMenuTheVip = new JMenu("Thẻ VIP");
+        JMenu jMenuTheVip = new JMenu("Thẻ VIP");
 //        itemTheVip1 = new JMenuItem("xxx");
         jMenuTheVip.setIcon(new ImageIcon(new ImageIcon("img/iconTheVip.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         jMenuTheVip.setForeground(Color.WHITE);
@@ -118,7 +116,7 @@ public class Menu extends JFrame implements ActionListener {
         jMenuTheVip.add(itemTheVip2);
         jMenuBar.add(jMenuTheVip);
 
-        jMenuTaiKhoan = new JMenu("Tài Khoản");
+        JMenu jMenuTaiKhoan = new JMenu("Tài Khoản");
         jMenuTaiKhoan.setIcon(new ImageIcon(new ImageIcon("img/iconTheVip.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         jMenuTaiKhoan.setForeground(Color.WHITE);
         itemTaiKhoan1 = new JMenuItem("xxx");
@@ -215,27 +213,7 @@ public class Menu extends JFrame implements ActionListener {
 		} else if(e.getSource()== itemTimKiem) {
 			cardLayout.show(contentPanel, "QLTimKiem");
 		} 
-        
-        
     }
-    public void thayDoiMenuTheoVaiTro(int role) {
-        if (role == 0) { // Nhân viên
-            jMenuNhanVien.setVisible(false); // Ẩn mục "Nhân viên"
-            jMenuThongKe.setVisible(false); // Ẩn mục "Thống kê"
-            jMenuBan.setVisible(false); // Ẩn mục "Bàn"
-            jMenuMonAn.setVisible(false); // Ẩn mục "Món ăn"
-        } else if (role == 1) { // Quản lý
-            // Hiển thị tất cả các mục menu (nếu cần thiết)
-            jMenuNhanVien.setVisible(true);
-            jMenuThongKe.setVisible(true);
-            jMenuBan.setVisible(true);
-            jMenuMonAn.setVisible(true);
-        } else {
-            // Xử lý trường hợp đăng nhập thất bại hoặc không có quyền
-            JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại hoặc mật khẩu không chính xác.");
-        }
-    }
-
     public static void main(String[] args) {
        
         new Menu().setVisible(true);

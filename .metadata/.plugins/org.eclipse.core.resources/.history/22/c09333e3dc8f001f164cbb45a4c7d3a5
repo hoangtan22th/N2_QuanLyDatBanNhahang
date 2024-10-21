@@ -23,14 +23,13 @@ public class DangNhap extends JFrame implements ActionListener{
     private JLabel lblMatKhau;
     private JLabel lblRong;
     private JPanel pnBoxDangNhap;
-    private Menu menu;
+
     
     private Image backgroundImage;
 
 	
 
     public DangNhap() {
-    	menu = new Menu();
     	setIconImage(Toolkit.getDefaultToolkit().getImage(""));
         setTitle("Đăng nhập");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -151,27 +150,24 @@ public class DangNhap extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    	if (e.getSource() == btnDangNhap) {
-    	    String taiKhoan = txtDangNhap.getText();
-    	    String matKhau = txtMatKhau.getText();
-    	    if (taiKhoan.isEmpty() || matKhau.isEmpty()) {
-    	        JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không được để trống!");
-    	        return;
-    	    }
+        if (e.getSource() == btnDangNhap) {
+            String taiKhoan = txtDangNhap.getText();
+            String matKhau = txtMatKhau.getText();
+            if (taiKhoan.isEmpty() || matKhau.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không được để trống!");
+                return;
+            }
+            TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();  
+            boolean check = taiKhoanDAO.kiemTraTaiKhoan(taiKhoan, matKhau);
 
-    	    TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();  
-    	    int check = taiKhoanDAO.kiemTraTaiKhoan(taiKhoan, matKhau);
-
-    	    if (check != -1) {
-    	        Menu menu = new Menu(); // Khởi tạo đối tượng Menu trước khi sử dụng
-    	        menu.thayDoiMenuTheoVaiTro(check); // Thay đổi menu theo quyền
-    	        JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
-    	        menu.setVisible(true); // Hiển thị giao diện
-    	        // setVisible(false);  // Bạn có thể ẩn giao diện đăng nhập nếu cần
-    	    } else {
-    	        JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không chính xác!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-    	    }
-    	}
+            if (check) {
+                JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
+                setVisible(false);
+                new Menu().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không chính xác!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        }
         
     }
 
