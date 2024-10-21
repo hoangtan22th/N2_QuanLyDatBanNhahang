@@ -50,7 +50,7 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 		JLabel lblPhieu = new JLabel("Phiếu");
 		lblPhieu.setForeground(new Color(255, 255, 255));
 		lblPhieu.setBackground(new Color(226, 141, 14));
-		lblPhieu.setOpaque(true); // Thiết lập để hiển thị màu nền
+		lblPhieu.setOpaque(true); 
 		lblPhieu.setBounds(10, 11, 141, 42);
 
 		panel.add(lblPhieu);
