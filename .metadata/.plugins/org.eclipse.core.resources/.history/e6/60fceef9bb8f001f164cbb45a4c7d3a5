@@ -1,0 +1,29 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import connectDB.connectDB;
+
+public class TaiKhoanDAO {
+    
+    public boolean kiemTraTaiKhoan(String taiKhoan, String matKhau) {     
+        try {
+            Connection con = connectDB.getConnection();
+            Statement st = con.createStatement();
+            String sql = "SELECT taiKhoan, matKhau FROM TaiKhoan WHERE taiKhoan = '" + taiKhoan + "' AND matKhau = '" + matKhau + "'";
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+            	return true;
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return false;
+    }
+    
+}

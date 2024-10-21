@@ -1,14 +1,15 @@
 package entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class TaiKhoan {
 	private String taiKhoan;
 	private String matKhau;
 	private boolean role;
-	private LocalDate ngayTaoTK;
+	private LocalDateTime ngayTaoTK;
 	
-	public TaiKhoan(String taiKhoan, String matKhau, boolean role, LocalDate ngayTaoTK) {
+	public TaiKhoan(String taiKhoan, String matKhau, boolean role, LocalDateTime ngayTaoTK) {
 		super();
 		this.taiKhoan = taiKhoan;
 		this.matKhau = matKhau;
@@ -33,10 +34,10 @@ public class TaiKhoan {
 	public void setRole(boolean role) {
 		this.role = role;
 	}
-	public LocalDate getNgayTaoTK() {
+	public LocalDateTime getNgayTaoTK() {
 		return ngayTaoTK;
 	}
-	public void setNgayTaoTK(LocalDate ngayTaoTK) {
+	public void setNgayTaoTK(LocalDateTime ngayTaoTK) {
 		this.ngayTaoTK = ngayTaoTK;
 	}
 	@Override

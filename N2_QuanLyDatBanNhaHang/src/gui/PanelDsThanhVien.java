@@ -5,10 +5,16 @@ import java.awt.Font;
 import java.awt.Label;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
@@ -16,6 +22,13 @@ import javax.swing.border.TitledBorder;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+
+import connectDB.connectDB;
+import dao.KhachHangDAO;
+import dao.TheThanhVienDAO;
+import entity.KhachHang;
+import entity.LoaiThe;
+import entity.TheThanhVien;
 
 import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.border.LineBorder;
@@ -25,28 +38,50 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import java.awt.Scrollbar;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.border.EtchedBorder;
 
-public class PanelDsThanhVien extends JPanel {
+public class PanelDsThanhVien extends JPanel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
+    private DefaultTableModel model;
     private JTextField txtMaThe;
     private JTextField txtTenTV;
     private JTextField txtSDT;
-    private JTextField txtDiaChi;
-    private JTextField txtTimKiem;
+    private JTextField txtSoDiem;
     private JTable table;
+    
+    private TheThanhVienDAO ttv_dao;
+    private KhachHangDAO kh_dao;
+    private JTextField txtTim;
+    private JDatePickerImpl datePicker;
+    @SuppressWarnings("rawtypes")
+	private JComboBox cbxLoaiThe;
+    private JButton btnXoa,btnSua,btnThem,btnLuu;
 
     /**
      * Create the panel.
      */
-    public PanelDsThanhVien() {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public PanelDsThanhVien() {
+    	ttv_dao = new TheThanhVienDAO();
+    	kh_dao = new KhachHangDAO();
+    	
     	setForeground(new Color(255, 255, 255));
         setLayout(null);
         
@@ -114,14 +149,14 @@ public class PanelDsThanhVien extends JPanel {
         pnlTT.add(lblNgayTao);
         
         // Date picker setup
-        UtilDateModel model = new UtilDateModel();
+        UtilDateModel modelDate = new UtilDateModel();
         Properties properties = new Properties();
         properties.put("text.today", "Hôm nay");
         properties.put("text.month", "Tháng");
         properties.put("text.year", "Năm");
 
-        JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
-        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        JDatePanelImpl datePanel = new JDatePanelImpl(modelDate, properties);
+        datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 
         // Tải icon từ đường dẫn
         ImageIcon calendarIcon = new ImageIcon("D:\\Data\\tailieuvuive\\PTUD\\N2_QuanLyDatBanNhahang\\N2_QuanLyDatBanNhaHang\\img\\lich.png");
@@ -144,25 +179,25 @@ public class PanelDsThanhVien extends JPanel {
         lblLoaiThe.setBounds(239, 201, 59, 18);
         pnlTT.add(lblLoaiThe);
         
-        JComboBox cbxLoaiThe = new JComboBox();
-        cbxLoaiThe.setModel(new DefaultComboBoxModel(new String[] {"Đồng", "Bạc", "Vàng", "Kim cương"}));
+        cbxLoaiThe = new JComboBox();
+        cbxLoaiThe.setModel(new DefaultComboBoxModel(new String[] {"LT001", "LT002", "LT003", "LT004"}));
         cbxLoaiThe.setFont(new Font("Arial", Font.PLAIN, 15));
         cbxLoaiThe.setBounds(239, 229, 118, 35);
         pnlTT.add(cbxLoaiThe);
         
-        JLabel lblDiaChi = new JLabel("Địa chỉ");
-        lblDiaChi.setForeground(Color.BLACK);
-        lblDiaChi.setFont(new Font("Arial", Font.PLAIN, 15));
-        lblDiaChi.setBounds(20, 272, 88, 18);
-        pnlTT.add(lblDiaChi);
+        JLabel lblSoDiem = new JLabel("Số điểm");
+        lblSoDiem.setForeground(Color.BLACK);
+        lblSoDiem.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblSoDiem.setBounds(20, 272, 88, 18);
+        pnlTT.add(lblSoDiem);
         
-        txtDiaChi = new JTextField();
-        txtDiaChi.setFont(new Font("Arial", Font.PLAIN, 14));
-        txtDiaChi.setColumns(10);
-        txtDiaChi.setBounds(10, 290, 347, 35);
-        pnlTT.add(txtDiaChi);
+        txtSoDiem = new JTextField();
+        txtSoDiem.setFont(new Font("Arial", Font.PLAIN, 14));
+        txtSoDiem.setColumns(10);
+        txtSoDiem.setBounds(10, 290, 347, 35);
+        pnlTT.add(txtSoDiem);
         
-        JButton btnSua = new JButton("Sửa");
+        btnSua = new JButton("Sửa");
         btnSua.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
@@ -170,10 +205,10 @@ public class PanelDsThanhVien extends JPanel {
         btnSua.setBackground(new Color(255, 128, 64));
         btnSua.setForeground(new Color(255, 255, 255));
         btnSua.setFont(new Font("Arial", Font.BOLD, 12));
-        btnSua.setBounds(100, 347, 72, 26);
+        btnSua.setBounds(98, 347, 80, 26);
         pnlTT.add(btnSua);
         
-        JButton btnXoa = new JButton("Xóa");
+        btnXoa = new JButton("Xóa trắng");
         btnXoa.setForeground(new Color(255, 255, 255));
         btnXoa.setBackground(new Color(255, 0, 0));
         btnXoa.setFont(new Font("Arial", Font.BOLD, 12));
@@ -181,70 +216,244 @@ public class PanelDsThanhVien extends JPanel {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
-        btnXoa.setBounds(195, 347, 72, 26);
+        btnXoa.setBounds(187, 347, 80, 26);
         pnlTT.add(btnXoa);
         
-        JButton btnLuu = new JButton("Lưu");
+        btnLuu = new JButton("Cập nhật");
         btnLuu.setForeground(new Color(255, 255, 255));
         btnLuu.setBackground(new Color(0, 128, 0));
         btnLuu.setFont(new Font("Arial", Font.BOLD, 12));
-        btnLuu.setBounds(285, 347, 72, 26);
+        btnLuu.setBounds(277, 347, 80, 26);
         pnlTT.add(btnLuu);
         
-        JButton btnThem = new JButton("Thêm");
+        btnThem = new JButton("Thêm");
         btnThem.setForeground(Color.WHITE);
         btnThem.setFont(new Font("Arial", Font.BOLD, 12));
         btnThem.setBackground(new Color(0, 0, 255));
-        btnThem.setBounds(8, 347, 72, 26);
+        btnThem.setBounds(8, 347, 80, 26);
         pnlTT.add(btnThem);
         
-        JLabel lblDsTV = new JLabel("    Danh sách thành viên");
-        lblDsTV.setHorizontalAlignment(SwingConstants.LEFT);
-        lblDsTV.setBackground(new Color(65, 41, 224));  // Set màu nền
-        lblDsTV.setForeground(new Color(255, 255, 255));  // Set màu chữ
-        lblDsTV.setFont(new Font("Arial", Font.BOLD, 18));
-        lblDsTV.setBounds(387, 10, 1524, 40);
-        lblDsTV.setOpaque(true);  // Bật hiển thị nền
-        add(lblDsTV);
+        JPanel panel = new JPanel();
+        panel.setBounds(385, 10, 1526, 985);
+        add(panel);
+        panel.setLayout(null);
         
-        txtTimKiem = new JTextField();
-        txtTimKiem.setBounds(387, 60, 974, 37);
-        add(txtTimKiem);
-        txtTimKiem.setColumns(10);
+        JLabel lblDsTV = new JLabel("    Danh sách thành viên");
+        lblDsTV.setOpaque(true);
+        lblDsTV.setHorizontalAlignment(SwingConstants.LEFT);
+        lblDsTV.setForeground(Color.WHITE);
+        lblDsTV.setFont(new Font("Arial", Font.BOLD, 18));
+        lblDsTV.setBackground(new Color(65, 41, 224));
+        lblDsTV.setBounds(0, 0, 1524, 40);
+        panel.add(lblDsTV);
+        
+        txtTim = new JTextField();
+        txtTim.setColumns(10);
+        txtTim.setBounds(295, 51, 974, 37);
+        panel.add(txtTim);
+        
+        JLabel lblSapXep = new JLabel("Sắp xếp theo:");
+        lblSapXep.setBounds(1031, 97, 97, 30);
+        panel.add(lblSapXep);
+        
+        JComboBox cboTim = new JComboBox();
+        cboTim.setModel(new DefaultComboBoxModel(new String[] {"Loại thẻ", "Số điểm"}));
+        cboTim.setToolTipText("Sắp xếp theo");
+        cboTim.setBounds(1138, 97, 386, 30);
+        panel.add(cboTim);
         
         JButton btnTimKiem = new JButton("Tìm kiếm");
-        btnTimKiem.setForeground(new Color(255, 255, 255));
+        btnTimKiem.setForeground(Color.WHITE);
         btnTimKiem.setFont(new Font("Arial", Font.BOLD, 18));
         btnTimKiem.setBackground(new Color(0, 128, 255));
-        btnTimKiem.setBounds(1770, 56, 141, 37);
-        add(btnTimKiem);
+        btnTimKiem.setBounds(1383, 46, 141, 37);
+        panel.add(btnTimKiem);
         
-        JComboBox cbxSapXep = new JComboBox();
-        cbxSapXep.setToolTipText("Sắp xếp theo");
-        cbxSapXep.setModel(new DefaultComboBoxModel(new String[] {"Loại thẻ", "Số điểm cao nhất", "Mã thẻ"}));
-        cbxSapXep.setBounds(1525, 107, 386, 30);
-        add(cbxSapXep);
-        
-        JLabel lblNewLabel = new JLabel("Sắp xếp theo:");
-        lblNewLabel.setBounds(1418, 107, 97, 30);
-        add(lblNewLabel);
-        
-        JScrollPane scpTable = new JScrollPane();
-        scpTable.setBounds(387, 147, 1524, 848);
-        add(scpTable);
-        
-        table = new JTable();
-        table.setModel(new DefaultTableModel(
-        	new Object[][] {
-        		{null, null, null, null, null, null, null},
-        	},
-        	new String[] {
-        		"M\u00E3 th\u1EBB", "T\u00EAn kh\u00E1ch h\u00E0ng", "S\u1ED1 \u0111i\u1EC7n tho\u1EA1i", "Lo\u1EA1i th\u1EBB", "S\u1ED1 \u0111i\u1EC3m", "\u0110\u1ECBa ch\u1EC9", "Ng\u00E0y \u0111\u0103ng k\u00FD"
-        	}
-        ));
-        table.getColumnModel().getColumn(1).setPreferredWidth(91);
-        scpTable.setViewportView(table);
+        String row[] = {"M\u00E3 th\u1EBB", "T\u00EAn kh\u00E1ch h\u00E0ng", "S\u1ED1 \u0111i\u1EC7n tho\u1EA1i", "Lo\u1EA1i th\u1EBB", "S\u1ED1 \u0111i\u1EC3m", "Ng\u00E0y \u0111\u0103ng k\u00FD" };
+		model = new DefaultTableModel(row, 0);
+		table = new JTable(model);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 13));
+
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(0, 137, 1524, 848);
+		panel.add(scrollPane);
+		
+		JLabel lblTim = new JLabel("Tìm thẻ qua số điện thoại:");
+		lblTim.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblTim.setBounds(27, 48, 206, 40);
+		panel.add(lblTim);
+		
+		
+		btnThem.addActionListener(this);
+		btnXoa.addActionListener(this);
+		btnSua.addActionListener(this);
+		btnLuu.addActionListener(this);
+		// Đọc DL
+		docDL();
+		// Event xử lý nhấp chuột vào môi dòng table thả dữ liệu vào textfield
+				table.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						int row = table.getSelectedRow();
+						txtMaThe.setText(table.getValueAt(row, 0).toString());
+						txtTenTV.setText(table.getValueAt(row, 1).toString());
+						txtSDT.setText(table.getValueAt(row, 2).toString());
+						LocalDateTime ngayDangKy = (LocalDateTime) table.getValueAt(row, 5);
+						Date date = Date.from(ngayDangKy.atZone(ZoneId.systemDefault()).toInstant());
+						datePicker.getModel().setDate(date.getYear() + 1900, date.getMonth(), date.getDate());
+						datePicker.getModel().setSelected(true);
+						cbxLoaiThe.setSelectedItem(table.getValueAt(row, 3).toString()); 
+						txtSoDiem.setText(table.getValueAt(row, 4).toString());
+					}
+				});
+				txtTim.addKeyListener((KeyListener) new KeyAdapter() {
+					@Override
+					public void keyReleased(KeyEvent e) {
+						
+//						// Tìm theo SDT
+							List<TheThanhVien> list1 = ttv_dao.timTTVTheoSDT(txtTim.getText());
+							xoaDL();
+							list1.forEach(i -> {
+
+								model.addRow(new Object[] {
+								        i.getMaTTV(), 
+								        i.getKhachHang().getTenKH(),
+								        i.getKhachHang().getSdt(), 
+								        i.getLoaiThe().getTenLoaiTTV(), 
+								        i.getDiemTichLuy(), 
+								        i.getNgayDangKy()
+								    });
+							});
+					}
+					
+				});	
+				
     }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		Object o = e.getSource();
+		if (o.equals(btnXoa)) {
+			xoaTrang();
+		} else if(o.equals(btnThem)) {
+			if(true) {
+				String mattv = txtMaThe.getText();
+				String tenttv = txtTenTV.getText();
+				String sdt = txtSDT.getText();
+				Date selectedDate = (Date) datePicker.getModel().getValue();
+
+				LocalDateTime ngaytao = null;
+				if (selectedDate != null) {
+				    ngaytao = selectedDate.toInstant()
+				                          .atZone(ZoneId.systemDefault())
+				                          .toLocalDateTime();
+				} else {
+				    System.out.println("Không có ngày nào được chọn");
+				}
+
+				String loaiThe = cbxLoaiThe.getSelectedItem().toString();
+				Double soDiem = Double.parseDouble(txtSoDiem.getText());
+				
+				TheThanhVien ttv = new TheThanhVien(mattv, new KhachHang(tenttv, sdt), new LoaiThe(loaiThe, null), soDiem, ngaytao);
+				if (ttv_dao.themTTV(ttv)) {
+					table.clearSelection();
+					xoaTrang();
+					JOptionPane.showMessageDialog(null, "Thêm thẻ thành viên thành công !");
+				} else {
+					JOptionPane.showMessageDialog(null, "Trùng số điện thoại");
+				}
+			}
+		} else if(o.equals(btnSua)) {
+			int row = table.getSelectedRow();
+			if (row == -1) {
+				JOptionPane.showMessageDialog(null, "Phải chọn thẻ thành viên cần sửa!");
+			} else {
+				if(true) {
+					String mattv = txtMaThe.getText();
+					String tenttv = txtTenTV.getText();
+					String sdt = txtSDT.getText();
+					Date selectedDate = (Date) datePicker.getModel().getValue();
+
+					LocalDateTime ngaytao = null;
+					if (selectedDate != null) {
+					    ngaytao = selectedDate.toInstant()
+					                          .atZone(ZoneId.systemDefault())
+					                          .toLocalDateTime();
+					} else {
+					    System.out.println("Không có ngày nào được chọn");
+					}
+
+					String loaiThe = cbxLoaiThe.getSelectedItem().toString();
+					Double soDiem = Double.parseDouble(txtSoDiem.getText());
+					
+					TheThanhVien ttv = new TheThanhVien(mattv, new KhachHang(tenttv, sdt), new LoaiThe(loaiThe, null), soDiem, ngaytao);
+					int t = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn thay đổi ?","Cập nhật",
+					JOptionPane.YES_NO_OPTION);
+					if (t == JOptionPane.YES_OPTION) {
+						if (ttv_dao.updateTTV(ttv)) {
+							JOptionPane.showMessageDialog(null, "Cập nhật thành công !");
+						} else {
+							JOptionPane.showMessageDialog(null, "Cập nhật thất bại !");
+						}
+					}
+				}
+			}
+		} else if(o.equals(btnLuu)) {
+			   refreshTableData();
+		}
+	}
+	public void xoaTrang() {
+	    txtMaThe.setText("");
+	    txtTenTV.setText("");
+	    txtSDT.setText("");
+	    datePicker.getModel().setValue(null);
+	    cbxLoaiThe.setFocusable(true); 
+	    cbxLoaiThe.setSelectedIndex(0); 
+	    txtSoDiem.setText("");
+	}
+		public void xoaDL() {
+			model.getDataVector().removeAllElements();
+			model.fireTableDataChanged();
+		}
+		public void docDL() {
+			List<TheThanhVien> listTTV = ttv_dao.getAllTheThanhVien();
+			listTTV.forEach(e -> {
+			    model.addRow(new Object[] {
+			        e.getMaTTV(), 
+			        e.getKhachHang().getTenKH(),
+			        e.getKhachHang().getSdt(), 
+			        e.getLoaiThe().getTenLoaiTTV(), 
+			        e.getDiemTichLuy(), 
+			        e.getNgayDangKy()
+			    });
+			});
+
+		}
+		public void refreshTableData() {
+		    // Lấy dữ liệu mới từ cơ sở dữ liệu hoặc danh sách
+		    List<TheThanhVien> newData = ttv_dao.getAllTheThanhVien();
+		    
+		    // Xóa toàn bộ dữ liệu cũ trong DefaultTableModel
+		    DefaultTableModel model = (DefaultTableModel) table.getModel();
+		    model.setRowCount(0); 
+		    // Thêm dữ liệu mới vào model
+		    for (TheThanhVien ttv : newData) {
+		        Object[] row = {
+		            ttv.getMaTTV(),                           
+		            ttv.getKhachHang().getTenKH(),            
+		            ttv.getKhachHang().getSdt(),              
+		            ttv.getLoaiThe().getTenLoaiTTV(),        
+		            ttv.getDiemTichLuy(),                     
+		            ttv.getNgayDangKy()                        
+		        };
+		        model.addRow(row);
+		    }
+
+		    table.revalidate();
+		    table.repaint();
+		}
+		
 }
 
 class DateLabelFormatter extends AbstractFormatter {

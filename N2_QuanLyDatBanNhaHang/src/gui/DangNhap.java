@@ -2,6 +2,8 @@ package gui;
 
 import javax.swing.*;
 
+import dao.TaiKhoanDAO;
+import entity.TaiKhoan;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -24,6 +26,7 @@ public class DangNhap extends JFrame implements ActionListener{
 
     
     private Image backgroundImage;
+
 	
 
     public DangNhap() {
@@ -32,6 +35,7 @@ public class DangNhap extends JFrame implements ActionListener{
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setSize(1922, 1094);      
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout());
 
@@ -141,13 +145,30 @@ public class DangNhap extends JFrame implements ActionListener{
     public static void main(String[] args) {
         DangNhap frame = new DangNhap();
         frame.setVisible(true);
+        
     }
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	    if (e.getSource() == btnDangNhap) {	        
-	        setVisible(false);
-			new Menu().setVisible(true);
-	    }
-	}
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnDangNhap) {
+            String taiKhoan = txtDangNhap.getText();
+            String matKhau = txtMatKhau.getText();
+            if (taiKhoan.isEmpty() || matKhau.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không được để trống!");
+                return;
+            }
+            TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();  
+            boolean check = taiKhoanDAO.kiemTraTaiKhoan(taiKhoan, matKhau);
+
+            if (check) {
+                JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
+                setVisible(false);
+                new Menu().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không chính xác!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+    }
+
 }
