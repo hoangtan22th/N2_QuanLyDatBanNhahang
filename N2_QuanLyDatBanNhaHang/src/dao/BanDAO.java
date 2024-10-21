@@ -54,6 +54,7 @@ public class BanDAO {
 
 				KhuVucBan khuVucBan = new KhuVucBan(maKhu, tenKhu, 0);
 				Ban ban = new Ban(maBan, tenBan, thoiGianDatBan, soChoNgoi, trangThai, loaiBan, khuVucBan);
+
 				bans.add(ban);
 			}
 		} catch (SQLException e) {
