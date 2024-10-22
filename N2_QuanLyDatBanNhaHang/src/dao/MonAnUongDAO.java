@@ -95,5 +95,28 @@ public class MonAnUongDAO {
         }
         
         return false; }
-    
+    public MonAnUong layMonAnUong(String maMonAn) {
+        MonAnUong monAnUong = null;
+        String query = "SELECT maMonAnUong, tenMonAnUong, giaTien, loai FROM MonAnUong WHERE maMonAnUong = ?";
+
+        try (Connection con = connectDB.getConnection(); 
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            
+            stmt.setString(1, maMonAn);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    String tenMonAn = rs.getString("tenMonAnUong");
+                    double giaTien = rs.getDouble("giaTien");
+                    String loai = rs.getString("loai");           
+                    monAnUong = new MonAnUong(maMonAn, tenMonAn, giaTien, loai);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return monAnUong; 
+    }
+
+
 }

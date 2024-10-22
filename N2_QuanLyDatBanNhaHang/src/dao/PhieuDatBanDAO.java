@@ -6,8 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 
 import connectDB.connectDB;
+import entity.NhanVien;
 import entity.PhieuDatBan;
 
 public class PhieuDatBanDAO {
@@ -62,6 +64,35 @@ public class PhieuDatBanDAO {
 	        connectDB.closeConnection(connection);
 	    }
 	}
+	public PhieuDatBan layPhieuDatBan(String maPhieuDat) {
+	    PhieuDatBan phieuDatBan = null; // Khởi tạo biến lưu trữ thông tin phiếu đặt
+	    String query = "SELECT * FROM PhieuDatBan WHERE maPhieuDat = ?"; // Truy vấn SQL
+
+	    try (Connection con = connectDB.getConnection(); 
+	         PreparedStatement stmt = con.prepareStatement(query)) {
+	        
+	        stmt.setString(1, maPhieuDat); // Thiết lập tham số cho câu truy vấn
+	        
+	        try (ResultSet rs = stmt.executeQuery()) {
+	            if (rs.next()) {
+	                // Lấy thông tin từ ResultSet
+	                String tenKhachDat = rs.getString("tenKhachDat");
+	                int soLuongKhach = rs.getInt("soLuongKhach");
+	                LocalDateTime ngayDat = rs.getTimestamp("ngayDat").toLocalDateTime();
+	                String ghiChu = rs.getString("ghiChu");
+	                NhanVien nhanVien = null; // Bạn cần lấy thông tin nhân viên nếu có
+
+	                // Tạo đối tượng PhieuDatBan
+	                phieuDatBan = new PhieuDatBan(maPhieuDat, tenKhachDat, soLuongKhach, ngayDat, ghiChu, nhanVien);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return phieuDatBan; // Trả về đối tượng PhieuDatBan hoặc null nếu không tìm thấy
+	}
+
 
 
 }

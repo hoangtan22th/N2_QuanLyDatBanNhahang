@@ -12,6 +12,9 @@ public class ChiTietPhieuDat {
 		this.phieuDatBan = phieuDatBan;
 		this.ban = ban;
 	}
+	public ChiTietPhieuDat() {
+		
+	}
 	public int getSoLuong() {
 		return soLuong;
 	}

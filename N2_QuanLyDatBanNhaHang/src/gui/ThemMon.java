@@ -63,6 +63,7 @@ public class ThemMon extends JFrame implements ActionListener{
 	private JButton btnXacNhan;
 	private JTextArea txtGhiChu;
 	public static String luuMaBan;
+	private JTextField textField;
 	/**
 	 * Launch the application.
 	 */
@@ -146,40 +147,19 @@ public class ThemMon extends JFrame implements ActionListener{
 		jLabel11_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel jLabel19_1 = new JLabel();
-		jLabel19_1.setBounds(10, 319, 119, 22);
+		jLabel19_1.setBounds(10, 370, 119, 22);
 		jLabel19_1.setText("Tên nhân viên:");
 		jLabel19_1.setForeground(Color.MAGENTA);
 		jLabel19_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JLabel lblTenNV = new JLabel("Nhân viên A");
-		lblTenNV.setBounds(164, 323, 73, 17);
+		lblTenNV.setBounds(139, 374, 73, 17);
 		lblTenNV.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		JLabel lblNewLabel_2 = new JLabel("Số điện thoại:");
-		lblNewLabel_2.setBounds(10, 359, 116, 22);
-		lblNewLabel_2.setForeground(Color.MAGENTA);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		
-		JLabel lblSdt = new JLabel();
-		lblSdt.setBounds(164, 363, 80, 17);
-		lblSdt.setText("0891234567");
-		lblSdt.setForeground(Color.BLACK);
-		lblSdt.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		JLabel jLabel9_1 = new JLabel();
-		jLabel9_1.setBounds(100, 660, 78, 25);
-		jLabel9_1.setText("4,150,000");
-		jLabel9_1.setForeground(new Color(255, 0, 51));
-		jLabel9_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 399, 427, 243);
 		
-		JLabel lblNewLabel = new JLabel("Tổng tiền:");
-		lblNewLabel.setBounds(10, 661, 84, 27);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		JLabel lblMaPhieu = new JLabel("P00001");
+		JLabel lblMaPhieu = new JLabel("");
 		lblMaPhieu.setBounds(10, 68, 428, 20);
 		lblMaPhieu.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		// Date picker setup
@@ -228,10 +208,6 @@ public class ThemMon extends JFrame implements ActionListener{
 		panel.add(jLabel5_1);
 		panel.add(jLabel8_1);
 		panel.add(txtSoKhach);
-		panel.add(lblNewLabel);
-		panel.add(jLabel9_1);
-		panel.add(lblNewLabel_2);
-		panel.add(lblSdt);
 		panel.add(jLabel19_1);
 		panel.add(lblTenNV);
 		panel.add(scrollPane);
@@ -240,6 +216,18 @@ public class ThemMon extends JFrame implements ActionListener{
 		txtGhiChu = new JTextArea();
 		txtGhiChu.setBounds(10, 256, 427, 52);
 		panel.add(txtGhiChu);
+		
+		JLabel jLabel11_1_1 = new JLabel();
+		jLabel11_1_1.setText("Tiền cọc");
+		jLabel11_1_1.setForeground(new Color(0, 51, 255));
+		jLabel11_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		jLabel11_1_1.setBounds(10, 319, 88, 17);
+		panel.add(jLabel11_1_1);
+		
+		textField = new JTextField();
+		textField.setBounds(12, 339, 119, 25);
+		panel.add(textField);
+		textField.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(482, 11, 800, 706);
@@ -413,7 +401,7 @@ public class ThemMon extends JFrame implements ActionListener{
 		    String tenKhachDat = txtTenKhach.getText().trim();
 		    int soLuongKhach = Integer.parseInt(txtSoKhach.getText().trim());
 		    String ghiChu = txtGhiChu.getText().trim();
-		    String maNhanVien = "a";
+		    String maNhanVien = "Nguyễn Văn Chính Xác";
 		    
 		    if (tenKhachDat.isEmpty() || soLuongKhach <= 0) {
 		        JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin khách đặt và mã nhân viên.");
