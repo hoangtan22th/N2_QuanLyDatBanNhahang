@@ -1,0 +1,289 @@
+package gui;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Label;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Properties;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
+
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
+import dao.TaiKhoanDAO;
+import entity.TaiKhoan;
+import entity.TheThanhVien;
+
+import javax.swing.JFormattedTextField.AbstractFormatter;
+import javax.swing.border.LineBorder;
+import java.awt.Dimension;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import javax.swing.JTable;
+import java.awt.Scrollbar;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.border.EtchedBorder;
+
+public class PanelTaiKhoanMenu extends JPanel implements ActionListener{
+
+    private static final long serialVersionUID = 1L;
+    private JTextField txtTenDangNhap;
+    private JTextField txtMatKhau;
+    private JTextField txtTim;
+    private DefaultTableModel modalTable;
+    private JTable table;
+    private JButton btnThem,btnXoa,btnSua,btnLuu;
+    private JComboBox cbxChucVu;
+    private TaiKhoanDAO tk_dao;
+    /**
+     * Create the panel.
+     */
+    public PanelTaiKhoanMenu() {
+    	tk_dao = new TaiKhoanDAO();
+    	setForeground(new Color(255, 255, 255));
+        setLayout(null);
+        
+        Label lblTT = new Label("Thông tin");
+        lblTT.setBackground(new Color(65, 41, 224));
+        lblTT.setBounds(10, 10, 150, 40);
+        add(lblTT);
+        lblTT.setAlignment(Label.CENTER);
+        lblTT.setForeground(new Color(255, 255, 255));
+        lblTT.setFont(new Font("Arial", Font.BOLD, 17));
+        
+        JLabel lblDiem = new JLabel("0 đ");
+        lblDiem.setForeground(new Color(244, 0, 6));
+        lblDiem.setFont(new Font("Arial", Font.BOLD, 22));
+        lblDiem.setBounds(171, 10, 105, 58);
+        add(lblDiem);
+        
+        JPanel pnlTT = new JPanel();
+        pnlTT.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
+        pnlTT.setForeground(new Color(192, 192, 192));
+        pnlTT.setBounds(10, 56, 367, 939);
+        add(pnlTT);
+        pnlTT.setLayout(null);
+        
+        txtTenDangNhap = new JTextField();
+        txtTenDangNhap.setFont(new Font("Arial", Font.PLAIN, 14));
+        txtTenDangNhap.setBounds(10, 30, 347, 35);
+        pnlTT.add(txtTenDangNhap);
+        txtTenDangNhap.setColumns(10);
+        
+        JLabel lblTenDangNhap = new JLabel("Tên đăng nhập");
+        lblTenDangNhap.setForeground(new Color(0, 0, 0));
+        lblTenDangNhap.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblTenDangNhap.setBounds(20, 10, 118, 18);
+        pnlTT.add(lblTenDangNhap);
+        
+        JLabel lblMatKhau = new JLabel("Mật khẩu");
+        lblMatKhau.setForeground(Color.BLACK);
+        lblMatKhau.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblMatKhau.setBounds(20, 72, 98, 18);
+        pnlTT.add(lblMatKhau);
+        
+        txtMatKhau = new JTextField();
+        txtMatKhau.setFont(new Font("Arial", Font.PLAIN, 14));
+        txtMatKhau.setColumns(10);
+        txtMatKhau.setBounds(10, 92, 347, 35);
+        pnlTT.add(txtMatKhau);
+        
+        JLabel lblNgayTao = new JLabel("Ngày tạo");
+        lblNgayTao.setForeground(Color.BLACK);
+        lblNgayTao.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblNgayTao.setBounds(20, 201, 59, 18);
+        pnlTT.add(lblNgayTao);
+        
+        // Date picker setup
+        UtilDateModel model = new UtilDateModel();
+        Properties properties = new Properties();
+        properties.put("text.today", "Hôm nay");
+        properties.put("text.month", "Tháng");
+        properties.put("text.year", "Năm");
+
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
+        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+
+        // Tải icon từ đường dẫn
+        ImageIcon calendarIcon = new ImageIcon("D:\\Data\\tailieuvuive\\PTUD\\N2_QuanLyDatBanNhahang\\N2_QuanLyDatBanNhaHang\\img\\lich.png");
+
+        // Lấy nút của datePicker và đặt icon cho nó
+        JButton calendarButton = (JButton) datePicker.getComponent(1); // Lấy nút calendar
+        calendarButton.setIcon(calendarIcon);
+
+        // Set vị trí và kích thước của datePicker
+        datePicker.setBounds(10, 229, 180, 35);
+        pnlTT.add(datePicker);
+
+        // Đặt kích thước và font chữ cho trường nhập ngày
+        datePicker.getJFormattedTextField().setPreferredSize(new Dimension(100, 35));
+        datePicker.getJFormattedTextField().setFont(new Font("Arial", Font.PLAIN, 15));   
+        
+        JLabel lblChucVu = new JLabel("Chức vụ");
+        lblChucVu.setForeground(Color.BLACK);
+        lblChucVu.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblChucVu.setBounds(20, 138, 59, 18);
+        pnlTT.add(lblChucVu);
+        
+        cbxChucVu = new JComboBox();
+        cbxChucVu.setModel(new DefaultComboBoxModel(new String[] {"Quản lý", "Nhân viên"}));
+        cbxChucVu.setFont(new Font("Arial", Font.PLAIN, 15));
+        cbxChucVu.setBounds(10, 160, 118, 35);
+        pnlTT.add(cbxChucVu);
+        
+        btnSua = new JButton("Sửa");
+        btnSua.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnSua.setBackground(new Color(255, 128, 64));
+        btnSua.setForeground(new Color(255, 255, 255));
+        btnSua.setFont(new Font("Arial", Font.BOLD, 12));
+        btnSua.setBounds(100, 275, 72, 26);
+        pnlTT.add(btnSua);
+        
+        btnXoa = new JButton("Xóa");
+        btnXoa.setForeground(new Color(255, 255, 255));
+        btnXoa.setBackground(new Color(255, 0, 0));
+        btnXoa.setFont(new Font("Arial", Font.BOLD, 12));
+        btnXoa.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnXoa.setBounds(195, 275, 72, 26);
+        pnlTT.add(btnXoa);
+        
+        btnLuu = new JButton("Lưu");
+        btnLuu.setForeground(new Color(255, 255, 255));
+        btnLuu.setBackground(new Color(0, 128, 0));
+        btnLuu.setFont(new Font("Arial", Font.BOLD, 12));
+        btnLuu.setBounds(285, 275, 72, 26);
+        pnlTT.add(btnLuu);
+        
+        btnThem = new JButton("Thêm");
+        btnThem.setForeground(Color.WHITE);
+        btnThem.setFont(new Font("Arial", Font.BOLD, 12));
+        btnThem.setBackground(new Color(0, 0, 255));
+        btnThem.setBounds(8, 275, 72, 26);
+        pnlTT.add(btnThem);
+        
+        JLabel lblDsTV = new JLabel("    Danh sách tài khoản");
+        lblDsTV.setHorizontalAlignment(SwingConstants.LEFT);
+        lblDsTV.setBackground(new Color(65, 41, 224));  // Set màu nền
+        lblDsTV.setForeground(new Color(255, 255, 255));  // Set màu chữ
+        lblDsTV.setFont(new Font("Arial", Font.BOLD, 18));
+        lblDsTV.setBounds(387, 10, 1524, 40);
+        lblDsTV.setOpaque(true);  // Bật hiển thị nền
+        add(lblDsTV);
+        
+        JPanel panel = new JPanel();
+        panel.setBounds(387, 56, 1524, 939);
+        add(panel);
+        panel.setLayout(null);
+        
+        JLabel lblTimKiem = new JLabel("Tìm kiếm tài khoản theo mã:");
+        lblTimKiem.setFont(new Font("Arial", Font.PLAIN, 14));
+        lblTimKiem.setBounds(47, 0, 212, 39);
+        panel.add(lblTimKiem);
+        
+        txtTim = new JTextField();
+        txtTim.setColumns(10);
+        txtTim.setBounds(313, 2, 974, 37);
+        panel.add(txtTim);
+        
+        JButton btnTimKiem = new JButton("Tìm kiếm");
+        btnTimKiem.setForeground(Color.WHITE);
+        btnTimKiem.setFont(new Font("Arial", Font.BOLD, 18));
+        btnTimKiem.setBackground(new Color(0, 128, 255));
+        btnTimKiem.setBounds(1383, 0, 141, 37);
+        panel.add(btnTimKiem);
+        String row[] = {"T\u00E0i kho\u1EA3n", "M\u1EADt kh\u1EA9u", "Ch\u1EE9c v\u1EE5", "Ng\u00E0y t\u1EA1o"};
+        modalTable = new DefaultTableModel(row, 0);
+		table = new JTable(modalTable);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 13));
+
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(0, 50, 1524, 889);
+		panel.add(scrollPane);
+		
+		
+		docDL();
+		
+		
+		txtTim.addKeyListener((KeyListener) new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+					List<TaiKhoan> list1 = tk_dao.timTKbyMa(txtTim.getText());
+					xoaDL();
+					list1.forEach(i -> {
+
+						modalTable.addRow(new Object[] {
+						        i.getTaiKhoan(),
+						        i.getMatKhau(),
+						        i.isRole()?"Quản lý":"Nhân viên",
+						        i.getNgayTaoTK()
+						        
+						    });
+					});
+			}
+			
+		});	
+    }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	//Hàm xóa DL  table model
+		public void xoaDL() {
+			modalTable.getDataVector().removeAllElements();
+			modalTable.fireTableDataChanged();
+		}
+		//Hàm đọc DL  table model
+		public void docDL() {
+			List<TaiKhoan> listTK = tk_dao.getAllTK();
+			listTK.forEach(e -> {
+				modalTable.addRow(
+						new Object[] { e.getTaiKhoan(),e.getMatKhau(),e.isRole()?"Quản lý":"Nhân viên",e.getNgayTaoTK()});
+
+			});
+		}
+}
+
+class CustomDateLabelFormatter extends AbstractFormatter {
+    private static final long serialVersionUID = 1L;
+    private String datePattern = "yyyy-MM-dd";
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
+
+    @Override
+    public Object stringToValue(String text) throws ParseException {
+        return dateFormatter.parseObject(text);
+    }
+
+    @Override
+    public String valueToString(Object value) throws ParseException {
+        if (value != null) {
+            Calendar cal = (Calendar) value;
+            return dateFormatter.format(cal.getTime());
+        }
+        return "";
+    }
+}

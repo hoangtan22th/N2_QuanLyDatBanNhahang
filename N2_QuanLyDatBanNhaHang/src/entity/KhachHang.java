@@ -15,6 +15,11 @@ public class KhachHang {
 		this.sdt = sdt;
 		this.theThanhVien = theThanhVien;
 	}
+	public KhachHang(String tenKH,String sdt) {
+		super();
+		this.tenKH = tenKH;
+		this.sdt = sdt;
+	}
 	public String getMaKH() {
 		return maKH;
 	}

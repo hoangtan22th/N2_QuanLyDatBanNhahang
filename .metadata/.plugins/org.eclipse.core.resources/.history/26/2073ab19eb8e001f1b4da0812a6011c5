@@ -1,0 +1,88 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import connectDB.connectDB;
+import entity.LoaiThe;
+import entity.TheThanhVien;
+
+public class TheThanhVienDAO {
+	
+	public List<String> getTTVByKH(String maKH) {
+	    List<String> TTV = new ArrayList<>();
+	    String sql = "SELECT b.maTTV " +
+	                 "FROM TheThanhVien b JOIN KhachHang k ON b.maTTV = k.maTTV " +
+	                 "WHERE k.maKH = ?";
+
+	    try (Connection con = connectDB.getConnection();
+	         PreparedStatement pst = con.prepareStatement(sql)) {
+	         
+	        pst.setString(1, maKH);
+	        ResultSet rs = pst.executeQuery();
+
+	        while (rs.next()) {
+	            String tenKH = rs.getString("tenKH");
+	            String sdt = rs.getString("sdt");
+	            
+	            TTV.add(tenKH);
+	            TTV.add(sdt);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return TTV; 
+	}
+	public List<String> getTTVByLT(String maLT) {
+	    List<String> TTV = new ArrayList<>();
+	    String sql = "SELECT b.loaiThe " +
+	                 "FROM TheThanhVien b JOIN LoaiThe k ON b.loaiThe = k.maLoaiTTV " +
+	                 "WHERE k.maLoaiTTV = ?";
+
+	    try (Connection con = connectDB.getConnection();
+	         PreparedStatement pst = con.prepareStatement(sql)) {
+	         
+	        pst.setString(1, maLT);
+	        ResultSet rs = pst.executeQuery();
+
+	        while (rs.next()) {
+	            String tenKH = rs.getString("tenKH");
+	            String sdt = rs.getString("sdt");
+	            
+	            TTV.add(tenKH);
+	            TTV.add(sdt);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return TTV; 
+	}
+	
+	
+	public List<TheThanhVien> getTheThanhVien(){
+		List<TheThanhVien> list = new ArrayList<TheThanhVien>();
+		String sql = "select * from TheThanhVien";
+		try (Connection con = connectDB.getConnection();
+			PreparedStatement statement = con.prepareStatement(sql);
+			ResultSet rs = statement.executeQuery();){
+			while (rs.next()) {
+				list.add(new TheThanhVien(rs.getString("maTTV"), 
+						rs.getDouble("diemTichLuy"), 
+						rs.getTimestamp("ngayDangKy").toLocalDateTime(),
+						new LoaiThe(rs.getString("maLoaiTTV"), rs.getString("tenLoaiTTV"), rs.getDouble("chietKhau"))));
+			}
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		
+		return list;
+	}
+
+}

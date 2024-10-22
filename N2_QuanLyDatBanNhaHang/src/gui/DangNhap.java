@@ -23,17 +23,18 @@ public class DangNhap extends JFrame implements ActionListener{
     private JLabel lblMatKhau;
     private JLabel lblRong;
     private JPanel pnBoxDangNhap;
-
+    private Menu menu;
     
     private Image backgroundImage;
 
 	
 
     public DangNhap() {
+    	menu = new Menu();
     	setIconImage(Toolkit.getDefaultToolkit().getImage(""));
         setTitle("Đăng nhập");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setSize(1600, 900);      
+        setSize(1922, 1094);      
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        
         setLocationRelativeTo(null);
@@ -130,7 +131,7 @@ public class DangNhap extends JFrame implements ActionListener{
                 btnThoat.setPreferredSize(buttonSize);
                 
                 JLabel lblNewLabel = new JLabel("");
-                lblNewLabel.setIcon(new ImageIcon("\\N2_QuanLyDatBanNhaHang\\img\\Logo.png"));
+                lblNewLabel.setIcon(new ImageIcon("img/Logo.png"));
                 lblNewLabel.setBounds(0, -17, 225, 181);
                 pnCenter.add(lblNewLabel);
                 
@@ -141,34 +142,37 @@ public class DangNhap extends JFrame implements ActionListener{
                 lblTitle.setFont(new Font("Arial", Font.BOLD, 24)); 
         btnDangNhap.addActionListener(this);
     }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    	if (e.getSource() == btnDangNhap) {
+    	    String taiKhoan = txtDangNhap.getText();
+    	    String matKhau = txtMatKhau.getText();
+    	    if (taiKhoan.isEmpty() || matKhau.isEmpty()) {
+    	        JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không được để trống!");
+    	        return;
+    	    }
+
+    	    TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();  
+    	    int check = taiKhoanDAO.kiemTraTaiKhoan(taiKhoan, matKhau);
+
+    	    if (check != -1) {
+    	        menu = new Menu();
+    	        menu.thayDoiMenuTheoVaiTro(check); 
+    	        JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
+    	        menu.setVisible(true); // Hiển thị giao diện
+    	        setVisible(false); 
+    	    } else {
+    	        JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không chính xác!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    	    }
+    	}
+        
+    }
 
     public static void main(String[] args) {
         DangNhap frame = new DangNhap();
         frame.setVisible(true);
-        
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnDangNhap) {
-            String taiKhoan = txtDangNhap.getText();
-            String matKhau = txtMatKhau.getText();
-            if (taiKhoan.isEmpty() || matKhau.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không được để trống!");
-                return;
-            }
-            TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();  
-            boolean check = taiKhoanDAO.kiemTraTaiKhoan(taiKhoan, matKhau);
-
-            if (check) {
-                JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
-                setVisible(false);
-                new Menu().setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không chính xác!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        
-    }
+    
 
 }

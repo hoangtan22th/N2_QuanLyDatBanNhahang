@@ -10,6 +10,15 @@ public class LoaiThe {
 		this.tenLoaiTTV = tenLoaiTTV;
 		this.chietKhau = chietKhau;
 	}
+	public LoaiThe(String maLoaiTTV, String tenLoaiTTV) {
+		super();
+		this.maLoaiTTV = maLoaiTTV;
+		this.tenLoaiTTV = tenLoaiTTV;
+	}
+	public LoaiThe(String tenLoaiTTV) {
+		super();
+		this.tenLoaiTTV = tenLoaiTTV;
+	}
 	public String getMaLoaiTTV() {
 		return maLoaiTTV;
 	}

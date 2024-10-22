@@ -1,37 +1,32 @@
 package entity;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class TheThanhVien {
 	private String maTTV;
-	private double diemTichLuy;
-	private LocalDate ngayDangKy;
+	private KhachHang khachHang;
 	private LoaiThe loaiThe;
-	
-	public TheThanhVien(String maTTV, double diemTichLuy, LocalDate ngayDangKy, LoaiThe loaiThe) {
+	private double diemTichLuy;
+	private LocalDateTime ngayDangKy;
+	public TheThanhVien(String maTTV, KhachHang khachHang, LoaiThe loaiThe, double diemTichLuy,
+			LocalDateTime ngayDangKy) {
 		super();
 		this.maTTV = maTTV;
+		this.khachHang = khachHang;
+		this.loaiThe = loaiThe;
 		this.diemTichLuy = diemTichLuy;
 		this.ngayDangKy = ngayDangKy;
-		this.loaiThe = loaiThe;
 	}
-	
 	public String getMaTTV() {
 		return maTTV;
 	}
 	public void setMaTTV(String maTTV) {
 		this.maTTV = maTTV;
 	}
-	public double getDiemTichLuy() {
-		return diemTichLuy;
+	public KhachHang getKhachHang() {
+		return khachHang;
 	}
-	public void setDiemTichLuy(double diemTichLuy) {
-		this.diemTichLuy = diemTichLuy;
-	}
-	public LocalDate getNgayDangKy() {
-		return ngayDangKy;
-	}
-	public void setNgayDangKy(LocalDate ngayDangKy) {
-		this.ngayDangKy = ngayDangKy;
+	public void setKhachHang(KhachHang khachHang) {
+		this.khachHang = khachHang;
 	}
 	public LoaiThe getLoaiThe() {
 		return loaiThe;
@@ -39,9 +34,24 @@ public class TheThanhVien {
 	public void setLoaiThe(LoaiThe loaiThe) {
 		this.loaiThe = loaiThe;
 	}
-	public String toString() {
-		return "TheThanhVien [maTTV=" + maTTV + ", diemTichLuy=" + diemTichLuy + ", ngayDangKy=" + ngayDangKy
-				+ ", loaiThe=" + loaiThe + "]";
+	public double getDiemTichLuy() {
+		return diemTichLuy;
 	}
+	public void setDiemTichLuy(double diemTichLuy) {
+		this.diemTichLuy = diemTichLuy;
+	}
+	public LocalDateTime getNgayDangKy() {
+		return ngayDangKy;
+	}
+	public void setNgayDangKy(LocalDateTime ngayDangKy) {
+		this.ngayDangKy = ngayDangKy;
+	}
+	@Override
+	public String toString() {
+		return "TheThanhVien [maTTV=" + maTTV + ", khachHang=" + khachHang + ", loaiThe=" + loaiThe + ", diemTichLuy="
+				+ diemTichLuy + ", ngayDangKy=" + ngayDangKy + "]";
+	}
+	
+	
 	
 }

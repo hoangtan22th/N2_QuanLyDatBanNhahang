@@ -1,0 +1,13 @@
+package entity;
+import java.time.LocalDateTime;
+
+public class TheThanhVien {
+	private String maTTV;
+	private KhachHang khachHang;
+	private LoaiThe loaiThe;
+	private double diemTichLuy;
+	private LocalDateTime ngayDangKy;
+	
+	
+	
+}
