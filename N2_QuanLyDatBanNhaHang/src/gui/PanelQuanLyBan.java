@@ -271,6 +271,7 @@ public class PanelQuanLyBan extends JPanel implements ActionListener{
         } else {
             rdbThuong.setSelected(true); 
         }
+//    	JOptionPane.showMessageDialog(null, ban.getTenBan());
     }
 
 

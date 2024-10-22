@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,39 @@ public class BanDAO {
 
 		return tenBans;
 	}
+	public List<Ban> getBansByKhu(String tenKhu) {
+	    List<Ban> bans = new ArrayList<>();
+	    String sql = "SELECT maBan, tenBan, thoiGianDatBan, soChoNgoi, trangThai, loaiBan " +
+	                 "FROM Ban WHERE maKhu IN (SELECT maKhu FROM KhuVucBan WHERE tenKhu = ?)";
+
+	    try (Connection con = connectDB.getConnection(); 
+	         PreparedStatement pst = con.prepareStatement(sql)) {
+
+	        pst.setString(1, tenKhu);
+	        ResultSet rs = pst.executeQuery();
+
+	        while (rs.next()) {
+	            String maBan = rs.getString("maBan");
+	            String tenBan = rs.getString("tenBan");
+	            Timestamp timestamp = rs.getTimestamp("thoiGianDatBan");
+	            
+
+	            int soChoNgoi = rs.getInt("soChoNgoi");
+	            boolean trangThai = rs.getBoolean("trangThai");
+	            boolean loaiBan = rs.getBoolean("loaiBan");
+
+	            
+	            Ban ban = new Ban(maBan, tenBan, null, soChoNgoi, trangThai, loaiBan, null);
+	            bans.add(ban);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return bans;
+	}
+
+
 
 	public List<Ban> getAllBans() {
 		List<Ban> bans = new ArrayList<>();

@@ -14,11 +14,14 @@ public class MonAnUong {
 		this.loai = loai;
 		this.soLuong = soLuong;
 	}
+	public MonAnUong() {
+		
+	}
 	public String getMaMonAnUong() {
 		return maMonAnUong;
 	}
-	public void setMonAnUong(String monAnUong) {
-		this.maMonAnUong = monAnUong;
+	public void setMaMonAnUong(String maMonAnUong) {
+		this.maMonAnUong = maMonAnUong;
 	}
 	public String getTenMonAnUong() {
 		return tenMonAnUong;

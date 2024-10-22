@@ -1,372 +1,374 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.EventQueue;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.Container;
+
+import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import java.awt.Dimension;
+import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
-import net.miginfocom.swing.MigLayout;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
+import dao.MonAnUongDAO;
+import entity.MonAnUong;
+
+import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Properties;
+import java.awt.event.ActionEvent;
+
+public class ThemMon extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField txtTenKhach;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTable tbMonAnTrenBan;
+	private JTable tbMonAn;
+	private JButton btnThemMon;
+	private JLabel lblMaBan;
+	private int STT = 1;
+	private JDatePickerImpl datePicker;
+	private Container pnlTT;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ThemMon frame = new ThemMon();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	
+	public ThemMon() {
+		
+		setBounds(100, 100, 1329, 767);
+		setLocationRelativeTo(null);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 462, 706);
+		contentPane.add(panel);
+		
+		JLabel lblBanDat = new JLabel();
+		lblBanDat.setBounds(88, 11, 69, 25);
+		lblBanDat.setText("Bàn đặt: ");
+		lblBanDat.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		
+		lblMaBan = new JLabel();
+		lblMaBan.setBounds(224, 11, 45, 25);
+		
+		lblMaBan.setForeground(new Color(255, 0, 51));
+		lblMaBan.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		
+		JLabel lblMa = new JLabel();
+		lblMa.setBounds(10, 45, 54, 17);
+		lblMa.setText("Mã phiếu");
+		lblMa.setForeground(new Color(0, 51, 255));
+		lblMa.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel lblTenKhach = new JLabel();
+		lblTenKhach.setBounds(10, 94, 88, 17);
+		lblTenKhach.setText("Tên khách đặt");
+		lblTenKhach.setForeground(new Color(0, 51, 255));
+		lblTenKhach.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		txtTenKhach = new JTextField();
+		txtTenKhach.setBounds(10, 117, 427, 33);
+		
+		JLabel jLabel5_1 = new JLabel();
+		jLabel5_1.setBounds(10, 157, 130, 17);
+		jLabel5_1.setText("Thời gian bắt đầu đặt");
+		jLabel5_1.setForeground(new Color(0, 51, 255));
+		jLabel5_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel jLabel8_1 = new JLabel();
+		jLabel8_1.setBounds(244, 161, 57, 17);
+		jLabel8_1.setText("Số khách");
+		jLabel8_1.setForeground(new Color(0, 51, 255));
+		jLabel8_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(244, 184, 193, 33);
+		
+		JLabel jLabel11_1 = new JLabel();
+		jLabel11_1.setBounds(10, 228, 46, 17);
+		jLabel11_1.setText("Ghi chú");
+		jLabel11_1.setForeground(new Color(0, 51, 255));
+		jLabel11_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel jLabel19_1 = new JLabel();
+		jLabel19_1.setBounds(10, 319, 119, 22);
+		jLabel19_1.setText("Tên nhân viên:");
+		jLabel19_1.setForeground(Color.MAGENTA);
+		jLabel19_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblNewLabel_3 = new JLabel("Nhân viên A");
+		lblNewLabel_3.setBounds(164, 323, 73, 17);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel lblNewLabel_2 = new JLabel("Số điện thoại:");
+		lblNewLabel_2.setBounds(10, 359, 116, 22);
+		lblNewLabel_2.setForeground(Color.MAGENTA);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel jLabel17_1 = new JLabel();
+		jLabel17_1.setBounds(164, 363, 80, 17);
+		jLabel17_1.setText("0891234567");
+		jLabel17_1.setForeground(Color.BLACK);
+		jLabel17_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel jLabel9_1 = new JLabel();
+		jLabel9_1.setBounds(100, 660, 78, 25);
+		jLabel9_1.setText("4,150,000");
+		jLabel9_1.setForeground(new Color(255, 0, 51));
+		jLabel9_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 399, 427, 243);
+		
+		JLabel lblNewLabel = new JLabel("Tổng tiền:");
+		lblNewLabel.setBounds(10, 661, 84, 27);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel lblMaPhieu = new JLabel("P00001");
+		lblMaPhieu.setBounds(10, 68, 428, 20);
+		lblMaPhieu.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		// Date picker setup
+        UtilDateModel modelDate = new UtilDateModel();
+        Properties properties = new Properties();
+        properties.put("text.today", "Hôm nay");
+        properties.put("text.month", "Tháng");
+        properties.put("text.year", "Năm");
+
+        JDatePanelImpl datePanel = new JDatePanelImpl(modelDate, properties);
+        datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+
+        // Tải icon từ đường dẫn
+        ImageIcon calendarIcon = new ImageIcon("img/lich.png");
+
+        // Lấy nút của datePicker và đặt icon cho nó
+        JButton calendarButton = (JButton) datePicker.getComponent(1); // Lấy nút calendar
+        calendarButton.setIcon(calendarIcon);
+
+        // Set vị trí và kích thước của datePicker
+        datePicker.setBounds(10, 182, 180, 35);
+        panel.add(datePicker);
+
+        // Đặt kích thước và font chữ cho trường nhập ngày
+        datePicker.getJFormattedTextField().setPreferredSize(new Dimension(100, 35));
+        datePicker.getJFormattedTextField().setFont(new Font("Arial", Font.PLAIN, 15));
+		tbMonAnTrenBan = new JTable();
+		tbMonAnTrenBan.setRowHeight(30); 
+		tbMonAnTrenBan.setModel(new DefaultTableModel(
+			new Object[][] {
+			
+			},
+			new String[] {
+					"STT", "Mã món","Tên món", "Số lượng","Giá tiền","Loại"
+			}
+		));
+		tbMonAnTrenBan.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		scrollPane.setViewportView(tbMonAnTrenBan);
+		panel.setLayout(null);
+		panel.add(lblBanDat);
+		panel.add(lblMaBan);
+		panel.add(lblMa);
+		panel.add(lblTenKhach);
+		panel.add(jLabel11_1);
+		panel.add(txtTenKhach);
+		panel.add(jLabel5_1);
+		panel.add(jLabel8_1);
+		panel.add(textField_3);
+		panel.add(lblNewLabel);
+		panel.add(jLabel9_1);
+		panel.add(lblNewLabel_2);
+		panel.add(jLabel17_1);
+		panel.add(jLabel19_1);
+		panel.add(lblNewLabel_3);
+		panel.add(scrollPane);
+		panel.add(lblMaPhieu);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(10, 256, 427, 52);
+		panel.add(textArea);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(482, 11, 800, 706);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel jLabel14 = new JLabel();
+		jLabel14.setBackground(new Color(30, 144, 255));
+		jLabel14.setToolTipText("");
+		jLabel14.setText("Thêm món");
+		jLabel14.setForeground(new Color(30, 144, 255));
+		jLabel14.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		jLabel14.setBounds(10, 11, 206, 41);
+		panel_1.add(jLabel14);
+		
+		JButton jButton2 = new JButton();
+		jButton2.setText("Món ăn");
+		jButton2.setPreferredSize(new Dimension(50, 30));
+		jButton2.setForeground(Color.WHITE);
+		jButton2.setBackground(new Color(51, 153, 255));
+		jButton2.setBounds(10, 63, 100, 48);
+		panel_1.add(jButton2);
+		
+		JButton jButton3 = new JButton();
+		jButton3.setText("Nước");
+		jButton3.setPreferredSize(new Dimension(50, 30));
+		jButton3.setForeground(Color.WHITE);
+		jButton3.setBackground(Color.BLUE);
+		jButton3.setBounds(116, 63, 100, 48);
+		panel_1.add(jButton3);
+		
+		textField_4 = new JTextField();
+		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textField_4.setBounds(230, 123, 450, 30);
+		panel_1.add(textField_4);
+		
+		JLabel lblTimKiem = new JLabel("Nhập tên món cần tìm");
+		lblTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblTimKiem.setBounds(10, 122, 211, 30);
+		panel_1.add(lblTimKiem);
+		
+		JButton btnTimKiem = new JButton("Tìm kiếm");
+		btnTimKiem.setBackground(Color.ORANGE);
+		btnTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnTimKiem.setBounds(690, 122, 100, 31);
+		panel_1.add(btnTimKiem);
+		
+		btnThemMon = new JButton();
+		btnThemMon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnThemMon.setText("Thêm");
+		btnThemMon.setForeground(Color.WHITE);
+		btnThemMon.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnThemMon.setBackground(new Color(51, 153, 0));
+		btnThemMon.setBounds(10, 654, 118, 41);
+		panel_1.add(btnThemMon);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 164, 780, 479);
+		panel_1.add(scrollPane_1);
+		
+		tbMonAn = new JTable();
+		tbMonAn.setRowHeight(30);
+		tbMonAn.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tbMonAn.setModel(new DefaultTableModel(
+			new Object[][] {
+			
+				
+			},
+			new String[] {
+				"STT", "Mã món","Tên món", "Số lượng","Giá tiền","Loại"
+			}
+		));
+		scrollPane_1.setViewportView(tbMonAn);
+		loadDataToTable();
+		
+		tbMonAn.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		JButton btnXacNhan = new JButton("Xác nhận");
+		btnXacNhan.setBackground(Color.ORANGE);
+		btnXacNhan.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnXacNhan.setBounds(672, 654, 118, 41);
+		panel_1.add(btnXacNhan);
+
+		
+		btnThemMon.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        int selectedRow = tbMonAn.getSelectedRow();
+		        if (selectedRow != -1) {
+		            DefaultTableModel modelMonAn = (DefaultTableModel) tbMonAn.getModel();
+		            
+	
+		            String maMonAnUong = (String) modelMonAn.getValueAt(selectedRow, 1);
+		            String tenMonAnUong = (String) modelMonAn.getValueAt(selectedRow, 2);
+		            int soLuong = (int) modelMonAn.getValueAt(selectedRow, 3);
+		            double giaTien = (double) modelMonAn.getValueAt(selectedRow, 4);
+		            String loai = (String) modelMonAn.getValueAt(selectedRow, 5);
+
+		        
+		            DefaultTableModel modelMonAnTrenBan = (DefaultTableModel) tbMonAnTrenBan.getModel();
+		            modelMonAnTrenBan.addRow(new Object[] {
+		                STT++, 
+		                maMonAnUong,
+		                tenMonAnUong,
+		                soLuong,
+		                giaTien,
+		                loai
+		            });
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Vui lòng chọn một món ăn để thêm.");
+		        }
+		    }
+		});
 
 
+	}
+	public void loadDataToTable(){
+		MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
+		List<MonAnUong> listMonAn = monAnUongDAO.loadAllMonAnUong();
+		
+		DefaultTableModel model = (DefaultTableModel) tbMonAn.getModel();
+		model.setRowCount(0);
 
-/**
- *
- * @author Admin
- */
-public class ThemMon extends javax.swing.JFrame {
-
-    public ThemMon() {
-    	getContentPane().setBackground(new Color(255, 255, 255));
-        initComponents();
-        setSize(1261, 601);
-    }
-
-   
-    @SuppressWarnings("unchecked")
-    private void initComponents() {
-
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        Dimension size = new Dimension(50, 30);
-                                                                                getContentPane().setLayout(new MigLayout("", "[771px]", "[1253px]"));
-                                                                        
-                                                                                jPanel1 = new javax.swing.JPanel();
-                                                                                jPanel1.setBackground(new Color(255, 255, 255));
-                                                                                jScrollPane1 = new javax.swing.JScrollPane();
-                                                                                jTable1 = new javax.swing.JTable();
-                                                                                
-                                                                                jLabel2 = new javax.swing.JLabel();
-                                                                                jTextField2 = new javax.swing.JTextField();
-                                                                                jTextField5 = new javax.swing.JTextField();
-                                                                                jLabel5 = new javax.swing.JLabel();
-                                                                                jLabel8 = new javax.swing.JLabel();
-                                                                                jTextField8 = new javax.swing.JTextField();
-                                                                                jLabel9 = new javax.swing.JLabel();
-                                                                                jTextField9 = new javax.swing.JTextField();
-                                                                                jLabel10 = new javax.swing.JLabel();
-                                                                                jLabel11 = new javax.swing.JLabel();
-                                                                                jScrollPane2 = new javax.swing.JScrollPane();
-                                                                                jTextArea1 = new javax.swing.JTextArea();
-                                                                                jLabel12 = new javax.swing.JLabel();
-                                                                                jLabel13 = new javax.swing.JLabel();
-                                                                                jLabel17 = new javax.swing.JLabel();
-                                                                                jLabel19 = new javax.swing.JLabel();
-                                                                                
-                                                                                        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                                                                                            new Object [][] {
-                                                                                                {null, null, null, null},
-                                                                                                {null, null, null, null},
-                                                                                                {null, null, null, null},
-                                                                                                {null, null, null, null}
-                                                                                            },
-                                                                                            new String [] {
-                                                                                                "STT", "Số lượng", "Tên hàng", "Tiền hàng"
-                                                                                            }
-                                                                                        ));
-                                                                                        jScrollPane1.setViewportView(jTable1);
-                                                                                        
-                                                                                                jLabel2.setForeground(new java.awt.Color(0, 51, 255));
-                                                                                                jLabel2.setText("Mã phiếu");
-                                                                                                
-                                                                                                        jLabel5.setForeground(new java.awt.Color(0, 51, 255));
-                                                                                                        jLabel5.setText("Ngày đặt");
-                                                                                                        
-                                                                                                                jLabel8.setForeground(new java.awt.Color(0, 51, 255));
-                                                                                                                jLabel8.setText("Số khách");
-                                                                                                                
-                                                                                                                        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                                                                                                                        jLabel9.setForeground(new java.awt.Color(255, 0, 51));
-                                                                                                                        jLabel9.setText("4,150,000");
-                                                                                                                        
-                                                                                                                                jLabel10.setForeground(new java.awt.Color(0, 51, 255));
-                                                                                                                                jLabel10.setText("Tên khách đặt");
-                                                                                                                                
-                                                                                                                                        jLabel11.setForeground(new java.awt.Color(0, 51, 255));
-                                                                                                                                        jLabel11.setText("Ghi chú");
-                                                                                                                                        
-                                                                                                                                                jTextArea1.setColumns(20);
-                                                                                                                                                jTextArea1.setRows(5);
-                                                                                                                                                jScrollPane2.setViewportView(jTextArea1);
-                                                                                                                                                
-                                                                                                                                                        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                                                                                                                                                        jLabel12.setForeground(new java.awt.Color(255, 0, 51));
-                                                                                                                                                        jLabel12.setText("HA08");
-                                                                                                                                                        
-                                                                                                                                                                jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                                                                                                                                                                jLabel13.setText("Bàn đặt: ");
-                                                                                                                                                                
-                                                                                                                                                                        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                                                                                                                                                                        jLabel17.setForeground(new java.awt.Color(255, 0, 255));
-                                                                                                                                                                        jLabel17.setText("0891234567");
-                                                                                                                                                                        
-                                                                                                                                                                                jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                                                                                                                                                                                jLabel19.setForeground(new java.awt.Color(255, 0, 255));
-                                                                                                                                                                                jLabel19.setText("Tên nhân viên");
-                                                                                                                                                                                
-                                                                                                                                                                                        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-                                                                                                                                                                                        jPanel1Layout.setHorizontalGroup(
-                                                                                                                                                                                        	jPanel1Layout.createParallelGroup(Alignment.LEADING)
-                                                                                                                                                                                        		.addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                                                                                                                        			.addContainerGap()
-                                                                                                                                                                                        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-                                                                                                                                                                                        				.addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                                                                                                                        					.addComponent(jLabel9)
-                                                                                                                                                                                        					.addPreferredGap(ComponentPlacement.RELATED, 374, Short.MAX_VALUE))
-                                                                                                                                                                                        				.addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                                                                                                                        					.addGap(9)
-                                                                                                                                                                                        					.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-                                                                                                                                                                                        						.addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                                                                                                                        							.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-                                                                                                                                                                                        								.addComponent(jTextField8, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                        								.addComponent(jLabel5))
-                                                                                                                                                                                        							.addGap(18)
-                                                                                                                                                                                        							.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-                                                                                                                                                                                        								.addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                        								.addComponent(jLabel8)))
-                                                                                                                                                                                        						.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, 418, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                        						.addComponent(jLabel10)
-                                                                                                                                                                                        						.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 427, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                        						.addComponent(jLabel11)
-                                                                                                                                                                                        						.addComponent(jTextField9, GroupLayout.PREFERRED_SIZE, 418, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                        						.addComponent(jLabel2)
-                                                                                                                                                                                        						.addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                                                                                                                        							.addGap(6)
-                                                                                                                                                                                        							.addComponent(jLabel19)
-                                                                                                                                                                                        							.addGap(110)
-                                                                                                                                                                                        							.addComponent(jLabel17))))
-                                                                                                                                                                                        				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                                                                                                                                                        			.addGap(10))
-                                                                                                                                                                                        		.addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                                                                                                                        			.addGap(97)
-                                                                                                                                                                                        			.addComponent(jLabel13)
-                                                                                                                                                                                        			.addGap(67)
-                                                                                                                                                                                        			.addComponent(jLabel12)
-                                                                                                                                                                                        			.addGap(0, 195, Short.MAX_VALUE))
-                                                                                                                                                                                        );
-                                                                                                                                                                                        jPanel1Layout.setVerticalGroup(
-                                                                                                                                                                                        	jPanel1Layout.createParallelGroup(Alignment.LEADING)
-                                                                                                                                                                                        		.addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                                                                                                                        			.addContainerGap()
-                                                                                                                                                                                        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
-                                                                                                                                                                                        				.addComponent(jLabel12)
-                                                                                                                                                                                        				.addComponent(jLabel13))
-                                                                                                                                                                                        			.addGap(9)
-                                                                                                                                                                                        			.addComponent(jLabel2)
-                                                                                                                                                                                        			.addPreferredGap(ComponentPlacement.RELATED)
-                                                                                                                                                                                        			.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                        			.addPreferredGap(ComponentPlacement.RELATED)
-                                                                                                                                                                                        			.addComponent(jLabel10)
-                                                                                                                                                                                        			.addPreferredGap(ComponentPlacement.RELATED)
-                                                                                                                                                                                        			.addComponent(jTextField9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                        			.addGap(7)
-                                                                                                                                                                                        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
-                                                                                                                                                                                        				.addComponent(jLabel5)
-                                                                                                                                                                                        				.addComponent(jLabel8))
-                                                                                                                                                                                        			.addPreferredGap(ComponentPlacement.RELATED)
-                                                                                                                                                                                        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
-                                                                                                                                                                                        				.addComponent(jTextField8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                        				.addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                                                                                                                                                        			.addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                                                                                                                        			.addComponent(jLabel11)
-                                                                                                                                                                                        			.addPreferredGap(ComponentPlacement.RELATED)
-                                                                                                                                                                                        			.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                        			.addPreferredGap(ComponentPlacement.RELATED)
-                                                                                                                                                                                        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
-                                                                                                                                                                                        				.addComponent(jLabel17)
-                                                                                                                                                                                        				.addComponent(jLabel19))
-                                                                                                                                                                                        			.addGap(5)
-                                                                                                                                                                                        			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                        			.addGap(769)
-                                                                                                                                                                                        			.addComponent(jLabel9)
-                                                                                                                                                                                        			.addContainerGap(14, Short.MAX_VALUE))
-                                                                                                                                                                                        );
-                                                                                                                                                                                        jPanel1.setLayout(jPanel1Layout);
-                                                                                                                                                                                        getContentPane().add(jPanel1, "cell 0 0,grow");
-                                                                        jPanel3 = new javax.swing.JPanel();
-                                                                        jPanel3.setBackground(new Color(255, 255, 255));
-                                                                        jTextField10 = new javax.swing.JTextField();
-                                                                        jButton1 = new javax.swing.JButton();
-                                                                        jButton2 = new javax.swing.JButton();
-                                                                        jScrollPane3 = new javax.swing.JScrollPane();
-                                                                        jTable2 = new javax.swing.JTable();
-                                                                        jLabel1 = new javax.swing.JLabel();
-                                                                        jButton3 = new javax.swing.JButton();        
-                                                                        searchButton = new javax.swing.JButton("Tìm kiếm");
-                                                                        
-                                                                                jButton1.setBackground(new java.awt.Color(51, 153, 0));
-                                                                                jButton1.setForeground(new java.awt.Color(255, 255, 255));
-                                                                                jButton1.setText("Thêm");
-                                                                                
-                                                                                        jButton2.setBackground(new java.awt.Color(51, 153, 255));
-                                                                                        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-                                                                                        jButton2.setText("Món ăn");
-                                                                                        
-                                                                                                jButton3.setBackground(new java.awt.Color(0, 0, 255));
-                                                                                                jButton3.setForeground(new java.awt.Color(255, 255, 255));
-                                                                                                jButton3.setText("Nước");
-                                                                                                jButton2.setPreferredSize(size);
-                                                                                                jButton3.setPreferredSize(size);
-                                                                                                
-                                                                                                        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                                                                                                            new Object [][] {
-                                                                                                                {null, null, null, null},
-                                                                                                                {null, null, null, null},
-                                                                                                                {null, null, null, null},
-                                                                                                                {null, null, null, null}
-                                                                                                            },
-                                                                                                            new String [] {
-                                                                                                                "STT", "Số lượng", "Tên hàng", "Tiền hàng"
-                                                                                                            }
-                                                                                                        ));
-                                                                                                        jScrollPane3.setViewportView(jTable2);
-                                                                                                        jPanel4 = new javax.swing.JPanel();
-                                                                                                        jLabel14 = new javax.swing.JLabel();
-                                                                                                        
-                                                                                                                jPanel4.setBackground(new java.awt.Color(0, 51, 255));
-                                                                                                                jPanel4.setForeground(new java.awt.Color(0, 51, 255));
-                                                                                                                
-                                                                                                                        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                                                                                                                        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-                                                                                                                        jLabel14.setText("Thêm món");
-                                                                                                                        jLabel14.setToolTipText("");
-                                                                                                                        
-                                                                                                                                javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-                                                                                                                                jPanel4.setLayout(jPanel4Layout);
-                                                                                                                                jPanel4Layout.setHorizontalGroup(
-                                                                                                                                    jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                                                                                                                        .addContainerGap()
-                                                                                                                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                                                                                                );
-                                                                                                                                jPanel4Layout.setVerticalGroup(
-                                                                                                                                    jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                                                                                                                        .addContainerGap()
-                                                                                                                                        .addComponent(jLabel14)
-                                                                                                                                        .addContainerGap(30, Short.MAX_VALUE))
-                                                                                                                                );
-                                                                                                                                
-                                                                                                                                
-                                                                                                                                
-                                                                                                                                        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-                                                                                                                                        jPanel3Layout.setHorizontalGroup(
-                                                                                                                                        	jPanel3Layout.createParallelGroup(Alignment.LEADING)
-                                                                                                                                        		.addGroup(jPanel3Layout.createSequentialGroup()
-                                                                                                                                        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
-                                                                                                                                        				.addGroup(jPanel3Layout.createSequentialGroup()
-                                                                                                                                        					.addGap(20)
-                                                                                                                                        					.addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
-                                                                                                                                        						.addGroup(jPanel3Layout.createSequentialGroup()
-                                                                                                                                        							.addComponent(jTextField10, GroupLayout.PREFERRED_SIZE, 385, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                        							.addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                                                                        							.addComponent(searchButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-                                                                                                                                        						.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)))
-                                                                                                                                        				.addGroup(jPanel3Layout.createSequentialGroup()
-                                                                                                                                        					.addGap(30)
-                                                                                                                                        					.addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                        					.addGap(48)
-                                                                                                                                        					.addComponent(jButton3, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))
-                                                                                                                                        			.addContainerGap(256, Short.MAX_VALUE))
-                                                                                                                                        		.addGroup(jPanel3Layout.createSequentialGroup()
-                                                                                                                                        			.addContainerGap(594, Short.MAX_VALUE)
-                                                                                                                                        			.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                        			.addGap(59))
-                                                                                                                                        		.addGroup(jPanel3Layout.createSequentialGroup()
-                                                                                                                                        			.addContainerGap()
-                                                                                                                                        			.addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, 751, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                                                                                                        		.addGroup(jPanel3Layout.createSequentialGroup()
-                                                                                                                                        			.addComponent(jScrollPane3, GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
-                                                                                                                                        			.addGap(39))
-                                                                                                                                        );
-                                                                                                                                        jPanel3Layout.setVerticalGroup(
-                                                                                                                                        	jPanel3Layout.createParallelGroup(Alignment.LEADING)
-                                                                                                                                        		.addGroup(jPanel3Layout.createSequentialGroup()
-                                                                                                                                        			.addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                        			.addGap(37)
-                                                                                                                                        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.BASELINE)
-                                                                                                                                        				.addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                        				.addComponent(jButton3, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
-                                                                                                                                        			.addGap(35)
-                                                                                                                                        			.addGroup(jPanel3Layout.createParallelGroup(Alignment.BASELINE)
-                                                                                                                                        				.addComponent(jTextField10, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                        				.addComponent(searchButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-                                                                                                                                        			.addGap(18)
-                                                                                                                                        			.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                        			.addGap(18)
-                                                                                                                                        			.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-                                                                                                                                        			.addGap(258)
-                                                                                                                                        			.addComponent(jLabel1)
-                                                                                                                                        			.addGap(462))
-                                                                                                                                        );
-                                                                                                                                        jPanel3.setLayout(jPanel3Layout);
-                                                                                                                                        getContentPane().add(jPanel3, "cell 0 0,alignx left,aligny top");
-
-        pack();
-    }
-    public static void main(String args[]) {
-        
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ThemMon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ThemMon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ThemMon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ThemMon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ThemMon().setVisible(true);
-            }
-        });
-    }
-
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;   
-    private javax.swing.JButton searchButton;
-
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
-    // End of variables declaration//GEN-END:variables
+		int stt = 1;
+		for (MonAnUong monAn : listMonAn) {
+			model.addRow(new Object[] {
+				stt++,
+				monAn.getMaMonAnUong(),
+				monAn.getTenMonAnUong(), 
+				monAn.getSoLuong(), 
+				monAn.getGiaTien(), 
+				monAn.getLoai(),
+			
+			});
+		}
+	}
+	public void loadThongTinMonAn() {
+//		lblMaBan.setText(PanelNhaHangMenu1.luuTenBan);
+		lblMaBan.setText("HIHI");
+	}
 }

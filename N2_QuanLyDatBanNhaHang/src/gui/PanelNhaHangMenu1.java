@@ -17,14 +17,21 @@ import javax.swing.BorderFactory;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 
@@ -36,14 +43,19 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 	private JComboBox cbThuong;
 	private JPanel pnDanhSachBan;
 	private JButton btnTatCa;
+	private JButton btnBan;
+	private String luuMaBan;
+	private JButton btnThemMon;
+	public static String luuTenBan;
 
 	public PanelNhaHangMenu1() {
-		setBackground(Color.WHITE);
+		setBackground(new Color(240, 240, 240));
 		setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setBounds(81, 0, 161, 64);
-		panel.setBackground(Color.WHITE);
+		panel.setBackground(new Color(240, 240, 240));
+		
 		add(panel);
 		panel.setLayout(null);
 
@@ -57,7 +69,7 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(81, 75, 806, 77);
-		panel_1.setBackground(Color.WHITE);
+		panel_1.setBackground(new Color(240, 240, 240));
 		add(panel_1);
 		panel_1.setLayout(null);
 
@@ -85,7 +97,7 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(81, 163, 806, 507);
-		panel_2.setBackground(Color.WHITE);
+		panel_2.setBackground(new Color(240, 240, 240));
 		add(panel_2);
 		panel_2.setLayout(null);
 
@@ -110,11 +122,12 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(80, 706, 742, 70);
-		panel_3.setBackground(Color.WHITE);
+		panel_3.setBackground(new Color(240, 240, 240));
 		add(panel_3);
 		panel_3.setLayout(null);
 
 		JLabel lblDaDat = new JLabel("Đã đặt");
+		lblDaDat.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		lblDaDat.setForeground(new Color(255, 255, 255));
 		lblDaDat.setBackground(new Color(226, 141, 14));
@@ -123,6 +136,7 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 		panel_3.add(lblDaDat);
 
 		JLabel lblCoKhach = new JLabel("Có khách");
+		lblCoKhach.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		lblCoKhach.setForeground(new Color(255, 255, 255));
 		lblCoKhach.setBackground(new Color(51, 153, 102));
@@ -131,6 +145,7 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 		panel_3.add(lblCoKhach);
 
 		JLabel lblTrong = new JLabel("Trống");
+		lblTrong.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		lblTrong.setForeground(new Color(255, 255, 255));
 		lblTrong.setBackground(new Color(0, 117, 225));
@@ -139,7 +154,7 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 		panel_3.add(lblTrong);
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(new Color(255, 255, 255));
+		panel_4.setBackground(new Color(240, 240, 240));
 		panel_4.setBounds(930, 11, 778, 138);
 		add(panel_4);
 		panel_4.setLayout(null);
@@ -164,13 +179,13 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 		}
 
 		pnDanhSachBan = new JPanel();
-		pnDanhSachBan.setBackground(new Color(255, 255, 255));
+		pnDanhSachBan.setBackground(new Color(240, 240, 240));
 		pnDanhSachBan.setBounds(940, 165, 768, 505);
 		add(pnDanhSachBan);
 		pnDanhSachBan.setLayout(new GridLayout(0, 4, 15, 15));
 
 		panel_6 = new JPanel();
-		panel_6.setBackground(new Color(255, 255, 255));
+		panel_6.setBackground(new Color(240, 240, 240));
 		panel_6.setBounds(940, 712, 768, 64);
 		add(panel_6);
 		panel_6.setLayout(null);
@@ -199,32 +214,63 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 		btnNewButton_17.setBounds(615, 6, 153, 53);
 		panel_6.add(btnNewButton_17);
 
-		JButton btnNewButton_13 = new JButton("Thêm món");
-		btnNewButton_13.setForeground(Color.WHITE);
-		btnNewButton_13.setBackground(new Color(14, 48, 226));
-		btnNewButton_13.setBounds(0, 6, 146, 53);
-		panel_6.add(btnNewButton_13);
+		btnThemMon = new JButton("Thêm món");
+		btnThemMon.setForeground(Color.WHITE);
+		btnThemMon.setBackground(new Color(14, 48, 226));
+		btnThemMon.setBounds(0, 6, 146, 53);
+		panel_6.add(btnThemMon);
 
 		btnChuyenBan.addActionListener(this);
 		btnGhepBan.addActionListener(this);
 		cbThuong.addActionListener(this);
-
+		btnThemMon.addActionListener(this);
+		
 		String firstKhuTen = cbThuong.getItemAt(0).toString();
 		BanDAO banDAO = new BanDAO();
-		List<String> tenBans = banDAO.getTenBansByKhu(firstKhuTen);
+		List<Ban> listBan = banDAO.getBansByKhu(firstKhuTen);
+		Map<String, JButton> mapBan = new HashMap<>();
+		pnDanhSachBan.removeAll();
+		for (Ban ban : listBan) {
+		   
+			String buttonLabel = "<html><center>" + ban.getTenBan() + " - " + ban.getSoChoNgoi() + " chỗ</center></html>";
+		               
+		  
+		    ImageIcon originalIcon = new ImageIcon("img/iconBanAn.png");
+			Image image = originalIcon.getImage(); 
+			Image resizedImage = image.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH); 
+			ImageIcon resizedIcon = new ImageIcon(resizedImage);
+		    JButton btnBan = new JButton(buttonLabel, resizedIcon);
+		    btnBan.setForeground(new Color(255, 255, 255));  
+		    btnBan.setBackground(new Color(0, 117, 225));    
 
-		for (String tenBan : tenBans) {
-			JButton button = new JButton(tenBan);
-			button.setForeground(new Color(255, 255, 255));
-			button.setBackground(new Color(0, 117, 225));
-			pnDanhSachBan.add(button);
+		    
+		    pnDanhSachBan.add(btnBan);
+
+		  
+		    mapBan.put(ban.getTenBan(), btnBan);
+
+		
+		    btnBan.addActionListener(new ActionListener() {
+		        @Override
+		        public void actionPerformed(ActionEvent e) {
+		           
+		            System.out.println("Đã chọn bàn: " + ban.getTenBan() + 
+		                               ", Số chỗ ngồi: " + ban.getSoChoNgoi() + 
+		                               ", Trạng thái: " + (ban.isTrangThai() ? "Đã đặt" : "Chưa đặt") +
+		                               ", Loại bàn: " + (ban.getLoaiBan() ? "VIP" : "Thường") +
+		                               ", Thời gian đặt: " + ban.getThoiGianDatBan());
+		     
+		        }
+		    });
 		}
 
 		pnDanhSachBan.revalidate();
 		pnDanhSachBan.repaint();
-		btnTatCa.addActionListener(this);
-	}
 
+		btnTatCa.addActionListener(this);
+
+	}
+   
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -237,22 +283,47 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 			String selectedKhuTen = cbThuong.getSelectedItem().toString();
 
 			BanDAO banDAO = new BanDAO();
-			List<String> tenBans = banDAO.getTenBansByKhu(selectedKhuTen);
-
+			
+			List<Ban> listBan = banDAO.getBansByKhu(selectedKhuTen);
+			Map<String, JButton> mapBan = new HashMap<>();
 			pnDanhSachBan.removeAll();
-			pnDanhSachBan.revalidate();
-			pnDanhSachBan.repaint();
+			for (Ban ban : listBan) {
+			   
+				String buttonLabel = "<html><center>" + ban.getTenBan() + " - " + ban.getSoChoNgoi() + " chỗ</center></html>";
+			               
+			  
+			    ImageIcon originalIcon = new ImageIcon("img/iconBanAn.png");
+				Image image = originalIcon.getImage(); 
+				Image resizedImage = image.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH); 
+				ImageIcon resizedIcon = new ImageIcon(resizedImage);
+			    JButton btnBan = new JButton(buttonLabel, resizedIcon);
+			    btnBan.setForeground(new Color(255, 255, 255));  
+			    btnBan.setBackground(new Color(0, 117, 225));    
 
-			for (String tenBan : tenBans) {
-				JButton button = new JButton(tenBan);
-				button.setForeground(new Color(255, 255, 255));
+			    
+			    pnDanhSachBan.add(btnBan);
 
-				button.setBackground(new Color(0, 117, 225));
-				pnDanhSachBan.add(button);
+			  
+			    mapBan.put(ban.getTenBan(), btnBan);
+
+			
+			    btnBan.addActionListener(new ActionListener() {
+			        @Override
+			        public void actionPerformed(ActionEvent e) {
+			           
+			            System.out.println("Đã chọn bàn: " + ban.getTenBan() + 
+			                               ", Số chỗ ngồi: " + ban.getSoChoNgoi() + 
+			                               ", Trạng thái: " + (ban.isTrangThai() ? "Đã đặt" : "Chưa đặt") +
+			                               ", Loại bàn: " + (ban.getLoaiBan() ? "VIP" : "Thường") +
+			                               ", Thời gian đặt: " + ban.getThoiGianDatBan());
+			            luuMaBan = ban.getMaBan();
+			            luuTenBan = ban.getTenBan();
+			     
+			        }
+			    });
+			    pnDanhSachBan.revalidate();
+		        pnDanhSachBan.repaint();
 			}
-
-			pnDanhSachBan.revalidate();
-			pnDanhSachBan.repaint();
 		}else if (e.getSource() == btnTatCa) {
 		    BanDAO banDAO = new BanDAO();
 		    List<Ban> bans = banDAO.getAllBans(); 
@@ -273,6 +344,13 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 
 		    pnDanhSachBan.revalidate();
 		    pnDanhSachBan.repaint();
+		}else if(e.getSource() == btnThemMon) {
+			
+		     new ThemMon().setVisible(true);
+		     
+
+		       
+			
 		}
 
 
