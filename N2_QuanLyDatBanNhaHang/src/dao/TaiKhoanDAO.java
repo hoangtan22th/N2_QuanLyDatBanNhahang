@@ -98,9 +98,9 @@ public class TaiKhoanDAO {
             ResultSet rs = statement.executeQuery();
             // Kiểm tra nếu tìm thấy nhân viên
             if (rs.next()) {
-                return true;  // Trả về true nếu nhân viên tồn tại
+                return true;  
             }
-            return false; // Không tìm thấy nhân viên
+            return false;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -135,20 +135,11 @@ public class TaiKhoanDAO {
         String sql = "UPDATE TaiKhoan SET matKhau = ?, role = ?, ngayTaoTK = ? WHERE taiKhoan = ?";
         try (Connection con = connectDB.getConnection();
              PreparedStatement statement = con.prepareStatement(sql)) {
-
-            // Set values for the update query
             statement.setString(1, tk.getMatKhau());
-
-            // Convert boolean to 1/0 (assuming role is stored as an integer)
             statement.setString(2, tk.isRole() ? "1" : "0");
-
-            // Ensure proper handling of dates
             statement.setDate(3, java.sql.Date.valueOf(tk.getNgayTaoTK().toLocalDate()));
-
-            // Set the WHERE condition
             statement.setString(4, tk.getTaiKhoan());
 
-            // Execute the update
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Update successful!");

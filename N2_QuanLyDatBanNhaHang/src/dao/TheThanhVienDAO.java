@@ -264,6 +264,27 @@ public class TheThanhVienDAO {
 	    }
 	    return false;
 	}
+	public String generateMaTTV() {
+	    String maTTV = null;
+	    String sql = "SELECT MAX(CAST(SUBSTRING(maTTV, 4, LEN(maTTV) - 3) AS INT)) AS maxMa FROM TheThanhVien";
+
+	    try (Connection con = connectDB.getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
+	        ResultSet rs = pst.executeQuery();
+
+	        if (rs.next()) {
+	            int maxMa = rs.getInt("maxMa");
+	            if (maxMa > 0) {
+	                maTTV = String.format("TTV%05d", maxMa + 1);
+	            } else {
+	                maTTV = "TTV00001";
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return maTTV;
+	}
 
 	
 

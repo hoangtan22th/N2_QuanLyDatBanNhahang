@@ -295,7 +295,6 @@ public class PanelQuanLyBan extends JPanel implements ActionListener{
         }
         return button;
     }
-
     
 
 	@Override
