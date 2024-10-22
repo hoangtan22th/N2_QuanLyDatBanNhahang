@@ -1,0 +1,116 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import connectDB.connectDB;
+import entity.KhachHang;
+import entity.LoaiThe;
+import entity.TaiKhoan;
+import entity.TheThanhVien;
+
+public class TaiKhoanDAO {
+    
+    public boolean kiemTraTaiKhoan(String taiKhoan, String matKhau) {     
+        try {
+            Connection con = connectDB.getConnection();
+            Statement st = con.createStatement();
+            String sql = "SELECT taiKhoan, matKhau FROM TaiKhoan WHERE taiKhoan = '" + taiKhoan + "' AND matKhau = '" + matKhau + "'";
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+            	return true;
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return false;
+    }
+    public List<TaiKhoan> getAllTK(){
+		List<TaiKhoan> list = new ArrayList<TaiKhoan>();
+		String sql = "select * from TaiKhoan";
+		try (Connection con = connectDB.getConnection();
+				 Statement st = con.createStatement()) {        
+             ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				String taiKhoan = rs.getString("taiKhoan");
+				String matKhau = rs.getString("matKhau");
+				Boolean role = rs.getBoolean("role");
+				LocalDateTime ngayDK = rs.getTimestamp("ngayTaoTk") != null? rs.getTimestamp("ngayTaoTK").toLocalDateTime():null;
+				TaiKhoan taiKhoan2 = new TaiKhoan(taiKhoan, matKhau, role, ngayDK);
+				list.add(taiKhoan2);
+			}
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return list;
+	}
+    public List<TaiKhoan> timTKbyMa(String maTK) {
+		List<TaiKhoan> list = new ArrayList<TaiKhoan>();
+		String sql = "select * from TaiKhoan where taiKhoan like N'%"+maTK+"%'";
+		System.out.println(sql);
+		try (Connection con = connectDB.getConnection();
+				 Statement st = con.createStatement()) {        
+            ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				String taiKhoan = rs.getString("taiKhoan");
+				String matKhau = rs.getString("matKhau");
+				Boolean role = rs.getBoolean("role");
+				LocalDateTime ngayDK = rs.getTimestamp("ngayTaoTK") != null? rs.getTimestamp("ngayTaoTK").toLocalDateTime():null;
+				TaiKhoan taiKhoan2 = new TaiKhoan(taiKhoan, matKhau, role, ngayDK);
+				list.add(taiKhoan2);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+    public boolean kiemNhanVien(String maNV) {
+	    String sql = "SELECT * FROM NhanVien WHERE maNV = ?";
+	    try (Connection con = connectDB.getConnection();
+	         PreparedStatement statement = con.prepareStatement(sql)) {
+	        statement.setString(0, maNV);
+	        ResultSet rs = statement.executeQuery();
+	        
+	        if (rs.next()) {
+	            String maNV1 = rs.getString("maMV");
+	            return maNV1 == null || maNV1.isEmpty();
+	        }
+	        return false;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+    public boolean themTK(TaiKhoan tk) {
+    	 if (!kiemNhanVien(tk.getTaiKhoan())) {
+ 	        System.out.println("Nhân viên không tồn tại");
+ 	        return false;
+ 	    }
+    	 String sql = "insert into TaiKhoan values(?,?,?,?)";
+    	 try (Connection con = connectDB.getConnection();
+			  PreparedStatement statement = con.prepareStatement(sql)) {   
+             statement.setString(1, tk.getTaiKhoan());
+             statement.setString(2, tk.getMatKhau());
+             statement.setString(3, tk.isRole()?"Quản lý":"Nhân viên");
+             statement.setString(4, tk.getNgayTaoTK()+"");
+             statement.executeUpdate();
+             con.close();
+             statement.close();
+             
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+    	 return true;
+    }
+}

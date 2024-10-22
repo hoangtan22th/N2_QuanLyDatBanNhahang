@@ -1,0 +1,236 @@
+package gui;
+
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+import java.awt.Component;
+
+public class PanelNhaHangMenu extends JPanel implements ActionListener {
+    private JPanel pnChinh;
+    private JLabel lblPhai;
+    private JLabel lblTrai;
+    private TitledBorder borderKH;
+    private TitledBorder borderMP;
+    private TitledBorder borderSK;
+    private TitledBorder borderNV;
+    private TitledBorder borderGio;
+    private TitledBorder borderTH;
+    private TitledBorder borderVAT;
+    private TitledBorder borderGG;
+    private JButton btnBanThuong;
+    private JButton btnBanVIP;
+    private JButton btnTatCa;
+    private JPanel pnPhai1;
+    private JTextField textField;
+    private JTextField textField_1;
+    private JTextField textField_2;
+    private JTextField textField_3;
+    private JTextField textField_4;
+    private JTextField textField_5;
+    private JTextField textField_6;
+    private JTextField textField_7;
+
+    public PanelNhaHangMenu() {
+        pnChinh = new JPanel();
+        pnChinh.setBounds(25, 5, 1310, 730);
+        borderKH = new TitledBorder("Tên Khách Hàng");
+        borderKH.setTitleFont(new Font("Arial", Font.PLAIN, 12));
+        borderKH.setTitleJustification(TitledBorder.CENTER);
+        borderMP = new TitledBorder("Mã Phiếu");
+        borderMP.setTitleFont(new Font("Arial", Font.PLAIN, 12));
+        borderMP.setTitleJustification(TitledBorder.CENTER);
+        borderSK = new TitledBorder("Số Khách");
+        borderSK.setTitleFont(new Font("Arial", Font.PLAIN, 12));
+        borderSK.setTitleJustification(TitledBorder.CENTER);
+
+        String[] columnNames = {"Số Lượng", "Tên Sản Phẩm", "Giá Tiền"};
+        Object[][] data = {
+            {10, "Sản phẩm A", 15000},
+            {5, "Sản phẩm B", 25000},
+            {20, "Sản phẩm C", 30000},
+            {15, "Sản phẩm D", 12000}
+        };
+
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        borderNV = new TitledBorder("Nhân Viên");
+        borderNV.setTitleFont(new Font("Arial", Font.PLAIN, 12));
+        borderNV.setTitleJustification(TitledBorder.CENTER);
+        borderGio = new TitledBorder("Giờ");
+        borderGio.setTitleFont(new Font("Arial", Font.PLAIN, 12));
+        borderGio.setTitleJustification(TitledBorder.CENTER);
+        borderTH = new TitledBorder("Tiền Hàng");
+        borderTH.setTitleFont(new Font("Arial", Font.PLAIN, 12));
+        borderTH.setTitleJustification(TitledBorder.CENTER);
+        borderVAT = new TitledBorder("VAT");
+        borderVAT.setTitleFont(new Font("Arial", Font.PLAIN, 12));
+        borderVAT.setTitleJustification(TitledBorder.CENTER);
+        borderGG = new TitledBorder("Giảm Giá");
+        borderGG.setTitleFont(new Font("Arial", Font.PLAIN, 12));
+        borderGG.setTitleJustification(TitledBorder.CENTER);
+        JButton test = new JButton("tets");
+        setLayout(null);
+        pnChinh.setLayout(null);
+
+        add(pnChinh);
+        
+                btnBanThuong = new JButton("Thường");
+                btnBanVIP = new JButton("VIP");
+                btnTatCa = new JButton("Tất cả");
+                
+                     btnBanThuong.setBackground(java.awt.Color.decode("#0075E1"));
+                     btnBanVIP.setBackground(java.awt.Color.decode("#0075E1"));
+                     btnTatCa.setBackground(java.awt.Color.decode("#0075E1"));
+                     
+
+                     btnBanThuong.setForeground(java.awt.Color.WHITE);
+                     btnBanVIP.setForeground(java.awt.Color.WHITE);
+                     btnTatCa.setForeground(java.awt.Color.WHITE);
+                     btnBanThuong.setPreferredSize(new Dimension(130, 70));
+                     btnBanVIP.setPreferredSize(new Dimension(130, 70));
+                     btnTatCa.setPreferredSize(new Dimension(130, 70));
+                     
+                             
+                        
+                             btnBanThuong.addActionListener(this);
+                             btnBanVIP.addActionListener(this);
+                             btnTatCa.addActionListener(this);
+                             
+                                     pnPhai1 = new JPanel();
+                                     pnPhai1.setBounds(720, 10, 580, 104);
+                                     pnChinh.add(pnPhai1);
+                                     pnPhai1.add(btnBanThuong);
+                                     pnPhai1.add(btnBanVIP);
+                                     pnPhai1.add(btnTatCa);
+                                     
+                                     Box trai = Box.createVerticalBox();
+                                     trai.setBounds(10, 10, 700, 500);
+                                     pnChinh.add(trai);
+                                     
+                                     Box trai1 = Box.createHorizontalBox();
+                                     trai.add(trai1);
+                                     
+                                     textField = new JTextField(20);
+                                     textField.setBorder(borderKH);
+                                     trai1.add(textField);
+                                     
+                                     textField_1 = new JTextField(20);
+                                     textField_1.setBorder(borderMP);
+                                     trai1.add(textField_1);
+                                     
+                                     textField_2 = new JTextField(20);
+                                     textField_2.setBorder(borderSK);
+                                     trai1.add(textField_2);
+                                     
+                                     JScrollPane scrollPane = new JScrollPane((Component) null);
+                                     trai.add(scrollPane);
+                                     
+                                     JPanel pnTraiCuoi = new JPanel();
+                                     trai.add(pnTraiCuoi);
+                                     pnTraiCuoi.setLayout(new FlowLayout());
+                                     
+                                     textField_3 = new JTextField(20);
+                                     textField_3.setBorder(borderNV);
+                                     pnTraiCuoi.add(textField_3);
+                                     
+                                     textField_4 = new JTextField(20);
+                                     textField_4.setBorder(borderGio);
+                                     pnTraiCuoi.add(textField_4);
+                                     
+                                     textField_5 = new JTextField(20);
+                                     textField_5.setBorder(borderTH);
+                                     pnTraiCuoi.add(textField_5);
+                                     
+                                     textField_6 = new JTextField(20);
+                                     textField_6.setBorder(borderVAT);
+                                     pnTraiCuoi.add(textField_6);
+                                     
+                                     textField_7 = new JTextField(20);
+                                     textField_7.setBorder(borderGG);
+                                     pnTraiCuoi.add(textField_7);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      
+        if (e.getSource() == btnBanThuong) {
+            panelBan.removeAll();
+            addButtonToPanel(panelBan, "Bàn Thường 1", "2");
+            addButtonToPanel(panelBan, "Bàn Thường 2", "4");
+            addButtonToPanel(panelBan, "Bàn Thường 1", "2");
+            addButtonToPanel(panelBan, "Bàn Thường 2", "4");
+            addButtonToPanel(panelBan, "Bàn Thường 1", "2");
+            addButtonToPanel(panelBan, "Bàn Thường 2", "4");
+            addButtonToPanel(panelBan, "Bàn Thường 1", "2");
+            addButtonToPanel(panelBan, "Bàn Thường 2", "4");
+           
+        } else if (e.getSource() == btnBanVIP) {
+            panelBan.removeAll();
+            addButtonToPanel(panelBan, "Bàn VIP 1", "2");
+            addButtonToPanel(panelBan, "Bàn VIP 2", "4");
+            addButtonToPanel(panelBan, "Bàn VIP 1", "2");
+            addButtonToPanel(panelBan, "Bàn VIP 2", "4");
+            addButtonToPanel(panelBan, "Bàn VIP 1", "2");
+            addButtonToPanel(panelBan, "Bàn VIP 2", "4");
+            addButtonToPanel(panelBan, "Bàn VIP 1", "2");
+            addButtonToPanel(panelBan, "Bàn VIP 2", "4");
+            
+           
+        } else if (e.getSource() == btnTatCa) {
+            panelBan.removeAll();
+            addButtonToPanel(panelBan, "Bàn Thường 1", "2");
+            addButtonToPanel(panelBan, "Bàn Thường 2", "4");
+            addButtonToPanel(panelBan, "Bàn Thường 1", "2");
+            addButtonToPanel(panelBan, "Bàn Thường 2", "4");
+            addButtonToPanel(panelBan, "Bàn Thường 1", "2");
+            addButtonToPanel(panelBan, "Bàn Thường 2", "4");
+            addButtonToPanel(panelBan, "Bàn VIP 1", "2");
+            addButtonToPanel(panelBan, "Bàn VIP 2", "4");
+            addButtonToPanel(panelBan, "Bàn VIP 1", "2");
+            addButtonToPanel(panelBan, "Bàn VIP 2", "4");
+            addButtonToPanel(panelBan, "Bàn Thường 1", "2");
+            addButtonToPanel(panelBan, "Bàn Thường 2", "4");
+            addButtonToPanel(panelBan, "Bàn Thường 1", "2");
+            addButtonToPanel(panelBan, "Bàn Thường 2", "4");
+            addButtonToPanel(panelBan, "Bàn Thường 1", "2");
+            addButtonToPanel(panelBan, "Bàn Thường 2", "4");
+            addButtonToPanel(panelBan, "Bàn VIP 1", "2");
+            addButtonToPanel(panelBan, "Bàn VIP 2", "4");
+            addButtonToPanel(panelBan, "Bàn VIP 1", "2");
+            addButtonToPanel(panelBan, "Bàn VIP 2", "4");
+           
+        }
+        panelBan.revalidate();
+        panelBan.repaint();
+    }
+
+    private void addButtonToPanel(JPanel panel, String tenBan, String soNguoi) {
+        JButton btnBan = new JButton("<html>" + tenBan + "<br/>" + soNguoi + " người</html>");
+        btnBan.setBackground(java.awt.Color.decode("#0075E1"));
+        btnBan.setForeground(java.awt.Color.WHITE);
+    
+        panel.add(btnBan);
+        panel.revalidate();
+        panel.repaint();
+    }
+
+    public static void main(String[] args) {
+        DangNhap frame = new DangNhap();
+        frame.setVisible(true);
+    }
+}

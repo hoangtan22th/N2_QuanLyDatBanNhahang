@@ -1,0 +1,180 @@
+package gui;
+
+import javax.swing.JPanel;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Properties;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextPane;
+import java.awt.GridLayout;
+
+public class PanelQuanLyBan extends JPanel {
+
+    private static final long serialVersionUID = 1L;
+    private JTextField txtMa;
+    private JTextField txtTen;
+    private JTextField txtSo;
+    private ArrayList<String> banNames;
+
+    public PanelQuanLyBan() {
+        setLayout(null);
+        createHeaderLabels();
+        createInputPanel();
+        createBanList();
+        createBanButtons();
+    }
+
+    private void createHeaderLabels() {
+        Label lblTT = new Label("Thông tin");
+        lblTT.setBackground(new Color(65, 41, 224));
+        lblTT.setBounds(10, 10, 150, 40);
+        lblTT.setAlignment(Label.CENTER);
+        lblTT.setForeground(Color.WHITE);
+        lblTT.setFont(new Font("Arial", Font.BOLD, 17));
+        add(lblTT);
+
+        JLabel lblDatCho = new JLabel("    Quản lý bàn");
+        lblDatCho.setHorizontalAlignment(SwingConstants.LEFT);
+        lblDatCho.setBackground(new Color(65, 41, 224));
+        lblDatCho.setForeground(Color.WHITE);
+        lblDatCho.setFont(new Font("Arial", Font.BOLD, 18));
+        lblDatCho.setBounds(390, 10, 1524, 40);
+        lblDatCho.setOpaque(true);
+        add(lblDatCho);
+    }
+
+    private void createInputPanel() {
+        JPanel pnlTT = new JPanel();
+        pnlTT.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.WHITE, new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
+        pnlTT.setBounds(10, 56, 371, 957);
+        pnlTT.setLayout(null);
+        add(pnlTT);
+
+        // Date picker
+        JDatePickerImpl datePicker = createDatePicker();
+        datePicker.setBounds(10, 188, 180, 35);
+        pnlTT.add(datePicker);
+
+        // Radio buttons
+        ButtonGroup group = new ButtonGroup();
+        addRadioButton(pnlTT, group, "Bàn thường", 113, 231);
+        addRadioButton(pnlTT, group, "Bàn VIP", 218, 231);
+
+        // Text area for notes
+        JTextPane txpGhiChu = new JTextPane();
+        JPanel panel = new JPanel();
+        panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
+        panel.setBounds(10, 273, 351, 99);
+        panel.setLayout(null);
+        txpGhiChu.setBounds(1, 1, 348, 96);
+        panel.add(txpGhiChu);
+        pnlTT.add(panel);
+
+        // Buttons
+        pnlTT.add(createButton("Thêm", new Color(0, 191, 0), 10, 386));
+        pnlTT.add(createButton("Sửa", new Color(255, 128, 64), 100, 386));
+        pnlTT.add(createButton("Xóa", new Color(255, 0, 0), 198, 386));
+        pnlTT.add(createButton("Lưu", new Color(0, 0, 255), 291, 386));
+
+        // Text fields
+        pnlTT.add(createLabel("Mã bàn", 20, 10));
+        txtMa = createTextField(10, 36, 351, 35);
+        pnlTT.add(txtMa);
+
+        pnlTT.add(createLabel("Tên bàn", 20, 81));
+        txtTen = createTextField(10, 112, 351, 35);
+        pnlTT.add(txtTen);
+
+        pnlTT.add(createLabel("Ngày tạo", 20, 157));
+        pnlTT.add(createLabel("Số chỗ", 234, 157));
+        txtSo = createTextField(222, 188, 139, 35);
+        pnlTT.add(txtSo);
+    }
+
+    private void createBanList() {
+        banNames = new ArrayList<>();
+        // Add some sample names to demonstrate the buttons
+        for (int i = 1; i <= 10; i++) {
+            banNames.add("HA0" + i);
+        }
+    }
+
+    private void createBanButtons() {
+        JPanel pnlBan = new JPanel();
+        pnlBan.setBounds(390, 60, 1524, 953);
+        pnlBan.setLayout(new GridLayout(0, 5, 6, 15));
+        add(pnlBan);
+
+        for (String banName : banNames) {
+            pnlBan.add(createBanButton(banName));
+        }
+    }
+
+    private JButton createButton(String text, Color bgColor, int x, int y) {
+        JButton button = new JButton(text);
+        button.setForeground(Color.WHITE);
+        button.setBackground(bgColor);
+        button.setBounds(x, y, 70, 30);
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+        return button;
+    }
+
+    private JButton createBanButton(String name) {
+        JButton button = new JButton(name);
+        button.setBackground(new Color(0, 128, 255));
+        button.setForeground(Color.WHITE);
+        button.setFont(new Font("Arial", Font.PLAIN, 14));
+        button.setPreferredSize(new Dimension(150, 90));
+        return button;
+    }
+
+    private JTextField createTextField(int x, int y, int width, int height) {
+        JTextField textField = new JTextField();
+        textField.setBounds(x, y, width, height);
+        return textField;
+    }
+
+    private JLabel createLabel(String text, int x, int y) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Arial", Font.PLAIN, 14));
+        label.setBounds(x, y, 70, 21);
+        return label;
+    }
+
+    private void addRadioButton(JPanel panel, ButtonGroup group, String text, int x, int y) {
+        JRadioButton radioButton = new JRadioButton(text);
+        radioButton.setFont(new Font("Arial", Font.PLAIN, 14));
+        radioButton.setBounds(x, y, 103, 21);
+        panel.add(radioButton);
+        group.add(radioButton);
+    }
+
+    private JDatePickerImpl createDatePicker() {
+        UtilDateModel model = new UtilDateModel();
+        Properties properties = new Properties();
+        properties.put("text.today", "Hôm nay");
+        properties.put("text.month", "Tháng");
+        properties.put("text.year", "Năm");
+
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
+        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        datePicker.getJFormattedTextField().setPreferredSize(new Dimension(80, 35));
+        datePicker.getJFormattedTextField().setFont(new Font("Arial", Font.PLAIN, 15));
+        return datePicker;
+    }
+}

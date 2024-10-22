@@ -1,0 +1,151 @@
+package gui; 
+
+import javax.swing.*;
+
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class DangNhap1 extends JFrame implements ActionListener{
+    private JPanel pnSouth;
+    private JPanel pnCenter;
+    private JLabel lblTitle;
+    private JTextField txtDangNhap;
+    private JTextField txtMatKhau;
+    private JButton btnDangNhap;
+    private JButton btnQuenMatKhau;
+    private JButton btnTroGiup;
+    private JButton btnThoat;
+    private JButton btnDoiMatKhau;
+    private JLabel lblDangNhap;
+    private JLabel lblMatKhau;
+    private JLabel lblRong;
+    private JPanel pnBoxDangNhap;
+
+    
+    private Image backgroundImage;
+	
+
+    public DangNhap1() {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\Data\\tailieuvuive\\PTUD\\N2_QuanLyDatBanNhahang\\N2_QuanLyDatBanNhaHang\\img\\Logo.png"));
+        setTitle("Đăng nhập");
+        setSize(964, 495);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        getContentPane().setLayout(new BorderLayout());
+
+      
+        backgroundImage = Toolkit.getDefaultToolkit().getImage("images/hinhNen.jpg");
+        pnCenter = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+         
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        pnSouth = new JPanel();
+        pnBoxDangNhap = new JPanel();
+        pnBoxDangNhap.setLayout(new FlowLayout());
+
+        Box b, b0, b1, b2, b3, b4;
+
+        b = Box.createVerticalBox();
+        b.setBounds(308, 139, 333, 159);
+        b0 = Box.createHorizontalBox();
+        b1 = Box.createHorizontalBox();
+        b2 = Box.createHorizontalBox();
+        b3 = Box.createHorizontalBox();
+        b4 = Box.createHorizontalBox();
+        Dimension buttonSize = new Dimension(120, 26); 
+        
+        lblTitle = new JLabel("ĐĂNG NHẬP");
+        lblTitle.setFont(new Font("Arial", Font.BOLD, 24)); 
+
+        txtDangNhap = new JTextField(25);
+        txtMatKhau = new JTextField(25);
+        txtDangNhap.setPreferredSize(new Dimension(400, 30)); 
+        txtMatKhau.setPreferredSize(new Dimension(400, 30)); 
+        lblDangNhap = new JLabel("Tên đăng nhập: ");
+        lblMatKhau = new JLabel("Mật khẩu: ");
+        lblMatKhau.setPreferredSize(lblDangNhap.getPreferredSize()); 
+        
+        btnDangNhap = new JButton("Đăng nhập");
+        btnDangNhap.setPreferredSize(buttonSize);
+        btnDangNhap.setBackground(Color.decode("#00972A")); 
+        btnDangNhap.setForeground(Color.WHITE); 
+        btnDangNhap.setMinimumSize(buttonSize); 
+        btnDangNhap.setMaximumSize(buttonSize); 
+        
+        btnQuenMatKhau = new JButton("Quên mật khẩu");
+        btnQuenMatKhau.setPreferredSize(buttonSize);
+        btnQuenMatKhau.setBackground(Color.decode("#E28D0E")); 
+        btnQuenMatKhau.setForeground(Color.WHITE); 
+        btnQuenMatKhau.setMinimumSize(buttonSize);
+        btnQuenMatKhau.setMaximumSize(buttonSize); 
+        
+        btnTroGiup = new JButton("Trợ giúp");
+        btnDoiMatKhau = new JButton("Đổi mật khẩu");
+        btnThoat = new JButton("Thoát");
+        pnCenter.setLayout(null);
+
+        b0.add(lblTitle);
+        b0.add(Box.createHorizontalStrut(10)); 
+        b1.add(lblDangNhap);
+        b1.add(txtDangNhap);
+        b1.add(Box.createHorizontalStrut(10)); 
+        b2.add(lblMatKhau);
+        b2.add(txtMatKhau);
+        b2.add(Box.createHorizontalStrut(10)); 
+        
+        b3.add(Box.createHorizontalStrut(85));    
+        b3.add(btnDangNhap);
+        b3.add(Box.createHorizontalStrut(8));
+        b3.add(btnQuenMatKhau);
+        
+        b.add(b0);
+        b.add(Box.createVerticalStrut(15)); 
+        b.add(b1);
+        b.add(Box.createVerticalStrut(15)); 
+        b.add(b2);
+        b.add(Box.createVerticalStrut(15)); 
+        b.add(b3);
+        pnCenter.add(b);
+        
+        pnSouth.setLayout(new FlowLayout(FlowLayout.RIGHT)); 
+        pnSouth.add(btnTroGiup);
+        pnSouth.add(Box.createHorizontalStrut(10)); 
+        pnSouth.add(btnDoiMatKhau);
+        pnSouth.add(Box.createHorizontalStrut(10)); 
+        pnSouth.add(btnThoat);
+        btnTroGiup.setBackground(Color.decode("#0E30E2")); 
+        btnDoiMatKhau.setBackground(Color.decode("#E28D0E")); 
+        btnThoat.setBackground(Color.decode("#E12020")); 
+        btnTroGiup.setForeground(Color.white);
+        btnDoiMatKhau.setForeground(Color.white);
+        btnThoat.setForeground(Color.white);
+
+        btnTroGiup.setPreferredSize(buttonSize);
+        btnDoiMatKhau.setPreferredSize(buttonSize);
+        btnThoat.setPreferredSize(buttonSize);
+        btnDangNhap.setPreferredSize(buttonSize);
+        btnQuenMatKhau.setPreferredSize(buttonSize);
+        getContentPane().add(pnCenter, BorderLayout.CENTER);
+        getContentPane().add(pnSouth, BorderLayout.SOUTH);
+        btnDangNhap.addActionListener(this);
+    }
+
+    public static void main(String[] args) {
+        DangNhap frame = new DangNhap();
+        frame.setVisible(true);
+    }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	    if (e.getSource() == btnDangNhap) {	        
+	        setVisible(false);
+			new Menu().setVisible(true);
+	    }
+	}
+}

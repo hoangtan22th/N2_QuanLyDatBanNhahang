@@ -1,0 +1,155 @@
+package gui;
+
+import java.awt.*;
+import java.util.Properties;
+import javax.swing.*;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+import org.jdatepicker.impl.*;
+
+public class PanelQLMonAn extends JPanel {
+    private static final long serialVersionUID = 1L;
+    private JTextField txtMa, txtTen, txtGia, txtSoLuong, textField;
+    private JTable table;
+
+    // Constants for common properties
+    private static final Font LABEL_FONT = new Font("Arial", Font.PLAIN, 15);
+    private static final Font HEADER_FONT = new Font("Arial", Font.BOLD, 18);
+    private static final Color HEADER_COLOR = new Color(65, 41, 224);
+    private static final Color WHITE_COLOR = Color.WHITE;
+
+    public PanelQLMonAn() {
+        setLayout(null);
+
+        // Header labels
+        createHeaderLabel("Thông tin", 10, 10, 150, 40, HEADER_COLOR, this);
+        createHeaderLabel("    Danh sách món ăn", 345, 10, 1185, 40, HEADER_COLOR, this);
+
+        // Information panel
+        JPanel pnlTT = createPanelWithBorder(10, 56, 325, 701);
+        add(pnlTT);
+
+        createLabel("Mã món", LABEL_FONT, 20, 10, 89, 24, pnlTT);
+        txtMa = createTextField(10, 35, 305, 35, pnlTT);
+
+        createLabel("Tên món", LABEL_FONT, 20, 80, 89, 24, pnlTT);
+        txtTen = createTextField(10, 105, 305, 35, pnlTT);
+
+        createLabel("Giá tiền", LABEL_FONT, 20, 149, 89, 24, pnlTT);
+        txtGia = createTextField(10, 175, 305, 35, pnlTT);
+
+        createLabel("Ngày tạo", LABEL_FONT, 20, 220, 59, 18, pnlTT);
+        JDatePickerImpl datePicker = createDatePicker(10, 245, 180, 35, pnlTT);
+
+        createLabel("Số lượng", LABEL_FONT, 205, 220, 76, 18, pnlTT);
+        txtSoLuong = createTextField(201, 245, 114, 35, pnlTT);
+
+        createLabel("Ghi chú", LABEL_FONT, 20, 285, 114, 29, pnlTT);
+        createScrollableTextPane(10, 315, 306, 99, pnlTT);
+
+        createButton("Thêm", WHITE_COLOR, new Color(0, 191, 0), 10, 424, 70, 30, pnlTT);
+        createButton("Sửa", WHITE_COLOR, new Color(255, 128, 64), 88, 424, 70, 30, pnlTT);
+        createButton("Xóa", WHITE_COLOR, Color.RED, 166, 424, 70, 30, pnlTT);
+        createButton("Lưu", WHITE_COLOR, Color.BLUE, 244, 424, 70, 30, pnlTT);
+
+        // Category buttons (using array)
+        String[] categories = {"Cơm cuộn", "Mì", "Sasimi", "Đồ nướng", "Salad", "Trang miệng", "Nước", "Best sellers"};
+        int x = 345;
+        for (String category : categories) {
+            createCategoryButton(category, x, 65, 124, 49);
+            x += 134;
+        }
+
+        // Search field and button
+        textField = createTextField(345, 134, 1061, 34, this);
+        createButton("Tìm kiếm", WHITE_COLOR, new Color(0, 217, 0), 1422, 134, 108, 34, this);
+
+        // Table for displaying data
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(345, 188, 1185, 569);
+        add(scrollPane);
+
+        table = new JTable();
+        table.setModel(new DefaultTableModel(new Object[][] {{null, null, null, null, null}},
+            new String[] {"STT", "Mã", "Số lượng", "Tên hàng", "Tiền hàng"}));
+        scrollPane.setViewportView(table);
+    }
+
+    // Utility methods for creating UI components
+    private void createHeaderLabel(String text, int x, int y, int width, int height, Color bgColor, JPanel parent) {
+        JLabel lbl = new JLabel(text);
+        lbl.setOpaque(true);
+        lbl.setHorizontalAlignment(SwingConstants.LEFT);
+        lbl.setBackground(bgColor);
+        lbl.setForeground(WHITE_COLOR);
+        lbl.setFont(HEADER_FONT);
+        lbl.setBounds(x, y, width, height);
+        parent.add(lbl);
+    }
+
+    private JPanel createPanelWithBorder(int x, int y, int width, int height) {
+        JPanel panel = new JPanel();
+        panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.WHITE, Color.GRAY), "", TitledBorder.LEADING, TitledBorder.TOP, null, Color.GRAY));
+        panel.setBounds(x, y, width, height);
+        panel.setLayout(null);
+        return panel;
+    }
+
+    private JTextField createTextField(int x, int y, int width, int height, JPanel parent) {
+        JTextField txtField = new JTextField();
+        txtField.setBounds(x, y, width, height);
+        parent.add(txtField);
+        return txtField;
+    }
+
+    private void createLabel(String text, Font font, int x, int y, int width, int height, JPanel parent) {
+        JLabel lbl = new JLabel(text);
+        lbl.setFont(font);
+        lbl.setBounds(x, y, width, height);
+        parent.add(lbl);
+    }
+
+    private void createButton(String text, Color fgColor, Color bgColor, int x, int y, int width, int height, JPanel parent) {
+        JButton btn = new JButton(text);
+        btn.setForeground(fgColor);
+        btn.setBackground(bgColor);
+        btn.setBounds(x, y, width, height);
+        parent.add(btn);
+    }
+
+    private void createCategoryButton(String text, int x, int y, int width, int height) {
+        JButton btn = new JButton(text);
+        btn.setForeground(WHITE_COLOR);
+        btn.setBackground(new Color(0, 128, 255));
+        btn.setBounds(x, y, width, height);
+        add(btn);
+    }
+
+    private JTextPane createScrollableTextPane(int x, int y, int width, int height, JPanel parent) {
+        JTextPane txpGhiChu = new JTextPane();
+        JScrollPane scrollPane = new JScrollPane(txpGhiChu);
+        scrollPane.setBounds(x, y, width, height);
+        parent.add(scrollPane);
+        return txpGhiChu;
+    }
+
+    private JDatePickerImpl createDatePicker(int x, int y, int width, int height, JPanel parent) {
+        UtilDateModel model = new UtilDateModel();
+        Properties properties = new Properties();
+        properties.put("text.today", "Hôm nay");
+        properties.put("text.month", "Tháng");
+        properties.put("text.year", "Năm");
+
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
+        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+
+        JButton calendarButton = (JButton) datePicker.getComponent(1);
+        calendarButton.setIcon(new ImageIcon("D:\\Data\\tailieuvuive\\PTUD\\N2_QuanLyDatBanNhahang\\N2_QuanLyDatBanNhaHang\\img\\calendar-icon.jpg"));
+
+        datePicker.setBounds(x, y, width, height);
+        parent.add(datePicker);
+
+        return datePicker;
+    }
+}

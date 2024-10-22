@@ -1,0 +1,146 @@
+package gui;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Label;
+import java.util.Properties;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
+
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
+import javax.swing.border.EtchedBorder;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+
+public class PanelQLMonAn extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	private JTextField txtMa;
+	private JTextField txtTen;
+	private JTextField txtGia;
+	private JTextField txtSoLuong;
+
+	/**
+	 * Create the panel.
+	 */
+	public PanelQLMonAn() {
+		setLayout(null);
+		Label lblTT = new Label("Thông tin");
+        lblTT.setBackground(new Color(65, 41, 224));
+        lblTT.setBounds(10, 10, 150, 60);
+        add(lblTT);
+        lblTT.setAlignment(Label.CENTER);
+        lblTT.setForeground(new Color(255, 255, 255));
+        lblTT.setFont(new Font("Arial", Font.BOLD, 20));
+        
+        JLabel lblDsMonAn = new JLabel("    Danh sách món ăn");
+        lblDsMonAn.setHorizontalAlignment(SwingConstants.LEFT);
+        lblDsMonAn.setBackground(new Color(65, 41, 224));  // Set màu nền
+        lblDsMonAn.setForeground(new Color(255, 255, 255));  // Set màu chữ
+        lblDsMonAn.setFont(new Font("Arial", Font.BOLD, 22));
+        lblDsMonAn.setBounds(345, 10, 1185, 60);
+        lblDsMonAn.setOpaque(true);  // Bật hiển thị nền
+        add(lblDsMonAn);
+        
+        JPanel pnlTT = new JPanel();
+        pnlTT.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
+        pnlTT.setBounds(10, 76, 325, 681);
+        add(pnlTT);
+        pnlTT.setLayout(null);
+        
+        JLabel lblMa = new JLabel("Mã món");
+        lblMa.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblMa.setBounds(20, 10, 89, 24);
+        pnlTT.add(lblMa);
+        
+        txtMa = new JTextField();
+        txtMa.setBounds(10, 35, 305, 35);
+        pnlTT.add(txtMa);
+        txtMa.setColumns(10);
+        
+        JLabel lblTen = new JLabel("Tên món");
+        lblTen.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblTen.setBounds(20, 80, 89, 24);
+        pnlTT.add(lblTen);
+        
+        txtTen = new JTextField();
+        txtTen.setColumns(10);
+        txtTen.setBounds(10, 105, 305, 35);
+        pnlTT.add(txtTen);
+        
+        JLabel lblGia = new JLabel("Giá tiền");
+        lblGia.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblGia.setBounds(20, 149, 89, 24);
+        pnlTT.add(lblGia);
+        
+        txtGia = new JTextField();
+        txtGia.setColumns(10);
+        txtGia.setBounds(10, 175, 305, 35);
+        pnlTT.add(txtGia);
+        JLabel lblNgayTao = new JLabel("Ngày tạo");
+        lblNgayTao.setForeground(Color.BLACK);
+        lblNgayTao.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblNgayTao.setBounds(20, 220, 59, 18);
+        pnlTT.add(lblNgayTao);
+        
+        // Date picker setup
+        UtilDateModel model = new UtilDateModel();
+        Properties properties = new Properties();
+        properties.put("text.today", "Hôm nay");
+        properties.put("text.month", "Tháng");
+        properties.put("text.year", "Năm");
+
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
+        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+
+        // Tải icon từ đường dẫn
+        ImageIcon calendarIcon = new ImageIcon("D:\\Data\\tailieuvuive\\PTUD\\N2_QuanLyDatBanNhahang\\N2_QuanLyDatBanNhaHang\\img\\calendar-icon.jpg");
+
+        // Lấy nút của datePicker và đặt icon cho nó
+        JButton calendarButton = (JButton) datePicker.getComponent(1); // Lấy nút calendar
+        calendarButton.setIcon(calendarIcon);
+
+        // Set vị trí và kích thước của datePicker
+        datePicker.setBounds(10, 245, 180, 35);
+        pnlTT.add(datePicker);
+
+        // Đặt kích thước và font chữ cho trường nhập ngày
+        datePicker.getJFormattedTextField().setPreferredSize(new Dimension(100, 35));
+        datePicker.getJFormattedTextField().setFont(new Font("Arial", Font.PLAIN, 15)); 
+        
+        JLabel lblSoLuong = new JLabel("Số lượng");
+        lblSoLuong.setForeground(Color.BLACK);
+        lblSoLuong.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblSoLuong.setBounds(205, 220, 76, 18);
+        pnlTT.add(lblSoLuong);
+        
+        txtSoLuong = new JTextField();
+        txtSoLuong.setColumns(10);
+        txtSoLuong.setBounds(201, 245, 114, 35);
+        pnlTT.add(txtSoLuong);
+        
+        JLabel lblGhiChu = new JLabel("Ghi chú");
+        lblGhiChu.setFont(new Font("Arial", Font.PLAIN, 15));
+        lblGhiChu.setBounds(20, 285, 114, 29);
+        pnlTT.add(lblGhiChu);
+        
+        JPanel panel = new JPanel();
+        panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
+        panel.setBounds(10, 315, 306, 99);
+        pnlTT.add(panel);
+        panel.setLayout(null);
+        
+        JTextPane txpGhiChu = new JTextPane();
+        txpGhiChu.setBounds(0, 0, 303, 96);
+        panel.add(txpGhiChu);
+	}
+}

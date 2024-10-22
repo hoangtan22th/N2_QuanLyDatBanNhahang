@@ -1,0 +1,107 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import connectDB.connectDB;
+import entity.KhachHang;
+import entity.LoaiThe;
+import entity.TheThanhVien;
+
+public class TheThanhVienDAO {
+	
+	public List<String> getTTVByKH(String maKH) {
+	    List<String> TTV = new ArrayList<>();
+	    String sql = "SELECT b.maTTV " +
+	                 "FROM TheThanhVien b JOIN KhachHang k ON b.maTTV = k.maTTV " +
+	                 "WHERE k.maKH = ?";
+
+	    try (Connection con = connectDB.getConnection();
+	         PreparedStatement pst = con.prepareStatement(sql)) {
+	         
+	        pst.setString(1, maKH);
+	        ResultSet rs = pst.executeQuery();
+
+	        while (rs.next()) {
+	            String tenKH = rs.getString("tenKH");
+	            String sdt = rs.getString("sdt");
+	            
+	            TTV.add(tenKH);
+	            TTV.add(sdt);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return TTV; 
+	}
+	public List<String> getTTVByLT(String maLT) {
+	    List<String> TTV = new ArrayList<>();
+	    String sql = "SELECT b.loaiThe " +
+	                 "FROM TheThanhVien b JOIN LoaiThe k ON b.loaiThe = k.maLoaiTTV " +
+	                 "WHERE k.maLoaiTTV = ?";
+
+	    try (Connection con = connectDB.getConnection();
+	         PreparedStatement pst = con.prepareStatement(sql)) {
+	         
+	        pst.setString(1, maLT);
+	        ResultSet rs = pst.executeQuery();
+
+	        while (rs.next()) {
+	            String tenLT = rs.getString("tenLoaiTTV");
+	            
+	            TTV.add(tenLT);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return TTV; 
+	}
+	
+	
+	public List<TheThanhVien> getAllTheThanhVien(){
+		List<TheThanhVien> list = new ArrayList<TheThanhVien>();
+		String sql = "SELECT \r\n"
+				+ "    TheThanhVien.maTTV, \r\n"
+				+ "    KhachHang.tenKH, \r\n"
+				+ "    KhachHang.sdt, \r\n"
+				+ "    LoaiThe.tenLoaiTTV, \r\n"
+				+ "    TheThanhVien.diemTichLuy, \r\n"
+				+ "    TheThanhVien.ngayDangKy\r\n"
+				+ "FROM \r\n"
+				+ "    TheThanhVien\r\n"
+				+ "JOIN \r\n"
+				+ "    KhachHang ON TheThanhVien.maTTV = KhachHang.maTTV\r\n"
+				+ "JOIN \r\n"
+				+ "    LoaiThe ON TheThanhVien.loaiThe = LoaiThe.maLoaiTTV;\r\n";
+		try (Connection con = connectDB.getConnection();
+				 Statement st = con.createStatement()) {        
+             ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				String maThe = rs.getString("maTTV");
+				String tenKH = rs.getString("tenKH");
+				String sdt = rs.getString("sdt");
+				KhachHang khachHang = new KhachHang(tenKH,sdt);
+				String loaiThe = rs.getString("tenLoaiTTV");
+				LoaiThe loaiThe2 = new LoaiThe(loaiThe);
+				Double soDiem = rs.getDouble("diemTichLuy");
+				LocalDateTime ngayDK = rs.getTimestamp("ngayDangKy") != null? rs.getTimestamp("ngayDangKy").toLocalDateTime():null;
+				TheThanhVien theThanhVien = new TheThanhVien(maThe, khachHang, loaiThe2, soDiem, ngayDK);
+				list.add(theThanhVien);
+			}
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+}
