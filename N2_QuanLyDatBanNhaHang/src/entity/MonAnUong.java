@@ -5,17 +5,21 @@ public class MonAnUong {
 	private String tenMonAnUong;
 	private double giaTien;
 	private String loai;
-	private int soLuong;
-	public MonAnUong(String maMonAnUong, String tenMonAnUong, double giaTien, String loai, int soLuong) {
+
+	public MonAnUong(String maMonAnUong, String tenMonAnUong, double giaTien, String loai) {
 		super();
 		this.maMonAnUong = maMonAnUong;
 		this.tenMonAnUong = tenMonAnUong;
 		this.giaTien = giaTien;
 		this.loai = loai;
-		this.soLuong = soLuong;
+		
 	}
 	public MonAnUong() {
 		
+	}
+public MonAnUong(String maMonAnUong) {
+	super();
+	this.maMonAnUong = maMonAnUong;
 	}
 	public String getMaMonAnUong() {
 		return maMonAnUong;
@@ -39,18 +43,12 @@ public class MonAnUong {
 		return loai;
 	}
 	public void setLoai(String loai) {
-		this.loai = loai;
-	}
-	public int getSoLuong() {
-		return soLuong;
-	}
-	public void setSoLuong(int soLuong) {
-		this.soLuong = soLuong;
-	}
+		this.loai = loai;}
+	
 	@Override
 	public String toString() {
 		return "MonAnUong [monAnUong=" + maMonAnUong + ", tenMonAnUong=" + tenMonAnUong + ", giaTien=" + giaTien
-				+ ", loai=" + loai + ", soLuong=" + soLuong + "]";
+				+ ", loai=" + loai + ",]";
 	}
 	
 }

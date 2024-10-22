@@ -25,6 +25,10 @@ public class NhanVien {
 		this.chucVu = chucVu;
 		this.luongCB = luongCB;
 	}
+	public NhanVien(String maNV) {
+		super();
+		this.maNV = maNV;
+	}
 	public String getMaNV() {
 		return maNV;
 	}

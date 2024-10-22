@@ -44,10 +44,9 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 	private JPanel pnDanhSachBan;
 	private JButton btnTatCa;
 	private JButton btnBan;
-	private String luuMaBan;
 	private JButton btnThemMon;
 	public static String luuTenBan;
-
+	public String LUUMABAN;
 	public PanelNhaHangMenu1() {
 		setBackground(new Color(240, 240, 240));
 		setLayout(null);
@@ -259,6 +258,7 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 		                               ", Trạng thái: " + (ban.isTrangThai() ? "Đã đặt" : "Chưa đặt") +
 		                               ", Loại bàn: " + (ban.getLoaiBan() ? "VIP" : "Thường") +
 		                               ", Thời gian đặt: " + ban.getThoiGianDatBan());
+		            ThemMon.luuMaBan = ban.getMaBan();
 		     
 		        }
 		    });
@@ -310,14 +310,17 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 			    btnBan.addActionListener(new ActionListener() {
 			        @Override
 			        public void actionPerformed(ActionEvent e) {
-			           
-			            System.out.println("Đã chọn bàn: " + ban.getTenBan() + 
+			        	
+			            System.out.println("Đã chọn bàn:hihi " + ban.getTenBan() + 
 			                               ", Số chỗ ngồi: " + ban.getSoChoNgoi() + 
 			                               ", Trạng thái: " + (ban.isTrangThai() ? "Đã đặt" : "Chưa đặt") +
 			                               ", Loại bàn: " + (ban.getLoaiBan() ? "VIP" : "Thường") +
 			                               ", Thời gian đặt: " + ban.getThoiGianDatBan());
-			            luuMaBan = ban.getMaBan();
-			            luuTenBan = ban.getTenBan();
+			           ThemMon.luuMaBan = ban.getMaBan();
+			           System.out.println(ThemMon.luuMaBan);
+			         
+			           
+			        
 			     
 			        }
 			    });
@@ -347,7 +350,7 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 		}else if(e.getSource() == btnThemMon) {
 			
 		     new ThemMon().setVisible(true);
-		     
+		     ThemMon.loadThongTinMonAn(ThemMon.luuMaBan);
 
 		       
 			

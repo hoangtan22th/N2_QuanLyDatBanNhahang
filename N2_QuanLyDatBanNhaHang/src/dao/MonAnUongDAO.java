@@ -11,7 +11,7 @@ public class MonAnUongDAO {
 
     public List<MonAnUong> loadAllMonAnUong() {
         List<MonAnUong> monAnUongList = new ArrayList<>();
-        String sql = "SELECT maMonAnUong, tenMonAnUong, giaTien, loai, soLuong FROM MonAnUong";
+        String sql = "SELECT maMonAnUong, tenMonAnUong, giaTien, loai FROM MonAnUong";
 
        
         try (Connection connection = connectDB.getConnection();
@@ -23,9 +23,9 @@ public class MonAnUongDAO {
                 String tenMonAnUong = resultSet.getString("tenMonAnUong");
                 double giaTien = resultSet.getDouble("giaTien");
                 String loai = resultSet.getString("loai");
-                int soLuong = resultSet.getInt("soLuong");
+               
 
-                MonAnUong monAnUong = new MonAnUong(maMonAnUong, tenMonAnUong, giaTien, loai, soLuong);
+                MonAnUong monAnUong = new MonAnUong(maMonAnUong, tenMonAnUong, giaTien, loai);
                 monAnUongList.add(monAnUong);
             }
         } catch (SQLException e) {
@@ -37,7 +37,7 @@ public class MonAnUongDAO {
 
 
     public boolean addMonAnUong(MonAnUong monAnUong) {
-        String sql = "INSERT INTO MonAnUong (maMonAnUong, tenMonAnUong, giaTien, loai, soLuong) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO MonAnUong (maMonAnUong, tenMonAnUong, giaTien, loai) VALUES (?, ?, ?, ?)";
         
         try (Connection connection = connectDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -46,7 +46,7 @@ public class MonAnUongDAO {
             preparedStatement.setString(2, monAnUong.getTenMonAnUong());
             preparedStatement.setDouble(3, monAnUong.getGiaTien());
             preparedStatement.setString(4, "Chưa có");
-            preparedStatement.setInt(5, monAnUong.getSoLuong());
+      
             
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0; 
@@ -59,7 +59,7 @@ public class MonAnUongDAO {
 
  
     public boolean updateMonAnUong(MonAnUong monAnUong) {
-        String sql = "UPDATE MonAnUong SET tenMonAnUong = ?, giaTien = ?, loai = ?, soLuong = ? WHERE maMonAnUong = ?";
+        String sql = "UPDATE MonAnUong SET tenMonAnUong = ?, giaTien = ?, loai = ?, WHERE maMonAnUong = ?";
         
         try (Connection connection = connectDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -67,8 +67,8 @@ public class MonAnUongDAO {
             preparedStatement.setString(1, monAnUong.getTenMonAnUong());
             preparedStatement.setDouble(2, monAnUong.getGiaTien());
             preparedStatement.setString(3, "Chưa có");
-            preparedStatement.setInt(4, monAnUong.getSoLuong());
-            preparedStatement.setString(5, monAnUong.getMaMonAnUong());
+       
+            preparedStatement.setString(4, monAnUong.getMaMonAnUong());
             
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;

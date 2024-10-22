@@ -40,7 +40,6 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 	private JTextField txtMa;
 	private JTextField txtTen;
 	private JTextField txtGia;
-	private JTextField txtSoLuong;
 	private JTextField textField;
 	private JTable tbDsMonAn;
 	private JButton btnSua;
@@ -64,7 +63,7 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 				stt++,
 				monAn.getMaMonAnUong(),
 				monAn.getTenMonAnUong(), 
-				monAn.getSoLuong(), 
+			
 				monAn.getGiaTien(), 
 				monAn.getLoai(),
 			
@@ -129,53 +128,42 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 		txtGia.setColumns(10);
 		txtGia.setBounds(10, 175, 347, 35);
 		pnlTT.add(txtGia);
-
-		JLabel lblSoLuong = new JLabel("Số lượng");
-		lblSoLuong.setForeground(Color.BLACK);
-		lblSoLuong.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblSoLuong.setBounds(20, 220, 76, 18);
-		pnlTT.add(lblSoLuong);
-		
-		txtSoLuong = new JTextField();
-		txtSoLuong.setColumns(10);
-		txtSoLuong.setBounds(10, 245, 347, 35);
-		pnlTT.add(txtSoLuong);
 		
 		JLabel lblGhiChu = new JLabel("Ghi chú");
 		lblGhiChu.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblGhiChu.setBounds(20, 285, 114, 29);
+		lblGhiChu.setBounds(20, 221, 114, 29);
 		pnlTT.add(lblGhiChu);
 		
 		txtGhiChu = new JTextArea();
-		txtGhiChu.setBounds(10, 315, 347, 99);
+		txtGhiChu.setBounds(10, 261, 347, 99);
 		pnlTT.add(txtGhiChu);
 		
 	
 		btnThem = new JButton("Thêm");
 		btnThem.setForeground(Color.WHITE);
 		btnThem.setBackground(new Color(0, 191, 0));
-		btnThem.setBounds(10, 425, 76, 30);
+		btnThem.setBounds(10, 385, 76, 30);
 		btnThem.addActionListener(this);
 		pnlTT.add(btnThem);
 		
 		btnSua = new JButton("Sửa");
 		btnSua.setForeground(Color.WHITE);
 		btnSua.setBackground(new Color(255, 128, 64));
-		btnSua.setBounds(96, 425, 76, 30);
+		btnSua.setBounds(96, 385, 76, 30);
 		btnSua.addActionListener(this);
 		pnlTT.add(btnSua);
 		
 		btnXoa = new JButton("Xóa");
 		btnXoa.setForeground(Color.WHITE);
 		btnXoa.setBackground(Color.RED);
-		btnXoa.setBounds(182, 425, 76, 30);
+		btnXoa.setBounds(182, 385, 76, 30);
 		btnXoa.addActionListener(this);
 		pnlTT.add(btnXoa);
 		
 		btnLamMoi = new JButton("Làm mới");
 		btnLamMoi.setForeground(Color.WHITE);
 		btnLamMoi.setBackground(Color.BLUE);
-		btnLamMoi.setBounds(268, 425, 89, 30);
+		btnLamMoi.setBounds(268, 385, 89, 30);
 		btnLamMoi.addActionListener(this);
 		pnlTT.add(btnLamMoi);
 		
@@ -188,7 +176,7 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 		tbDsMonAn.setModel(new DefaultTableModel(
 			new Object[][] {},
 			new String[] {
-				"STT", "Mã món", "Tên món", "Số lượng", "Giá tiền", "Loại món", "Ghi chú"
+				"STT", "Mã món", "Tên món", "Giá tiền", "Loại món", "Ghi chú"
 			}
 		));
 		scrollPane.setViewportView(tbDsMonAn);
@@ -241,7 +229,7 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 	    
 	    newMonAn.setMaMonAnUong(txtMa.getText());
 	    newMonAn.setTenMonAnUong(txtTen.getText());
-	    newMonAn.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+	 
 	    newMonAn.setGiaTien(Double.parseDouble(txtGia.getText()));
 	 
 
@@ -255,7 +243,7 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 
 	    updatedMonAn.setMaMonAnUong(txtMa.getText());
 	    updatedMonAn.setTenMonAnUong(txtTen.getText());
-	    updatedMonAn.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+	    
 	    updatedMonAn.setGiaTien(Double.parseDouble(txtGia.getText()));
 	
 
@@ -274,7 +262,7 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 	    txtMa.setText("");
 	    txtTen.setText("");
 	    txtGia.setText("");
-	    txtSoLuong.setText("");
+	  
 	    txtGhiChu.setText("");
 	}
 
@@ -287,14 +275,14 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 	
 	            String maMonAn = tbDsMonAn.getValueAt(row, 1).toString(); 
 	            String tenMonAn = tbDsMonAn.getValueAt(row, 2).toString(); 
-	            String soLuong = tbDsMonAn.getValueAt(row, 3).toString(); 
-	            String giaTien = tbDsMonAn.getValueAt(row, 4).toString();
+	            
+	            String giaTien = tbDsMonAn.getValueAt(row, 3).toString();
 	            String loaiMon = "Chưa có";
 
 	        
 	            txtMa.setText(maMonAn);
 	            txtTen.setText(tenMonAn);
-	            txtSoLuong.setText(soLuong);
+	       
 	            txtGia.setText(giaTien);
 	            
 	        }

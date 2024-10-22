@@ -208,5 +208,24 @@ public class BanDAO {
 		}
 		return false;
 	}
+	
+	    public boolean capNhatTrangThaiBan(String maBan, boolean trangThai) {
+	        Connection conn = connectDB.getConnection();
+	        String sql = "UPDATE Ban SET trangThai = ? WHERE maBan = ?";
+	        
+	        try {
+	            PreparedStatement pstmt = conn.prepareStatement(sql);
+	            pstmt.setBoolean(1, trangThai);
+	            pstmt.setString(2, maBan);
+	            int rowsAffected = pstmt.executeUpdate();
+	            return rowsAffected > 0; // Trả về true nếu cập nhật thành công
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            return false;
+	        } finally {
+	            connectDB.closeConnection(conn);
+	        }
+	    }
+	
 
 }
