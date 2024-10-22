@@ -34,39 +34,35 @@ public class BanDAO {
 
 		return tenBans;
 	}
+
 	public List<Ban> getBansByKhu(String tenKhu) {
-	    List<Ban> bans = new ArrayList<>();
-	    String sql = "SELECT maBan, tenBan, thoiGianDatBan, soChoNgoi, trangThai, loaiBan " +
-	                 "FROM Ban WHERE maKhu IN (SELECT maKhu FROM KhuVucBan WHERE tenKhu = ?)";
+		List<Ban> bans = new ArrayList<>();
+		String sql = "SELECT maBan, tenBan, thoiGianDatBan, soChoNgoi, trangThai, loaiBan "
+				+ "FROM Ban WHERE maKhu IN (SELECT maKhu FROM KhuVucBan WHERE tenKhu = ?)";
 
-	    try (Connection con = connectDB.getConnection(); 
-	         PreparedStatement pst = con.prepareStatement(sql)) {
+		try (Connection con = connectDB.getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
 
-	        pst.setString(1, tenKhu);
-	        ResultSet rs = pst.executeQuery();
+			pst.setString(1, tenKhu);
+			ResultSet rs = pst.executeQuery();
 
-	        while (rs.next()) {
-	            String maBan = rs.getString("maBan");
-	            String tenBan = rs.getString("tenBan");
-	            Timestamp timestamp = rs.getTimestamp("thoiGianDatBan");
-	            
+			while (rs.next()) {
+				String maBan = rs.getString("maBan");
+				String tenBan = rs.getString("tenBan");
+				Timestamp timestamp = rs.getTimestamp("thoiGianDatBan");
 
-	            int soChoNgoi = rs.getInt("soChoNgoi");
-	            boolean trangThai = rs.getBoolean("trangThai");
-	            boolean loaiBan = rs.getBoolean("loaiBan");
+				int soChoNgoi = rs.getInt("soChoNgoi");
+				boolean trangThai = rs.getBoolean("trangThai");
+				boolean loaiBan = rs.getBoolean("loaiBan");
 
-	            
-	            Ban ban = new Ban(maBan, tenBan, null, soChoNgoi, trangThai, loaiBan, null);
-	            bans.add(ban);
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
+				Ban ban = new Ban(maBan, tenBan, null, soChoNgoi, trangThai, loaiBan, null);
+				bans.add(ban);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-	    return bans;
+		return bans;
 	}
-
-
 
 	public List<Ban> getAllBans() {
 		List<Ban> bans = new ArrayList<>();

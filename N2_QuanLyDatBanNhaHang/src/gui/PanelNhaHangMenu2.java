@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+<<<<<<< HEAD
 import dao.BanDAO;
 import dao.KhuVucBanDAO;
 import entity.Ban;
@@ -211,6 +212,12 @@ public class PanelNhaHangMenu2 extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 
+=======
+public class PanelNhaHangMenu2 extends JPanel {
+	public PanelNhaHangMenu2() {
+		JLabel label = new JLabel("Giao diện Nhà hàng thứ 2");
+		add(label);
+>>>>>>> 2b976fb9c1f3843cf2c0ca245cd5cd48d95efcf8
 
 	}
 }

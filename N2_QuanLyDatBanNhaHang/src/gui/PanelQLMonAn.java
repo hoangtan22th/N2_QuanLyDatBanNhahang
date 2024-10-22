@@ -34,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 
-public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener {
+public class PanelQLMonAn extends JPanel implements ActionListener, MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtMa;
@@ -49,16 +49,20 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 	private JTextArea txtGhiChu;
 	private JTextField txtTimKiem;
 
-
-	public void loadDataToTable(){
+	public void loadDataToTable() {
 		MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
 		List<MonAnUong> listMonAn = monAnUongDAO.loadAllMonAnUong();
-		
+
 		DefaultTableModel model = (DefaultTableModel) tbDsMonAn.getModel();
 		model.setRowCount(0);
 
 		int stt = 1;
 		for (MonAnUong monAn : listMonAn) {
+<<<<<<< HEAD
+			model.addRow(new Object[] { stt++, monAn.getMaMonAnUong(), monAn.getTenMonAnUong(), monAn.getSoLuong(),
+					monAn.getGiaTien(), monAn.getLoai(),
+
+=======
 			model.addRow(new Object[] {
 				stt++,
 				monAn.getMaMonAnUong(),
@@ -67,14 +71,14 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 				monAn.getGiaTien(), 
 				monAn.getLoai(),
 			
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 			});
 		}
 	}
 
-	public PanelQLMonAn(){
+	public PanelQLMonAn() {
 		setLayout(null);
-		
-	
+
 		Label lblTT = new Label("Thông tin");
 		lblTT.setBackground(new Color(65, 41, 224));
 		lblTT.setBounds(10, 10, 150, 40);
@@ -82,7 +86,7 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 		lblTT.setForeground(Color.WHITE);
 		lblTT.setFont(new Font("Arial", Font.BOLD, 17));
 		add(lblTT);
-		
+
 		JLabel lblDsMonAn = new JLabel("    Danh sách món ăn");
 		lblDsMonAn.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDsMonAn.setBackground(new Color(65, 41, 224));
@@ -91,119 +95,138 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 		lblDsMonAn.setBounds(387, 10, 1524, 40);
 		lblDsMonAn.setOpaque(true);
 		add(lblDsMonAn);
-		
+
 		JPanel pnlTT = new JPanel();
-		pnlTT.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
+		pnlTT.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "",
+				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(192, 192, 192)));
 		pnlTT.setBounds(10, 56, 367, 935);
 		add(pnlTT);
 		pnlTT.setLayout(null);
-		
 
 		JLabel lblMa = new JLabel("Mã món");
 		lblMa.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblMa.setBounds(20, 10, 89, 24);
 		pnlTT.add(lblMa);
-		
+
 		txtMa = new JTextField();
+		txtMa.setEditable(false);
 		txtMa.setBounds(10, 35, 347, 35);
 		pnlTT.add(txtMa);
 		txtMa.setColumns(10);
-		
+
 		JLabel lblTen = new JLabel("Tên món");
 		lblTen.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblTen.setBounds(20, 80, 89, 24);
 		pnlTT.add(lblTen);
-		
+
 		txtTen = new JTextField();
 		txtTen.setColumns(10);
 		txtTen.setBounds(10, 105, 347, 35);
 		pnlTT.add(txtTen);
-		
+
 		JLabel lblGia = new JLabel("Giá tiền");
 		lblGia.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblGia.setBounds(20, 149, 89, 24);
 		pnlTT.add(lblGia);
-		
+
 		txtGia = new JTextField();
 		txtGia.setColumns(10);
 		txtGia.setBounds(10, 175, 347, 35);
 		pnlTT.add(txtGia);
+<<<<<<< HEAD
+
+		JLabel lblSoLuong = new JLabel("Số lượng");
+		lblSoLuong.setForeground(Color.BLACK);
+		lblSoLuong.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblSoLuong.setBounds(20, 220, 76, 18);
+		pnlTT.add(lblSoLuong);
+
+		txtSoLuong = new JTextField();
+		txtSoLuong.setColumns(10);
+		txtSoLuong.setBounds(10, 245, 347, 35);
+		pnlTT.add(txtSoLuong);
+
+=======
 		
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		JLabel lblGhiChu = new JLabel("Ghi chú");
 		lblGhiChu.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblGhiChu.setBounds(20, 221, 114, 29);
 		pnlTT.add(lblGhiChu);
-		
+
 		txtGhiChu = new JTextArea();
 		txtGhiChu.setBounds(10, 261, 347, 99);
 		pnlTT.add(txtGhiChu);
-		
-	
+
 		btnThem = new JButton("Thêm");
 		btnThem.setForeground(Color.WHITE);
 		btnThem.setBackground(new Color(0, 191, 0));
 		btnThem.setBounds(10, 385, 76, 30);
 		btnThem.addActionListener(this);
 		pnlTT.add(btnThem);
-		
+
 		btnSua = new JButton("Sửa");
 		btnSua.setForeground(Color.WHITE);
 		btnSua.setBackground(new Color(255, 128, 64));
 		btnSua.setBounds(96, 385, 76, 30);
 		btnSua.addActionListener(this);
 		pnlTT.add(btnSua);
-		
+
 		btnXoa = new JButton("Xóa");
 		btnXoa.setForeground(Color.WHITE);
 		btnXoa.setBackground(Color.RED);
 		btnXoa.setBounds(182, 385, 76, 30);
 		btnXoa.addActionListener(this);
 		pnlTT.add(btnXoa);
-		
+
 		btnLamMoi = new JButton("Làm mới");
 		btnLamMoi.setForeground(Color.WHITE);
 		btnLamMoi.setBackground(Color.BLUE);
 		btnLamMoi.setBounds(268, 385, 89, 30);
 		btnLamMoi.addActionListener(this);
 		pnlTT.add(btnLamMoi);
-		
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(387, 191, 1524, 800);
 		add(scrollPane);
-		
+
 		tbDsMonAn = new JTable();
+<<<<<<< HEAD
+		tbDsMonAn.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] { "STT", "Mã món", "Tên món", "Số lượng", "Giá tiền", "Loại món", "Ghi chú" }));
+=======
 		tbDsMonAn.setModel(new DefaultTableModel(
 			new Object[][] {},
 			new String[] {
 				"STT", "Mã món", "Tên món", "Giá tiền", "Loại món", "Ghi chú"
 			}
 		));
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		scrollPane.setViewportView(tbDsMonAn);
 		tbDsMonAn.setRowHeight(30);
-		
-	
+
 		tbDsMonAn.addMouseListener(this);
-		
+
 		JLabel lblLoaiMon = new JLabel("Loại món");
 		lblLoaiMon.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblLoaiMon.setBounds(387, 61, 71, 40);
 		add(lblLoaiMon);
-		
+
 		JComboBox cbLoaiMon = new JComboBox();
 		cbLoaiMon.setBounds(468, 61, 150, 40);
 		add(cbLoaiMon);
-		
+
 		JLabel lblTimKiem = new JLabel("Nhập tên món cần tìm");
 		lblTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblTimKiem.setBounds(387, 124, 162, 38);
 		add(lblTimKiem);
-		
+
 		txtTimKiem = new JTextField();
 		txtTimKiem.setBounds(559, 124, 568, 40);
 		add(txtTimKiem);
 		txtTimKiem.setColumns(10);
-		
+
 		JButton btnTimKiem = new JButton("Tìm kiếm");
 		btnTimKiem.setBounds(1137, 124, 124, 40);
 		add(btnTimKiem);
@@ -212,18 +235,22 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	    if (e.getSource() == btnThem) {
-	        addMonAn();
-	    } else if (e.getSource() == btnSua) {
-	        updateMonAn();
-	    } else if (e.getSource() == btnXoa) {
-	        deleteMonAn();
-	    } else if (e.getSource() == btnLamMoi) {
-	        clearFields();
-	    }
+		if (e.getSource() == btnThem) {
+			addMonAn();
+		} else if (e.getSource() == btnSua) {
+			updateMonAn();
+		} else if (e.getSource() == btnXoa) {
+			deleteMonAn();
+		} else if (e.getSource() == btnLamMoi) {
+			clearFields();
+		}
 	}
 
 	private void addMonAn() {
+<<<<<<< HEAD
+		MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
+		MonAnUong newMonAn = new MonAnUong();
+=======
 	    MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
 	    MonAnUong newMonAn = new MonAnUong();
 	    
@@ -232,43 +259,83 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 	 
 	    newMonAn.setGiaTien(Double.parseDouble(txtGia.getText()));
 	 
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 
-	    monAnUongDAO.addMonAnUong(newMonAn);
-	    loadDataToTable(); 
+		newMonAn.setMaMonAnUong(txtMa.getText());
+		newMonAn.setTenMonAnUong(txtTen.getText());
+		newMonAn.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+		newMonAn.setGiaTien(Double.parseDouble(txtGia.getText()));
+
+		monAnUongDAO.addMonAnUong(newMonAn);
+		loadDataToTable();
 	}
 
 	private void updateMonAn() {
-	    MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
-	    MonAnUong updatedMonAn = new MonAnUong();
+		MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
+		MonAnUong updatedMonAn = new MonAnUong();
 
+<<<<<<< HEAD
+		updatedMonAn.setMaMonAnUong(txtMa.getText());
+		updatedMonAn.setTenMonAnUong(txtTen.getText());
+		updatedMonAn.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+		updatedMonAn.setGiaTien(Double.parseDouble(txtGia.getText()));
+=======
 	    updatedMonAn.setMaMonAnUong(txtMa.getText());
 	    updatedMonAn.setTenMonAnUong(txtTen.getText());
 	    
 	    updatedMonAn.setGiaTien(Double.parseDouble(txtGia.getText()));
 	
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 
-	    monAnUongDAO.updateMonAnUong(updatedMonAn);
-	    loadDataToTable(); 
+		monAnUongDAO.updateMonAnUong(updatedMonAn);
+		loadDataToTable();
 	}
 
 	private void deleteMonAn() {
-	    MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
-	    String maMonAn = txtMa.getText();
-	    monAnUongDAO.deleteMonAnUong(maMonAn);
-	    loadDataToTable(); 
+		MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
+		String maMonAn = txtMa.getText();
+		monAnUongDAO.deleteMonAnUong(maMonAn);
+		loadDataToTable();
 	}
 
 	private void clearFields() {
+<<<<<<< HEAD
+		txtMa.setText("");
+		txtTen.setText("");
+		txtGia.setText("");
+		txtSoLuong.setText("");
+		txtGhiChu.setText("");
+=======
 	    txtMa.setText("");
 	    txtTen.setText("");
 	    txtGia.setText("");
 	  
 	    txtGhiChu.setText("");
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// THIẾU LOẠI MÓN MAI CẬP NHẬT
+<<<<<<< HEAD
+		if (e.getClickCount() == 1) {
+			int row = tbDsMonAn.getSelectedRow();
+			if (row != -1) {
+
+				String maMonAn = tbDsMonAn.getValueAt(row, 1).toString();
+				String tenMonAn = tbDsMonAn.getValueAt(row, 2).toString();
+				String soLuong = tbDsMonAn.getValueAt(row, 3).toString();
+				String giaTien = tbDsMonAn.getValueAt(row, 4).toString();
+				String loaiMon = "Chưa có";
+
+				txtMa.setText(maMonAn);
+				txtTen.setText(tenMonAn);
+				txtSoLuong.setText(soLuong);
+				txtGia.setText(giaTien);
+
+			}
+		}
+=======
 	    if (e.getClickCount() == 1) { 
 	        int row = tbDsMonAn.getSelectedRow(); 
 	        if (row != -1) { 
@@ -287,30 +354,30 @@ public class PanelQLMonAn extends JPanel implements ActionListener,MouseListener
 	            
 	        }
 	    }
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 	}
-
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
