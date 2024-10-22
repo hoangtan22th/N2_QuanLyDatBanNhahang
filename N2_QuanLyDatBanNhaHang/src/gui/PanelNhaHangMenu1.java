@@ -55,14 +55,14 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 		JPanel panel = new JPanel();
 		panel.setBounds(81, 0, 161, 64);
 		panel.setBackground(new Color(240, 240, 240));
-		
+
 		add(panel);
 		panel.setLayout(null);
 
 		JLabel lblPhieu = new JLabel("Phiếu");
 		lblPhieu.setForeground(new Color(255, 255, 255));
 		lblPhieu.setBackground(new Color(226, 141, 14));
-		lblPhieu.setOpaque(true); 
+		lblPhieu.setOpaque(true);
 		lblPhieu.setBounds(10, 11, 141, 42);
 
 		panel.add(lblPhieu);
@@ -89,7 +89,6 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 		lblThoiGianDen.setBounds(643, 10, 153, 56);
 		panel_1.add(lblThoiGianDen);
 
-
 		lblKhachHang.setBorder(BorderFactory.createTitledBorder("Khách hàng"));
 		lblNhanVien.setBorder(BorderFactory.createTitledBorder("Nhân viên"));
 		lblSoLuongKhach.setBorder(BorderFactory.createTitledBorder("Số lượng khách"));
@@ -107,9 +106,8 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 
 		table = new JTable();
 
-		table.setRowHeight(30); 
+		table.setRowHeight(30);
 
-	
 		DefaultTableModel model = new DefaultTableModel(new Object[][] { { "abc", null, null }
 
 		}, new String[] { "Số Lượng", "Hàng Bán", "Tiền Hàng" });
@@ -224,44 +222,39 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 		btnGhepBan.addActionListener(this);
 		cbThuong.addActionListener(this);
 		btnThemMon.addActionListener(this);
-		
+
 		String firstKhuTen = cbThuong.getItemAt(0).toString();
 		BanDAO banDAO = new BanDAO();
 		List<Ban> listBan = banDAO.getBansByKhu(firstKhuTen);
 		Map<String, JButton> mapBan = new HashMap<>();
 		pnDanhSachBan.removeAll();
 		for (Ban ban : listBan) {
-		   
-			String buttonLabel = "<html><center>" + ban.getTenBan() + " - " + ban.getSoChoNgoi() + " chỗ</center></html>";
-		               
-		  
-		    ImageIcon originalIcon = new ImageIcon("img/iconBanAn.png");
-			Image image = originalIcon.getImage(); 
-			Image resizedImage = image.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH); 
+
+			String buttonLabel = "<html><center>" + ban.getTenBan() + " - " + ban.getSoChoNgoi()
+					+ " chỗ</center></html>";
+
+			ImageIcon originalIcon = new ImageIcon("img/iconBanAn.png");
+			Image image = originalIcon.getImage();
+			Image resizedImage = image.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
 			ImageIcon resizedIcon = new ImageIcon(resizedImage);
-		    JButton btnBan = new JButton(buttonLabel, resizedIcon);
-		    btnBan.setForeground(new Color(255, 255, 255));  
-		    btnBan.setBackground(new Color(0, 117, 225));    
+			JButton btnBan = new JButton(buttonLabel, resizedIcon);
+			btnBan.setForeground(new Color(255, 255, 255));
+			btnBan.setBackground(new Color(0, 117, 225));
 
-		    
-		    pnDanhSachBan.add(btnBan);
+			pnDanhSachBan.add(btnBan);
 
-		  
-		    mapBan.put(ban.getTenBan(), btnBan);
+			mapBan.put(ban.getTenBan(), btnBan);
 
-		
-		    btnBan.addActionListener(new ActionListener() {
-		        @Override
-		        public void actionPerformed(ActionEvent e) {
-		           
-		            System.out.println("Đã chọn bàn: " + ban.getTenBan() + 
-		                               ", Số chỗ ngồi: " + ban.getSoChoNgoi() + 
-		                               ", Trạng thái: " + (ban.isTrangThai() ? "Đã đặt" : "Chưa đặt") +
-		                               ", Loại bàn: " + (ban.getLoaiBan() ? "VIP" : "Thường") +
-		                               ", Thời gian đặt: " + ban.getThoiGianDatBan());
-		     
-		        }
-		    });
+			btnBan.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+					System.out.println("Đã chọn bàn: " + ban.getTenBan() + ", Số chỗ ngồi: " + ban.getSoChoNgoi()
+							+ ", Trạng thái: " + (ban.isTrangThai() ? "Đã đặt" : "Chưa đặt") + ", Loại bàn: "
+							+ (ban.getLoaiBan() ? "VIP" : "Thường") + ", Thời gian đặt: " + ban.getThoiGianDatBan());
+
+				}
+			});
 		}
 
 		pnDanhSachBan.revalidate();
@@ -270,7 +263,7 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 		btnTatCa.addActionListener(this);
 
 	}
-   
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -283,76 +276,67 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 			String selectedKhuTen = cbThuong.getSelectedItem().toString();
 
 			BanDAO banDAO = new BanDAO();
-			
+
 			List<Ban> listBan = banDAO.getBansByKhu(selectedKhuTen);
 			Map<String, JButton> mapBan = new HashMap<>();
 			pnDanhSachBan.removeAll();
 			for (Ban ban : listBan) {
-			   
-				String buttonLabel = "<html><center>" + ban.getTenBan() + " - " + ban.getSoChoNgoi() + " chỗ</center></html>";
-			               
-			  
-			    ImageIcon originalIcon = new ImageIcon("img/iconBanAn.png");
-				Image image = originalIcon.getImage(); 
-				Image resizedImage = image.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH); 
+
+				String buttonLabel = "<html><center>" + ban.getTenBan() + " - " + ban.getSoChoNgoi()
+						+ " chỗ</center></html>";
+
+				ImageIcon originalIcon = new ImageIcon("img/iconBanAn.png");
+				Image image = originalIcon.getImage();
+				Image resizedImage = image.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
 				ImageIcon resizedIcon = new ImageIcon(resizedImage);
-			    JButton btnBan = new JButton(buttonLabel, resizedIcon);
-			    btnBan.setForeground(new Color(255, 255, 255));  
-			    btnBan.setBackground(new Color(0, 117, 225));    
+				JButton btnBan = new JButton(buttonLabel, resizedIcon);
+				btnBan.setForeground(new Color(255, 255, 255));
+				btnBan.setBackground(new Color(0, 117, 225));
 
-			    
-			    pnDanhSachBan.add(btnBan);
+				pnDanhSachBan.add(btnBan);
 
-			  
-			    mapBan.put(ban.getTenBan(), btnBan);
+				mapBan.put(ban.getTenBan(), btnBan);
 
-			
-			    btnBan.addActionListener(new ActionListener() {
-			        @Override
-			        public void actionPerformed(ActionEvent e) {
-			           
-			            System.out.println("Đã chọn bàn: " + ban.getTenBan() + 
-			                               ", Số chỗ ngồi: " + ban.getSoChoNgoi() + 
-			                               ", Trạng thái: " + (ban.isTrangThai() ? "Đã đặt" : "Chưa đặt") +
-			                               ", Loại bàn: " + (ban.getLoaiBan() ? "VIP" : "Thường") +
-			                               ", Thời gian đặt: " + ban.getThoiGianDatBan());
-			            luuMaBan = ban.getMaBan();
-			            luuTenBan = ban.getTenBan();
-			     
-			        }
-			    });
-			    pnDanhSachBan.revalidate();
-		        pnDanhSachBan.repaint();
+				btnBan.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+
+						System.out.println("Đã chọn bàn: " + ban.getTenBan() + ", Số chỗ ngồi: " + ban.getSoChoNgoi()
+								+ ", Trạng thái: " + (ban.isTrangThai() ? "Đã đặt" : "Chưa đặt") + ", Loại bàn: "
+								+ (ban.getLoaiBan() ? "VIP" : "Thường") + ", Thời gian đặt: "
+								+ ban.getThoiGianDatBan());
+						luuMaBan = ban.getMaBan();
+						luuTenBan = ban.getTenBan();
+
+					}
+				});
+				pnDanhSachBan.revalidate();
+				pnDanhSachBan.repaint();
 			}
-		}else if (e.getSource() == btnTatCa) {
-		    BanDAO banDAO = new BanDAO();
-		    List<Ban> bans = banDAO.getAllBans(); 
+		} else if (e.getSource() == btnTatCa) {
+			BanDAO banDAO = new BanDAO();
+			List<Ban> bans = banDAO.getAllBans();
 
-		    pnDanhSachBan.removeAll(); 
-		    pnDanhSachBan.revalidate();
-		    pnDanhSachBan.repaint();
+			pnDanhSachBan.removeAll();
+			pnDanhSachBan.revalidate();
+			pnDanhSachBan.repaint();
 
-		    for (Ban ban : bans) {
-		        JButton button = new JButton(ban.getTenBan());
-		        button.setForeground(new Color(255, 255, 255));
-		        button.setBackground(new Color(0, 117, 225));
-		        
-		   
-		        button.setToolTipText("Mã bàn: " + ban.getMaBan());
-		        pnDanhSachBan.add(button); 
-		    }
+			for (Ban ban : bans) {
+				JButton button = new JButton(ban.getTenBan());
+				button.setForeground(new Color(255, 255, 255));
+				button.setBackground(new Color(0, 117, 225));
 
-		    pnDanhSachBan.revalidate();
-		    pnDanhSachBan.repaint();
-		}else if(e.getSource() == btnThemMon) {
-			
-		     new ThemMon().setVisible(true);
-		     
+				button.setToolTipText("Mã bàn: " + ban.getMaBan());
+				pnDanhSachBan.add(button);
+			}
 
-		       
-			
+			pnDanhSachBan.revalidate();
+			pnDanhSachBan.repaint();
+		} else if (e.getSource() == btnThemMon) {
+
+			new ThemMon().setVisible(true);
+
 		}
-
 
 	}
 }
