@@ -226,6 +226,24 @@ public class BanDAO {
 	            connectDB.closeConnection(conn);
 	        }
 	    }
-	
+	    public boolean isBanDaDat(String maBan) {
+	        boolean trangThai = false; // Mặc định là chưa đặt
+	        String sql = "SELECT trangThai FROM Ban WHERE maBan = ?";
+	        
+	        try (Connection conn = connectDB.getConnection();
+	             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	            
+	            pstmt.setString(1, maBan);
+	            ResultSet rs = pstmt.executeQuery();
+	            
+	            if (rs.next()) {
+	                trangThai = rs.getBoolean("trangThai");
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        return trangThai;
+	    }
 
 }

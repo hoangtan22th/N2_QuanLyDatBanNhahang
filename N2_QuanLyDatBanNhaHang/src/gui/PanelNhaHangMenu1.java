@@ -240,7 +240,12 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 			ImageIcon resizedIcon = new ImageIcon(resizedImage);
 		    JButton btnBan = new JButton(buttonLabel, resizedIcon);
 		    btnBan.setForeground(new Color(255, 255, 255));  
-		    btnBan.setBackground(new Color(0, 117, 225));    
+		    if (ban.isTrangThai()) {
+		        btnBan.setBackground(new Color(255, 165, 0)); // Màu cam
+		    } else {
+		        btnBan.setBackground(new Color(0, 117, 225)); // Màu xanh
+		    }   
+   
 
 		    
 		    pnDanhSachBan.add(btnBan);
@@ -298,7 +303,11 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 				ImageIcon resizedIcon = new ImageIcon(resizedImage);
 			    JButton btnBan = new JButton(buttonLabel, resizedIcon);
 			    btnBan.setForeground(new Color(255, 255, 255));  
-			    btnBan.setBackground(new Color(0, 117, 225));    
+			    if (ban.isTrangThai()) {
+			        btnBan.setBackground(new Color(255, 165, 0)); // Màu cam
+			    } else {
+			        btnBan.setBackground(new Color(0, 117, 225)); // Màu xanh
+			    }   
 
 			    
 			    pnDanhSachBan.add(btnBan);
@@ -347,14 +356,22 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 
 		    pnDanhSachBan.revalidate();
 		    pnDanhSachBan.repaint();
-		}else if(e.getSource() == btnThemMon) {
-			
-		     new ThemMon().setVisible(true);
-		     ThemMon.loadThongTinMonAn(ThemMon.luuMaBan);
-
-		       
-			
+		}else if (e.getSource() == btnThemMon) {
+		    BanDAO banDAO = new BanDAO();
+		    
+		    // Kiểm tra trạng thái của bàn
+		    if (banDAO.isBanDaDat(ThemMon.luuMaBan)) {
+		        // Nếu bàn đã đặt, mở thêm món vào phiếu đặt cũ
+		        String maPhieuDatCu = "";// Lấy mã phiếu đặt cũ từ cơ sở dữ liệu
+		        new ThemMon().setVisible(true);
+		        
+		    } else {
+		        // Nếu bàn chưa đặt, mở thêm món vào phiếu đặt mới
+		        new ThemMon().setVisible(true);
+		        ThemMon.loadThongTinMonAn(ThemMon.luuMaBan);
+		    }
 		}
+
 
 
 	}

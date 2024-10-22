@@ -1,5 +1,6 @@
 package dao;
 
+import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,7 +49,7 @@ public class PhieuDatBanDAO {
 	        ps.setString(1, phieuDat.getMaPhieuDat());
 	        ps.setString(2, phieuDat.getTenKhachDat());
 	        ps.setInt(3, phieuDat.getSoLuongKhach());
-	        ps.setDate(4, java.sql.Date.valueOf(phieuDat.getNgayDat()));
+	        ps.setTimestamp(4, java.sql.Timestamp.valueOf(phieuDat.getNgayDat()));
 	        ps.setString(5, phieuDat.getGhiChu());
 	        ps.setString(6, phieuDat.getNhanVien().getMaNV() );
 

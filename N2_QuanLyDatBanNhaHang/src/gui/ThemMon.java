@@ -41,6 +41,7 @@ import entity.PhieuDatBan;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Properties;
 import java.awt.event.ActionEvent;
@@ -424,7 +425,7 @@ public class ThemMon extends JFrame implements ActionListener{
 		    String maPhieuDatMoi = phieuDatBanDAO.phatSinhMaPhieuDatMoi();
 		    
 	
-		    PhieuDatBan phieuDatMoi = new PhieuDatBan(maPhieuDatMoi, tenKhachDat, soLuongKhach, LocalDate.now(), ghiChu, new NhanVien(maNhanVien));
+		    PhieuDatBan phieuDatMoi = new PhieuDatBan(maPhieuDatMoi, tenKhachDat, soLuongKhach, LocalDateTime.now(), ghiChu, new NhanVien(maNhanVien));
 		    phieuDatBanDAO.themPhieuDat(phieuDatMoi);
 		    DefaultTableModel modelMonAnTrenBan = (DefaultTableModel) tbMonAnTrenBan.getModel();
 	
