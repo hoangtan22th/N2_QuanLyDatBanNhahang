@@ -262,6 +262,24 @@ public class BanDAO {
 	        
 	        return trangThai;
 	    }
+	    public void huyDatBan(String maBan) {
+	        String updateBanSql = "UPDATE Ban SET trangThai = 0 WHERE maBan = ?"; // 0 tương ứng với trạng thái chưa đặt
+	        try (Connection conn = connectDB.getConnection();
+	             PreparedStatement ps = conn.prepareStatement(updateBanSql)) {
+	            ps.setString(1, maBan);
+	            int rowsUpdated = ps.executeUpdate();
+	            
+	            if (rowsUpdated > 0) {
+	                System.out.println("Cập nhật trạng thái bàn thành công.");
+	            } else {
+	                System.out.println("Không tìm thấy bàn để cập nhật.");
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            // Xử lý lỗi nếu có
+	        }
+	    }
+
 
 	    public void chuyenBan(String tuBan, String denBan) throws SQLException {
 	        String checkTuBanSql = "SELECT maBan FROM ChiTietPhieuDat WHERE maBan = ?";

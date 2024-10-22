@@ -13,7 +13,13 @@ public class ChiTietPhieuDat {
 		this.phieuDatBan = phieuDatBan;
 		this.ban = ban;
 	}
+<<<<<<< HEAD
+	public ChiTietPhieuDat() {
+		
+	}
+=======
 
+>>>>>>> 2b976fb9c1f3843cf2c0ca245cd5cd48d95efcf8
 	public int getSoLuong() {
 		return soLuong;
 	}
