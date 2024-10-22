@@ -14,9 +14,9 @@ public class connectDB {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-			String url = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyDatBanNhaHang;encrypt=false;";
-			String user = "dat";
-			String password = "12345678";
+			String url = "jdbc:sqlserver://localhost:1433;databaseName=model;encrypt=false;";
+			String user = "sa";
+			String password = "sapassword";
 
 			c = DriverManager.getConnection(url, user, password);
 //            System.out.println("Kết nối thành công.");
