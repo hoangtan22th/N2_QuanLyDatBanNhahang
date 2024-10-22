@@ -10,12 +10,8 @@ public class PhieuDatBan {
 	private LocalDateTime ngayDat;
 	private String ghiChu;
 	private NhanVien nhanVien;
-<<<<<<< HEAD
-
-	public PhieuDatBan(String maPhieuDat, String tenKhachDat, int soLuongKhach, LocalDate ngayDat, String ghiChu,
-=======
 	public PhieuDatBan(String maPhieuDat, String tenKhachDat, int soLuongKhach, LocalDateTime ngayDat, String ghiChu,
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
+
 			NhanVien nhanVien) {
 		super();
 		this.maPhieuDat = maPhieuDat;
@@ -49,19 +45,10 @@ public class PhieuDatBan {
 	public void setSoLuongKhach(int soLuongKhach) {
 		this.soLuongKhach = soLuongKhach;
 	}
-<<<<<<< HEAD
-
-	public LocalDate getNgayDat() {
-		return ngayDat;
-	}
-
-	public void setNgayDat(LocalDate ngayDat) {
-=======
 	public LocalDateTime getNgayDat() {
 		return ngayDat;
 	}
 	public void setNgayDat(LocalDateTime ngayDat) {
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		this.ngayDat = ngayDat;
 	}
 

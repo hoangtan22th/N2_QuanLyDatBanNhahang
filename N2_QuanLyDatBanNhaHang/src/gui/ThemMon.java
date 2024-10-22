@@ -60,13 +60,9 @@ public class ThemMon extends JFrame implements ActionListener{
 	private int STT = 1;
 	private JDatePickerImpl datePicker;
 	private Container pnlTT;
-<<<<<<< HEAD
-
-=======
 	private JButton btnXacNhan;
 	private JTextArea txtGhiChu;
 	public static String luuMaBan;
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 	/**
 	 * Launch the application.
 	 */
@@ -107,13 +103,8 @@ public class ThemMon extends JFrame implements ActionListener{
 		lblBanDat.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 
 		lblMaBan = new JLabel();
-<<<<<<< HEAD
-		lblMaBan.setBounds(224, 11, 45, 25);
-
-=======
 		lblMaBan.setBounds(167, 11, 235, 25);
 		
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		lblMaBan.setForeground(new Color(255, 0, 51));
 		lblMaBan.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 
@@ -143,17 +134,10 @@ public class ThemMon extends JFrame implements ActionListener{
 		jLabel8_1.setText("Số khách");
 		jLabel8_1.setForeground(new Color(0, 51, 255));
 		jLabel8_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-<<<<<<< HEAD
-
-		textField_3 = new JTextField();
-		textField_3.setBounds(244, 184, 193, 33);
-
-=======
 		
 		txtSoKhach = new JTextField();
 		txtSoKhach.setBounds(244, 184, 193, 33);
 		
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		JLabel jLabel11_1 = new JLabel();
 		jLabel11_1.setBounds(10, 228, 46, 17);
 		jLabel11_1.setText("Ghi chú");
@@ -165,40 +149,21 @@ public class ThemMon extends JFrame implements ActionListener{
 		jLabel19_1.setText("Tên nhân viên:");
 		jLabel19_1.setForeground(Color.MAGENTA);
 		jLabel19_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-<<<<<<< HEAD
-
-		JLabel lblNewLabel_3 = new JLabel("Nhân viên A");
-		lblNewLabel_3.setBounds(164, 323, 73, 17);
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-
-=======
 		
 		JLabel lblTenNV = new JLabel("Nhân viên A");
 		lblTenNV.setBounds(164, 323, 73, 17);
 		lblTenNV.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		JLabel lblNewLabel_2 = new JLabel("Số điện thoại:");
 		lblNewLabel_2.setBounds(10, 359, 116, 22);
 		lblNewLabel_2.setForeground(Color.MAGENTA);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-<<<<<<< HEAD
-
-		JLabel jLabel17_1 = new JLabel();
-		jLabel17_1.setBounds(164, 363, 80, 17);
-		jLabel17_1.setText("0891234567");
-		jLabel17_1.setForeground(Color.BLACK);
-		jLabel17_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-
-=======
-		
 		JLabel lblSdt = new JLabel();
 		lblSdt.setBounds(164, 363, 80, 17);
 		lblSdt.setText("0891234567");
 		lblSdt.setForeground(Color.BLACK);
 		lblSdt.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		JLabel jLabel9_1 = new JLabel();
 		jLabel9_1.setBounds(100, 660, 78, 25);
 		jLabel9_1.setText("4,150,000");
@@ -240,12 +205,6 @@ public class ThemMon extends JFrame implements ActionListener{
 		datePicker.getJFormattedTextField().setPreferredSize(new Dimension(100, 35));
 		datePicker.getJFormattedTextField().setFont(new Font("Arial", Font.PLAIN, 15));
 		tbMonAnTrenBan = new JTable();
-<<<<<<< HEAD
-		tbMonAnTrenBan.setRowHeight(30);
-		tbMonAnTrenBan.setModel(new DefaultTableModel(new Object[][] {
-
-		}, new String[] { "STT", "Mã món", "Tên món", "Số lượng", "Giá tiền", "Loại" }));
-=======
 		tbMonAnTrenBan.setRowHeight(30); 
 		tbMonAnTrenBan.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -255,7 +214,6 @@ public class ThemMon extends JFrame implements ActionListener{
 					"STT", "Mã món","Tên món","Giá tiền","Loại","Số lượng món"
 			}
 		));
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		tbMonAnTrenBan.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		scrollPane.setViewportView(tbMonAnTrenBan);
 		panel.setLayout(null);
@@ -276,19 +234,11 @@ public class ThemMon extends JFrame implements ActionListener{
 		panel.add(lblTenNV);
 		panel.add(scrollPane);
 		panel.add(lblMaPhieu);
-<<<<<<< HEAD
-
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 256, 427, 52);
-		panel.add(textArea);
-
-=======
 		
 		txtGhiChu = new JTextArea();
 		txtGhiChu.setBounds(10, 256, 427, 52);
 		panel.add(txtGhiChu);
 		
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(482, 11, 800, 706);
 		contentPane.add(panel_1);
@@ -354,11 +304,6 @@ public class ThemMon extends JFrame implements ActionListener{
 		tbMonAn = new JTable();
 		tbMonAn.setRowHeight(30);
 		tbMonAn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-<<<<<<< HEAD
-		tbMonAn.setModel(new DefaultTableModel(new Object[][] {
-
-		}, new String[] { "STT", "Mã món", "Tên món", "Số lượng", "Giá tiền", "Loại" }));
-=======
 		tbMonAn.setModel(new DefaultTableModel(
 			new Object[][] {
 			
@@ -368,45 +313,16 @@ public class ThemMon extends JFrame implements ActionListener{
 				"STT", "Mã món","Tên món","Giá tiền","Loại"
 			}
 		));
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		scrollPane_1.setViewportView(tbMonAn);
 		loadDataToTable();
 
 		tbMonAn.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-<<<<<<< HEAD
-
-		JButton btnXacNhan = new JButton("Xác nhận");
-=======
 		
 		btnXacNhan = new JButton("Xác nhận");
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		btnXacNhan.setBackground(Color.ORANGE);
 		btnXacNhan.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnXacNhan.setBounds(672, 654, 118, 41);
 		panel_1.add(btnXacNhan);
-<<<<<<< HEAD
-
-		btnThemMon.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int selectedRow = tbMonAn.getSelectedRow();
-				if (selectedRow != -1) {
-					DefaultTableModel modelMonAn = (DefaultTableModel) tbMonAn.getModel();
-
-					String maMonAnUong = (String) modelMonAn.getValueAt(selectedRow, 1);
-					String tenMonAnUong = (String) modelMonAn.getValueAt(selectedRow, 2);
-					int soLuong = (int) modelMonAn.getValueAt(selectedRow, 3);
-					double giaTien = (double) modelMonAn.getValueAt(selectedRow, 4);
-					String loai = (String) modelMonAn.getValueAt(selectedRow, 5);
-
-					DefaultTableModel modelMonAnTrenBan = (DefaultTableModel) tbMonAnTrenBan.getModel();
-					modelMonAnTrenBan.addRow(new Object[] { STT++, maMonAnUong, tenMonAnUong, soLuong, giaTien, loai });
-				} else {
-					JOptionPane.showMessageDialog(null, "Vui lòng chọn một món ăn để thêm.");
-				}
-			}
-		});
-=======
 		
 		btnThemMon.addActionListener(this);
 		btnXacNhan.addActionListener(this);
@@ -417,7 +333,6 @@ public class ThemMon extends JFrame implements ActionListener{
 //		    }
 //		});
 
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 
 	}
 
@@ -430,18 +345,6 @@ public class ThemMon extends JFrame implements ActionListener{
 
 		int stt = 1;
 		for (MonAnUong monAn : listMonAn) {
-<<<<<<< HEAD
-			model.addRow(new Object[] { stt++, monAn.getMaMonAnUong(), monAn.getTenMonAnUong(), monAn.getSoLuong(),
-					monAn.getGiaTien(), monAn.getLoai(),
-
-			});
-		}
-	}
-
-	public void loadThongTinMonAn() {
-//		lblMaBan.setText(PanelNhaHangMenu1.luuTenBan);
-		lblMaBan.setText("HIHI");
-=======
 			model.addRow(new Object[] {
 				stt++,
 				monAn.getMaMonAnUong(),
@@ -551,7 +454,5 @@ public class ThemMon extends JFrame implements ActionListener{
 		}
 
 		
-		
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 	}
 }

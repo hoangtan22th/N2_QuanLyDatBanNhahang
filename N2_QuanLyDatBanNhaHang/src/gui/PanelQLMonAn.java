@@ -40,7 +40,7 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 	private JTextField txtMa;
 	private JTextField txtTen;
 	private JTextField txtGia;
-	private JTextField textField;
+	private JTextField textField,txtSoLuong;
 	private JTable tbDsMonAn;
 	private JButton btnSua;
 	private JButton btnThem;
@@ -58,11 +58,6 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 
 		int stt = 1;
 		for (MonAnUong monAn : listMonAn) {
-<<<<<<< HEAD
-			model.addRow(new Object[] { stt++, monAn.getMaMonAnUong(), monAn.getTenMonAnUong(), monAn.getSoLuong(),
-					monAn.getGiaTien(), monAn.getLoai(),
-
-=======
 			model.addRow(new Object[] {
 				stt++,
 				monAn.getMaMonAnUong(),
@@ -71,7 +66,6 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 				monAn.getGiaTien(), 
 				monAn.getLoai(),
 			
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 			});
 		}
 	}
@@ -134,22 +128,6 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 		txtGia.setColumns(10);
 		txtGia.setBounds(10, 175, 347, 35);
 		pnlTT.add(txtGia);
-<<<<<<< HEAD
-
-		JLabel lblSoLuong = new JLabel("Số lượng");
-		lblSoLuong.setForeground(Color.BLACK);
-		lblSoLuong.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblSoLuong.setBounds(20, 220, 76, 18);
-		pnlTT.add(lblSoLuong);
-
-		txtSoLuong = new JTextField();
-		txtSoLuong.setColumns(10);
-		txtSoLuong.setBounds(10, 245, 347, 35);
-		pnlTT.add(txtSoLuong);
-
-=======
-		
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		JLabel lblGhiChu = new JLabel("Ghi chú");
 		lblGhiChu.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblGhiChu.setBounds(20, 221, 114, 29);
@@ -192,17 +170,12 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 		add(scrollPane);
 
 		tbDsMonAn = new JTable();
-<<<<<<< HEAD
-		tbDsMonAn.setModel(new DefaultTableModel(new Object[][] {},
-				new String[] { "STT", "Mã món", "Tên món", "Số lượng", "Giá tiền", "Loại món", "Ghi chú" }));
-=======
 		tbDsMonAn.setModel(new DefaultTableModel(
 			new Object[][] {},
 			new String[] {
 				"STT", "Mã món", "Tên món", "Giá tiền", "Loại món", "Ghi chú"
 			}
 		));
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		scrollPane.setViewportView(tbDsMonAn);
 		tbDsMonAn.setRowHeight(30);
 
@@ -247,10 +220,6 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 	}
 
 	private void addMonAn() {
-<<<<<<< HEAD
-		MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
-		MonAnUong newMonAn = new MonAnUong();
-=======
 	    MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
 	    MonAnUong newMonAn = new MonAnUong();
 	    
@@ -259,7 +228,6 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 	 
 	    newMonAn.setGiaTien(Double.parseDouble(txtGia.getText()));
 	 
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 
 		newMonAn.setMaMonAnUong(txtMa.getText());
 		newMonAn.setTenMonAnUong(txtTen.getText());
@@ -274,18 +242,11 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 		MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
 		MonAnUong updatedMonAn = new MonAnUong();
 
-<<<<<<< HEAD
-		updatedMonAn.setMaMonAnUong(txtMa.getText());
-		updatedMonAn.setTenMonAnUong(txtTen.getText());
-		updatedMonAn.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
-		updatedMonAn.setGiaTien(Double.parseDouble(txtGia.getText()));
-=======
 	    updatedMonAn.setMaMonAnUong(txtMa.getText());
 	    updatedMonAn.setTenMonAnUong(txtTen.getText());
 	    
 	    updatedMonAn.setGiaTien(Double.parseDouble(txtGia.getText()));
 	
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 
 		monAnUongDAO.updateMonAnUong(updatedMonAn);
 		loadDataToTable();
@@ -299,43 +260,16 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 	}
 
 	private void clearFields() {
-<<<<<<< HEAD
-		txtMa.setText("");
-		txtTen.setText("");
-		txtGia.setText("");
-		txtSoLuong.setText("");
-		txtGhiChu.setText("");
-=======
 	    txtMa.setText("");
 	    txtTen.setText("");
 	    txtGia.setText("");
 	  
 	    txtGhiChu.setText("");
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// THIẾU LOẠI MÓN MAI CẬP NHẬT
-<<<<<<< HEAD
-		if (e.getClickCount() == 1) {
-			int row = tbDsMonAn.getSelectedRow();
-			if (row != -1) {
-
-				String maMonAn = tbDsMonAn.getValueAt(row, 1).toString();
-				String tenMonAn = tbDsMonAn.getValueAt(row, 2).toString();
-				String soLuong = tbDsMonAn.getValueAt(row, 3).toString();
-				String giaTien = tbDsMonAn.getValueAt(row, 4).toString();
-				String loaiMon = "Chưa có";
-
-				txtMa.setText(maMonAn);
-				txtTen.setText(tenMonAn);
-				txtSoLuong.setText(soLuong);
-				txtGia.setText(giaTien);
-
-			}
-		}
-=======
 	    if (e.getClickCount() == 1) { 
 	        int row = tbDsMonAn.getSelectedRow(); 
 	        if (row != -1) { 
@@ -354,7 +288,6 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 	            
 	        }
 	    }
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 	}
 
 	@Override

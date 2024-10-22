@@ -236,26 +236,17 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 			Image image = originalIcon.getImage();
 			Image resizedImage = image.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
 			ImageIcon resizedIcon = new ImageIcon(resizedImage);
-<<<<<<< HEAD
+
 			JButton btnBan = new JButton(buttonLabel, resizedIcon);
 			btnBan.setForeground(new Color(255, 255, 255));
 			btnBan.setBackground(new Color(0, 117, 225));
-=======
-		    JButton btnBan = new JButton(buttonLabel, resizedIcon);
-		    btnBan.setForeground(new Color(255, 255, 255));  
-		    if (ban.isTrangThai()) {
-		        btnBan.setBackground(new Color(255, 165, 0)); // Màu cam
-		    } else {
-		        btnBan.setBackground(new Color(0, 117, 225)); // Màu xanh
-		    }   
-   
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
+
 
 			pnDanhSachBan.add(btnBan);
 
 			mapBan.put(ban.getTenBan(), btnBan);
 
-<<<<<<< HEAD
+
 			btnBan.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -266,22 +257,7 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 
 				}
 			});
-=======
-		
-		    btnBan.addActionListener(new ActionListener() {
-		        @Override
-		        public void actionPerformed(ActionEvent e) {
-		           
-		            System.out.println("Đã chọn bàn: " + ban.getTenBan() + 
-		                               ", Số chỗ ngồi: " + ban.getSoChoNgoi() + 
-		                               ", Trạng thái: " + (ban.isTrangThai() ? "Đã đặt" : "Chưa đặt") +
-		                               ", Loại bàn: " + (ban.getLoaiBan() ? "VIP" : "Thường") +
-		                               ", Thời gian đặt: " + ban.getThoiGianDatBan());
-		            ThemMon.luuMaBan = ban.getMaBan();
-		     
-		        }
-		    });
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
+
 		}
 
 		pnDanhSachBan.revalidate();
@@ -316,41 +292,17 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 				Image image = originalIcon.getImage();
 				Image resizedImage = image.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
 				ImageIcon resizedIcon = new ImageIcon(resizedImage);
-<<<<<<< HEAD
+
 				JButton btnBan = new JButton(buttonLabel, resizedIcon);
 				btnBan.setForeground(new Color(255, 255, 255));
 				btnBan.setBackground(new Color(0, 117, 225));
-=======
-			    JButton btnBan = new JButton(buttonLabel, resizedIcon);
-			    btnBan.setForeground(new Color(255, 255, 255));  
-			    if (ban.isTrangThai()) {
-			        btnBan.setBackground(new Color(255, 165, 0)); // Màu cam
-			    } else {
-			        btnBan.setBackground(new Color(0, 117, 225)); // Màu xanh
-			    }   
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
+
 
 				pnDanhSachBan.add(btnBan);
 
 				mapBan.put(ban.getTenBan(), btnBan);
 
-<<<<<<< HEAD
-				btnBan.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
 
-						System.out.println("Đã chọn bàn: " + ban.getTenBan() + ", Số chỗ ngồi: " + ban.getSoChoNgoi()
-								+ ", Trạng thái: " + (ban.isTrangThai() ? "Đã đặt" : "Chưa đặt") + ", Loại bàn: "
-								+ (ban.getLoaiBan() ? "VIP" : "Thường") + ", Thời gian đặt: "
-								+ ban.getThoiGianDatBan());
-						luuMaBan = ban.getMaBan();
-						luuTenBan = ban.getTenBan();
-
-					}
-				});
-				pnDanhSachBan.revalidate();
-				pnDanhSachBan.repaint();
-=======
 			
 			    btnBan.addActionListener(new ActionListener() {
 			        @Override
@@ -371,7 +323,6 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 			    });
 			    pnDanhSachBan.revalidate();
 		        pnDanhSachBan.repaint();
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 			}
 		} else if (e.getSource() == btnTatCa) {
 			BanDAO banDAO = new BanDAO();
@@ -386,7 +337,6 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 				button.setForeground(new Color(255, 255, 255));
 				button.setBackground(new Color(0, 117, 225));
 
-<<<<<<< HEAD
 				button.setToolTipText("Mã bàn: " + ban.getMaBan());
 				pnDanhSachBan.add(button);
 			}
@@ -397,11 +347,7 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 
 			new ThemMon().setVisible(true);
 
-		}
-
-=======
-		    pnDanhSachBan.revalidate();
-		    pnDanhSachBan.repaint();
+		
 		}else if (e.getSource() == btnThemMon) {
 		    BanDAO banDAO = new BanDAO();
 		    
@@ -418,8 +364,5 @@ public class PanelNhaHangMenu1 extends JPanel implements ActionListener {
 		    }
 		}
 
-
-
->>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 	}
 }

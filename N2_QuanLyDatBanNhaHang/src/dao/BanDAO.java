@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import connectDB.connectDB;
 import entity.Ban;
 import entity.KhuVucBan;
@@ -33,6 +35,25 @@ public class BanDAO {
 		}
 
 		return tenBans;
+	}
+	public List<String> getMaBanTheoTen(String tenBan) {
+	    List<String> maBans = new ArrayList<>();
+	    String sql = "SELECT maBan FROM Ban WHERE tenBan LIKE ?";
+
+	    try (Connection con = connectDB.getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
+	        pst.setString(1, "%" + tenBan + "%"); 
+
+	        try (ResultSet rs = pst.executeQuery()) {
+	            while (rs.next()) {
+	                String maBan = rs.getString("maBan");
+	                maBans.add(maBan);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return maBans;
 	}
 
 	public List<Ban> getBansByKhu(String tenKhu) {
@@ -242,4 +263,50 @@ public class BanDAO {
 	        return trangThai;
 	    }
 
+	    public void chuyenBan(String tuBan, String denBan) throws SQLException {
+	        String checkTuBanSql = "SELECT maBan FROM ChiTietPhieuDat WHERE maBan = ?";
+	        String checkBanSql = "SELECT maBan FROM Ban WHERE maBan = ?";
+	        String checkDenBanSql = "SELECT maBan FROM ChiTietPhieuDat WHERE maBan = ?";
+	        String updateSql = "UPDATE ChiTietPhieuDat SET maBan = ? WHERE maBan = ?";
+
+	        try (Connection con = connectDB.getConnection();
+	             PreparedStatement checkTuBanPs = con.prepareStatement(checkTuBanSql);
+	             PreparedStatement checkBanPs = con.prepareStatement(checkBanSql);
+	             PreparedStatement checkDenBanPs = con.prepareStatement(checkDenBanSql);
+	             PreparedStatement updatePs = con.prepareStatement(updateSql)) {
+	            
+	            con.setAutoCommit(false);
+
+	            checkTuBanPs.setString(1, tuBan);
+	            ResultSet rsTuBan = checkTuBanPs.executeQuery();
+	            boolean tuBanInChiTietPhieuDat = rsTuBan.next();
+	            checkBanPs.setString(1, tuBan);
+	            ResultSet rsBan = checkBanPs.executeQuery();
+	            boolean tuBanInBan = rsBan.next();
+	            if (!tuBanInChiTietPhieuDat || !tuBanInBan) {
+	                JOptionPane.showMessageDialog(null, "Bàn cũ không có trong ChiTietPhieuDat hoặc bảng Ban, không thể chuyển.");
+	                return;
+	            }
+	            checkDenBanPs.setString(1, denBan);
+	            ResultSet rsDenBan = checkDenBanPs.executeQuery();
+	            if (rsDenBan.next()) {
+	                JOptionPane.showMessageDialog(null, "Bàn mới đã có trong ChiTietPhieuDat, không thể chuyển tới.");
+	                return;
+	            }
+	            updatePs.setString(1, denBan);
+	            updatePs.setString(2, tuBan);
+	            int rowsAffected = updatePs.executeUpdate();
+
+	            if (rowsAffected > 0) {
+	                con.commit(); 
+	                JOptionPane.showMessageDialog(null, "Chuyển bàn thành công từ bàn " + tuBan + " sang bàn " + denBan);
+	            } else {
+	                JOptionPane.showMessageDialog(null, "Chuyển bàn thất bại.");
+	            }
+
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	            throw ex;
+	        }
+	    }
 }

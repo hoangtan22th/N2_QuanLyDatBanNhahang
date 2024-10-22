@@ -14,6 +14,7 @@ import entity.KhuVucBan;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -32,6 +33,7 @@ public class ChuyenBan extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JButton btnDongY;
 	private JComboBox<String> cbTuKhu,cbTuKhu_1,cbTuKhu_2,cbTuKhu_3;
 
 	public ChuyenBan() {
@@ -122,10 +124,8 @@ public class ChuyenBan extends JFrame implements ActionListener {
 		        String selecTenKhu = cbTuKhu.getSelectedItem().toString();
 		        BanDAO banDAO = new BanDAO();
 
-		        // Xóa tất cả các mục trong cbTuKhu_2 trước khi thêm mới
 		        cbTuKhu_2.removeAllItems();
 
-		        // Thêm các tên bàn tương ứng với khu vực được chọn vào cbTuKhu_2
 		        List<String> listBan = banDAO.getTenBansByKhu(selecTenKhu);
 		        for (String ban : listBan) {
 		            cbTuKhu_2.addItem(ban);
@@ -145,11 +145,8 @@ public class ChuyenBan extends JFrame implements ActionListener {
 		    public void actionPerformed(ActionEvent e) {
 		        String selecTenKhu = cbTuKhu_1.getSelectedItem().toString();
 		        BanDAO banDAO = new BanDAO();
-
-		        // Xóa tất cả các mục trong cbTuKhu_2 trước khi thêm mới
 		        cbTuKhu_3.removeAllItems();
 
-		        // Thêm các tên bàn tương ứng với khu vực được chọn vào cbTuKhu_2
 		        List<String> listBan = banDAO.getTenBansByKhu(selecTenKhu);
 		        for (String ban : listBan) {
 		        	cbTuKhu_3.addItem(ban);
@@ -157,16 +154,41 @@ public class ChuyenBan extends JFrame implements ActionListener {
 		    }
 		});
 
-		JButton btnDongY = new JButton("ĐỒNG Ý");
+		btnDongY = new JButton("ĐỒNG Ý");
 		btnDongY.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnDongY.setBounds(237, 224, 183, 46);
 		btnDongY.setBackground(SystemColor.textHighlight); // Màu xanh dương nhạt
 		btnDongY.setForeground(Color.WHITE); // Chữ trắng
 		contentPane.add(btnDongY);
+		
+		btnDongY.addActionListener(this);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	    if (e.getSource() == btnDongY) {
+	        String tenTuBan = cbTuKhu_2.getSelectedItem() != null ? cbTuKhu_2.getSelectedItem().toString() : "";
+	        String tenDenBan = cbTuKhu_3.getSelectedItem() != null ? cbTuKhu_3.getSelectedItem().toString() : "";
+
+	        if (!tenTuBan.isEmpty() && !tenDenBan.isEmpty()) {
+	            BanDAO banDAO = new BanDAO();
+	            List<String> maTuBans = banDAO.getMaBanTheoTen(tenTuBan);
+	            List<String> maDenBans = banDAO.getMaBanTheoTen(tenDenBan);
+
+	            if (!maTuBans.isEmpty() && !maDenBans.isEmpty()) {
+	                String maTuBan = maTuBans.get(0);
+	                String maDenBan = maDenBans.get(0);
+	                try {
+	                    banDAO.chuyenBan(maTuBan, maDenBan);
+	                } catch (SQLException e1) {
+	                    e1.printStackTrace();
+	                }
+	            } else {
+	                System.out.println("Vui lòng chọn bàn chuyển đi và bàn chuyển đến hợp lệ.");
+	            }
+	        } else {
+	            System.out.println("Vui lòng chọn bàn chuyển đi và bàn chuyển đến.");
+	        }
+	    }
 	}
 }
