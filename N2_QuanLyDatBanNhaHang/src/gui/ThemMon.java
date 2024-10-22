@@ -28,30 +28,45 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import dao.BanDAO;
+import dao.ChiTietPhieuDatDAO;
 import dao.MonAnUongDAO;
+import dao.PhieuDatBanDAO;
+import entity.Ban;
+import entity.ChiTietPhieuDat;
 import entity.MonAnUong;
+import entity.NhanVien;
+import entity.PhieuDatBan;
 
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Properties;
 import java.awt.event.ActionEvent;
 
-public class ThemMon extends JFrame {
+public class ThemMon extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtTenKhach;
-	private JTextField textField_3;
+	private JTextField txtSoKhach;
 	private JTextField textField_4;
 	private JTable tbMonAnTrenBan;
 	private JTable tbMonAn;
 	private JButton btnThemMon;
-	private JLabel lblMaBan;
+	public static JLabel lblMaBan;
 	private int STT = 1;
 	private JDatePickerImpl datePicker;
 	private Container pnlTT;
+<<<<<<< HEAD
 
+=======
+	private JButton btnXacNhan;
+	private JTextArea txtGhiChu;
+	public static String luuMaBan;
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 	/**
 	 * Launch the application.
 	 */
@@ -92,8 +107,13 @@ public class ThemMon extends JFrame {
 		lblBanDat.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 
 		lblMaBan = new JLabel();
+<<<<<<< HEAD
 		lblMaBan.setBounds(224, 11, 45, 25);
 
+=======
+		lblMaBan.setBounds(167, 11, 235, 25);
+		
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		lblMaBan.setForeground(new Color(255, 0, 51));
 		lblMaBan.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 
@@ -123,10 +143,17 @@ public class ThemMon extends JFrame {
 		jLabel8_1.setText("Số khách");
 		jLabel8_1.setForeground(new Color(0, 51, 255));
 		jLabel8_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+<<<<<<< HEAD
 
 		textField_3 = new JTextField();
 		textField_3.setBounds(244, 184, 193, 33);
 
+=======
+		
+		txtSoKhach = new JTextField();
+		txtSoKhach.setBounds(244, 184, 193, 33);
+		
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		JLabel jLabel11_1 = new JLabel();
 		jLabel11_1.setBounds(10, 228, 46, 17);
 		jLabel11_1.setText("Ghi chú");
@@ -138,15 +165,24 @@ public class ThemMon extends JFrame {
 		jLabel19_1.setText("Tên nhân viên:");
 		jLabel19_1.setForeground(Color.MAGENTA);
 		jLabel19_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+<<<<<<< HEAD
 
 		JLabel lblNewLabel_3 = new JLabel("Nhân viên A");
 		lblNewLabel_3.setBounds(164, 323, 73, 17);
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
+=======
+		
+		JLabel lblTenNV = new JLabel("Nhân viên A");
+		lblTenNV.setBounds(164, 323, 73, 17);
+		lblTenNV.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		JLabel lblNewLabel_2 = new JLabel("Số điện thoại:");
 		lblNewLabel_2.setBounds(10, 359, 116, 22);
 		lblNewLabel_2.setForeground(Color.MAGENTA);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+<<<<<<< HEAD
 
 		JLabel jLabel17_1 = new JLabel();
 		jLabel17_1.setBounds(164, 363, 80, 17);
@@ -154,6 +190,15 @@ public class ThemMon extends JFrame {
 		jLabel17_1.setForeground(Color.BLACK);
 		jLabel17_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
+=======
+		
+		JLabel lblSdt = new JLabel();
+		lblSdt.setBounds(164, 363, 80, 17);
+		lblSdt.setText("0891234567");
+		lblSdt.setForeground(Color.BLACK);
+		lblSdt.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		JLabel jLabel9_1 = new JLabel();
 		jLabel9_1.setBounds(100, 660, 78, 25);
 		jLabel9_1.setText("4,150,000");
@@ -195,10 +240,22 @@ public class ThemMon extends JFrame {
 		datePicker.getJFormattedTextField().setPreferredSize(new Dimension(100, 35));
 		datePicker.getJFormattedTextField().setFont(new Font("Arial", Font.PLAIN, 15));
 		tbMonAnTrenBan = new JTable();
+<<<<<<< HEAD
 		tbMonAnTrenBan.setRowHeight(30);
 		tbMonAnTrenBan.setModel(new DefaultTableModel(new Object[][] {
 
 		}, new String[] { "STT", "Mã món", "Tên món", "Số lượng", "Giá tiền", "Loại" }));
+=======
+		tbMonAnTrenBan.setRowHeight(30); 
+		tbMonAnTrenBan.setModel(new DefaultTableModel(
+			new Object[][] {
+			
+			},
+			new String[] {
+					"STT", "Mã món","Tên món","Giá tiền","Loại","Số lượng món"
+			}
+		));
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		tbMonAnTrenBan.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		scrollPane.setViewportView(tbMonAnTrenBan);
 		panel.setLayout(null);
@@ -210,20 +267,28 @@ public class ThemMon extends JFrame {
 		panel.add(txtTenKhach);
 		panel.add(jLabel5_1);
 		panel.add(jLabel8_1);
-		panel.add(textField_3);
+		panel.add(txtSoKhach);
 		panel.add(lblNewLabel);
 		panel.add(jLabel9_1);
 		panel.add(lblNewLabel_2);
-		panel.add(jLabel17_1);
+		panel.add(lblSdt);
 		panel.add(jLabel19_1);
-		panel.add(lblNewLabel_3);
+		panel.add(lblTenNV);
 		panel.add(scrollPane);
 		panel.add(lblMaPhieu);
+<<<<<<< HEAD
 
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(10, 256, 427, 52);
 		panel.add(textArea);
 
+=======
+		
+		txtGhiChu = new JTextArea();
+		txtGhiChu.setBounds(10, 256, 427, 52);
+		panel.add(txtGhiChu);
+		
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(482, 11, 800, 706);
 		contentPane.add(panel_1);
@@ -289,19 +354,37 @@ public class ThemMon extends JFrame {
 		tbMonAn = new JTable();
 		tbMonAn.setRowHeight(30);
 		tbMonAn.setFont(new Font("Tahoma", Font.PLAIN, 14));
+<<<<<<< HEAD
 		tbMonAn.setModel(new DefaultTableModel(new Object[][] {
 
 		}, new String[] { "STT", "Mã món", "Tên món", "Số lượng", "Giá tiền", "Loại" }));
+=======
+		tbMonAn.setModel(new DefaultTableModel(
+			new Object[][] {
+			
+				
+			},
+			new String[] {
+				"STT", "Mã món","Tên món","Giá tiền","Loại"
+			}
+		));
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		scrollPane_1.setViewportView(tbMonAn);
 		loadDataToTable();
 
 		tbMonAn.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+<<<<<<< HEAD
 
 		JButton btnXacNhan = new JButton("Xác nhận");
+=======
+		
+		btnXacNhan = new JButton("Xác nhận");
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		btnXacNhan.setBackground(Color.ORANGE);
 		btnXacNhan.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnXacNhan.setBounds(672, 654, 118, 41);
 		panel_1.add(btnXacNhan);
+<<<<<<< HEAD
 
 		btnThemMon.addActionListener(new ActionListener() {
 			@Override
@@ -323,6 +406,18 @@ public class ThemMon extends JFrame {
 				}
 			}
 		});
+=======
+		
+		btnThemMon.addActionListener(this);
+		btnXacNhan.addActionListener(this);
+//		btnThemMon.addActionListener(new ActionListener() {
+//		    @Override
+//		    public void actionPerformed(ActionEvent e) {
+//		        
+//		    }
+//		});
+
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 
 	}
 
@@ -335,6 +430,7 @@ public class ThemMon extends JFrame {
 
 		int stt = 1;
 		for (MonAnUong monAn : listMonAn) {
+<<<<<<< HEAD
 			model.addRow(new Object[] { stt++, monAn.getMaMonAnUong(), monAn.getTenMonAnUong(), monAn.getSoLuong(),
 					monAn.getGiaTien(), monAn.getLoai(),
 
@@ -345,5 +441,117 @@ public class ThemMon extends JFrame {
 	public void loadThongTinMonAn() {
 //		lblMaBan.setText(PanelNhaHangMenu1.luuTenBan);
 		lblMaBan.setText("HIHI");
+=======
+			model.addRow(new Object[] {
+				stt++,
+				monAn.getMaMonAnUong(),
+				monAn.getTenMonAnUong(), 
+				
+				monAn.getGiaTien(), 
+				monAn.getLoai(),
+			
+			});
+		}
+	}
+	public static void loadThongTinMonAn(String ma) {
+		lblMaBan.setText(ma);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == btnThemMon) {
+			int selectedRow = tbMonAn.getSelectedRow();
+	        if (selectedRow != -1) {
+	            DefaultTableModel modelMonAn = (DefaultTableModel) tbMonAn.getModel();
+	            
+	          
+	            String maMonAnUong = (String) modelMonAn.getValueAt(selectedRow, 1);
+	            String tenMonAnUong = (String) modelMonAn.getValueAt(selectedRow, 2);
+	            double giaTien = (double) modelMonAn.getValueAt(selectedRow, 3);
+	            String loai = (String) modelMonAn.getValueAt(selectedRow, 4);
+
+	            DefaultTableModel modelMonAnTrenBan = (DefaultTableModel) tbMonAnTrenBan.getModel();
+	            
+	         
+	            boolean daTonTai = false;
+	            for (int i = 0; i < modelMonAnTrenBan.getRowCount(); i++) {
+	                String maMonAnTrenBan = (String) modelMonAnTrenBan.getValueAt(i, 1); 
+	                
+	                if (maMonAnTrenBan.equals(maMonAnUong)) {
+	                  
+	                    int soLuongHienTai = (int) modelMonAnTrenBan.getValueAt(i, 5);
+	                    modelMonAnTrenBan.setValueAt(soLuongHienTai + 1, i, 5); 
+	                    daTonTai = true;
+	                    break;
+	                }
+	            }
+
+	            if (!daTonTai) {
+	               
+	                modelMonAnTrenBan.addRow(new Object[] {
+	                    STT++, 
+	                    maMonAnUong,
+	                    tenMonAnUong,
+	                   
+	                    giaTien,
+	                    loai,
+	                    1,  
+	                });
+	            }
+	        } else {
+	            JOptionPane.showMessageDialog(null, "Vui lòng chọn một món ăn để thêm.");
+	        }
+		}
+		else if(e.getSource() == btnXacNhan) {
+	
+		    String tenKhachDat = txtTenKhach.getText().trim();
+		    int soLuongKhach = Integer.parseInt(txtSoKhach.getText().trim());
+		    String ghiChu = txtGhiChu.getText().trim();
+		    String maNhanVien = "a";
+		    
+		    if (tenKhachDat.isEmpty() || soLuongKhach <= 0) {
+		        JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin khách đặt và mã nhân viên.");
+		        return;
+		    }
+
+
+		    PhieuDatBanDAO phieuDatBanDAO = new PhieuDatBanDAO();
+		    String maPhieuDatMoi = phieuDatBanDAO.phatSinhMaPhieuDatMoi();
+		    
+	
+		    PhieuDatBan phieuDatMoi = new PhieuDatBan(maPhieuDatMoi, tenKhachDat, soLuongKhach, LocalDateTime.now(), ghiChu, new NhanVien(maNhanVien));
+		    phieuDatBanDAO.themPhieuDat(phieuDatMoi);
+		    DefaultTableModel modelMonAnTrenBan = (DefaultTableModel) tbMonAnTrenBan.getModel();
+	
+		    ChiTietPhieuDatDAO chiTietPhieuDatDAO = new ChiTietPhieuDatDAO();
+		    for (int i = 0; i < modelMonAnTrenBan.getRowCount(); i++) {
+		        String maMonAn = (String) modelMonAnTrenBan.getValueAt(i, 1);
+		        int soLuongMon = (int) modelMonAnTrenBan.getValueAt(i, 5); 
+
+	
+		        MonAnUong monAnUong = new MonAnUong(maMonAn); 
+		        Ban ban = new Ban(lblMaBan.getText()); 
+
+		 
+		        ChiTietPhieuDat chiTiet = new ChiTietPhieuDat(soLuongMon, monAnUong, phieuDatMoi, ban);
+
+		        if (!chiTietPhieuDatDAO.themChiTietPhieuDat(chiTiet)) {
+		            JOptionPane.showMessageDialog(null, "Lỗi khi thêm chi tiết phiếu đặt cho món: " + maMonAn);
+		        }
+		    }
+		    JOptionPane.showMessageDialog(null, "Phiếu đặt và chi tiết phiếu đặt đã được lưu thành công.");
+		
+	        BanDAO banDAO = new BanDAO();
+	        if (!banDAO.capNhatTrangThaiBan(lblMaBan.getText(), true)) {
+	            JOptionPane.showMessageDialog(null, "Lỗi khi cập nhật trạng thái bàn.");
+	        } else {
+	            JOptionPane.showMessageDialog(null, "Phiếu đặt đã được xác nhận và bàn đã được cập nhật trạng thái.");
+	        }
+		}
+
+		
+		
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 	}
 }

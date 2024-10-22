@@ -22,7 +22,14 @@ public class Ban {
 		this.loaiBan = loaiBan;
 		this.khuVucBan = khuVucBan;
 	}
+<<<<<<< HEAD
 
+=======
+	public Ban(String maBan) {
+		super();
+		this.maBan = maBan;
+	}
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 	public String getMaBan() {
 		return maBan;
 	}

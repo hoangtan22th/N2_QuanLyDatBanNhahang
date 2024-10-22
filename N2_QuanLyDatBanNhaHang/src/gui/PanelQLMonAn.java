@@ -40,7 +40,6 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 	private JTextField txtMa;
 	private JTextField txtTen;
 	private JTextField txtGia;
-	private JTextField txtSoLuong;
 	private JTextField textField;
 	private JTable tbDsMonAn;
 	private JButton btnSua;
@@ -59,9 +58,20 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 
 		int stt = 1;
 		for (MonAnUong monAn : listMonAn) {
+<<<<<<< HEAD
 			model.addRow(new Object[] { stt++, monAn.getMaMonAnUong(), monAn.getTenMonAnUong(), monAn.getSoLuong(),
 					monAn.getGiaTien(), monAn.getLoai(),
 
+=======
+			model.addRow(new Object[] {
+				stt++,
+				monAn.getMaMonAnUong(),
+				monAn.getTenMonAnUong(), 
+			
+				monAn.getGiaTien(), 
+				monAn.getLoai(),
+			
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 			});
 		}
 	}
@@ -124,6 +134,7 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 		txtGia.setColumns(10);
 		txtGia.setBounds(10, 175, 347, 35);
 		pnlTT.add(txtGia);
+<<<<<<< HEAD
 
 		JLabel lblSoLuong = new JLabel("Số lượng");
 		lblSoLuong.setForeground(Color.BLACK);
@@ -136,40 +147,43 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 		txtSoLuong.setBounds(10, 245, 347, 35);
 		pnlTT.add(txtSoLuong);
 
+=======
+		
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		JLabel lblGhiChu = new JLabel("Ghi chú");
 		lblGhiChu.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblGhiChu.setBounds(20, 285, 114, 29);
+		lblGhiChu.setBounds(20, 221, 114, 29);
 		pnlTT.add(lblGhiChu);
 
 		txtGhiChu = new JTextArea();
-		txtGhiChu.setBounds(10, 315, 347, 99);
+		txtGhiChu.setBounds(10, 261, 347, 99);
 		pnlTT.add(txtGhiChu);
 
 		btnThem = new JButton("Thêm");
 		btnThem.setForeground(Color.WHITE);
 		btnThem.setBackground(new Color(0, 191, 0));
-		btnThem.setBounds(10, 425, 76, 30);
+		btnThem.setBounds(10, 385, 76, 30);
 		btnThem.addActionListener(this);
 		pnlTT.add(btnThem);
 
 		btnSua = new JButton("Sửa");
 		btnSua.setForeground(Color.WHITE);
 		btnSua.setBackground(new Color(255, 128, 64));
-		btnSua.setBounds(96, 425, 76, 30);
+		btnSua.setBounds(96, 385, 76, 30);
 		btnSua.addActionListener(this);
 		pnlTT.add(btnSua);
 
 		btnXoa = new JButton("Xóa");
 		btnXoa.setForeground(Color.WHITE);
 		btnXoa.setBackground(Color.RED);
-		btnXoa.setBounds(182, 425, 76, 30);
+		btnXoa.setBounds(182, 385, 76, 30);
 		btnXoa.addActionListener(this);
 		pnlTT.add(btnXoa);
 
 		btnLamMoi = new JButton("Làm mới");
 		btnLamMoi.setForeground(Color.WHITE);
 		btnLamMoi.setBackground(Color.BLUE);
-		btnLamMoi.setBounds(268, 425, 89, 30);
+		btnLamMoi.setBounds(268, 385, 89, 30);
 		btnLamMoi.addActionListener(this);
 		pnlTT.add(btnLamMoi);
 
@@ -178,8 +192,17 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 		add(scrollPane);
 
 		tbDsMonAn = new JTable();
+<<<<<<< HEAD
 		tbDsMonAn.setModel(new DefaultTableModel(new Object[][] {},
 				new String[] { "STT", "Mã món", "Tên món", "Số lượng", "Giá tiền", "Loại món", "Ghi chú" }));
+=======
+		tbDsMonAn.setModel(new DefaultTableModel(
+			new Object[][] {},
+			new String[] {
+				"STT", "Mã món", "Tên món", "Giá tiền", "Loại món", "Ghi chú"
+			}
+		));
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 		scrollPane.setViewportView(tbDsMonAn);
 		tbDsMonAn.setRowHeight(30);
 
@@ -224,8 +247,19 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 	}
 
 	private void addMonAn() {
+<<<<<<< HEAD
 		MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
 		MonAnUong newMonAn = new MonAnUong();
+=======
+	    MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
+	    MonAnUong newMonAn = new MonAnUong();
+	    
+	    newMonAn.setMaMonAnUong(txtMa.getText());
+	    newMonAn.setTenMonAnUong(txtTen.getText());
+	 
+	    newMonAn.setGiaTien(Double.parseDouble(txtGia.getText()));
+	 
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 
 		newMonAn.setMaMonAnUong(txtMa.getText());
 		newMonAn.setTenMonAnUong(txtTen.getText());
@@ -240,10 +274,18 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 		MonAnUongDAO monAnUongDAO = new MonAnUongDAO();
 		MonAnUong updatedMonAn = new MonAnUong();
 
+<<<<<<< HEAD
 		updatedMonAn.setMaMonAnUong(txtMa.getText());
 		updatedMonAn.setTenMonAnUong(txtTen.getText());
 		updatedMonAn.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
 		updatedMonAn.setGiaTien(Double.parseDouble(txtGia.getText()));
+=======
+	    updatedMonAn.setMaMonAnUong(txtMa.getText());
+	    updatedMonAn.setTenMonAnUong(txtTen.getText());
+	    
+	    updatedMonAn.setGiaTien(Double.parseDouble(txtGia.getText()));
+	
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 
 		monAnUongDAO.updateMonAnUong(updatedMonAn);
 		loadDataToTable();
@@ -257,16 +299,25 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 	}
 
 	private void clearFields() {
+<<<<<<< HEAD
 		txtMa.setText("");
 		txtTen.setText("");
 		txtGia.setText("");
 		txtSoLuong.setText("");
 		txtGhiChu.setText("");
+=======
+	    txtMa.setText("");
+	    txtTen.setText("");
+	    txtGia.setText("");
+	  
+	    txtGhiChu.setText("");
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// THIẾU LOẠI MÓN MAI CẬP NHẬT
+<<<<<<< HEAD
 		if (e.getClickCount() == 1) {
 			int row = tbDsMonAn.getSelectedRow();
 			if (row != -1) {
@@ -284,6 +335,26 @@ public class PanelQLMonAn extends JPanel implements ActionListener, MouseListene
 
 			}
 		}
+=======
+	    if (e.getClickCount() == 1) { 
+	        int row = tbDsMonAn.getSelectedRow(); 
+	        if (row != -1) { 
+	
+	            String maMonAn = tbDsMonAn.getValueAt(row, 1).toString(); 
+	            String tenMonAn = tbDsMonAn.getValueAt(row, 2).toString(); 
+	            
+	            String giaTien = tbDsMonAn.getValueAt(row, 3).toString();
+	            String loaiMon = "Chưa có";
+
+	        
+	            txtMa.setText(maMonAn);
+	            txtTen.setText(tenMonAn);
+	       
+	            txtGia.setText(giaTien);
+	            
+	        }
+	    }
+>>>>>>> d7b736e85fac5dda061e9782de5fcaf98def3e83
 	}
 
 	@Override
